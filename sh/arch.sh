@@ -522,10 +522,7 @@ install_gui_pkg() {
 
     local driver_pkg=(${ucode_pkg[@]} ${gpu_pkg[@]} ${audio_pkg[@]} ${bluetooth_pkg[@]} ${touch_pkg[@]})
     local manager_pkg=(networkmanager network-manager-applet tlp)
-    local wayland_display_pkg=(wayland sway swayidle waylock wl-clipboard xorg-xwayland)
-    local wayland_desktop_pkg=(grim slurp mako qt5-wayland waybar wofi)
-    local xorg_display_pkg=(xorg xorg-xinit qtile python-pywlroots i3lock xclip)
-    local xorg_desktop_pkg=(dunst feh flameshot rofi redshift)
+    local desktop_pkg=(xorg xorg-xinit plasma-meta flameshot)
     local browser_pkg=(firefox firefox-i18n-zh-cn firefox-ublock-origin firefox-decentraleyes)
     local media_pkg=(ueberzug imv vlc)
     local input_pkg=(fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-zhwiki)
@@ -535,8 +532,7 @@ install_gui_pkg() {
     local font_pkg=(noto-fonts-cjk noto-fonts-emoji otf-font-awesome ttf-ubuntu-font-family)
 
     pacman_install ${driver_pkg[@]}  ${manager_pkg[@]}
-    pacman_install ${wayland_display_pkg[@]} ${wayland_desktop_pkg[@]}
-    pacman_install ${xorg_display_pkg[@]}    ${xorg_desktop_pkg[@]}
+    pacman_install ${desktop_pkg[@]}
     pacman_install ${browser_pkg[@]} ${media_pkg[@]}
     pacman_install ${input_pkg[@]}   ${control_pkg[@]}
     pacman_install ${virtual_pkg[@]} ${office_pkg[@]}
@@ -610,7 +606,6 @@ write_config() {
     if [ "$use_gui" = 1 ]; then
         set_bluetooth
         set_light
-        set_sddm
         set_virtualizer
         set_wallpaper
     fi
@@ -689,13 +684,6 @@ set_bluetooth() {
 
 set_light() {
     usermod -aG video ${user_name}
-}
-
-set_sddm() {
-    cat << EOF > /var/lib/sddm/state.conf
-[Last]
-Session=/usr/share/xsessions/qtile.desktop
-EOF
 }
 
 set_virtualizer() {
