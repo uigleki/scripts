@@ -521,7 +521,7 @@ install_gui_pkg() {
     local touch_pkg=(libinput)
 
     local driver_pkg=(${ucode_pkg[@]} ${gpu_pkg[@]} ${audio_pkg[@]} ${bluetooth_pkg[@]} ${touch_pkg[@]})
-    local manager_pkg=(networkmanager tlp)
+    local manager_pkg=(networkmanager)
     local desktop_pkg=(xorg xorg-xinit plasma-meta flameshot)
     local browser_pkg=(firefox firefox-i18n-zh-cn firefox-ublock-origin firefox-decentraleyes)
     local media_pkg=(ueberzug imv vlc)
@@ -604,8 +604,6 @@ write_config() {
     set_tldr
 
     if [ "$use_gui" = 1 ]; then
-        set_bluetooth
-        set_light
         set_virtualizer
         set_wallpaper
     fi
@@ -678,14 +676,6 @@ set_tldr() {
     do_as_user tldr --update
 }
 
-set_bluetooth() {
-    usermod -aG lp ${user_name}
-}
-
-set_light() {
-    usermod -aG video ${user_name}
-}
-
 set_virtualizer() {
     sed -i '/#unix_sock_group = "libvirt"/s/#//' /etc/libvirt/libvirtd.conf
     sed -i '/#unix_sock_rw_perms = "0770"/s/#//' /etc/libvirt/libvirtd.conf
@@ -709,7 +699,7 @@ set_auto_start() {
     if [ "$use_gui" = 1 ]; then
         # dhcpcd 和 NetworkManager 不能同时启动
         disable_list+=(dhcpcd)
-        enable_list+=(bluetooth libvirtd NetworkManager reflector.timer sddm tlp)
+        enable_list+=(bluetooth libvirtd NetworkManager reflector.timer sddm)
     else
         enable_list+=(dhcpcd)
     fi
