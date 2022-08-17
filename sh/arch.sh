@@ -517,19 +517,19 @@ install_gui_pkg() {
     fi
 
     local audio_pkg=(pipewire pipewire-alsa pipewire-pulse)
-    local bluetooth_pkg=(bluez bluez-utils blueman)
+    local bluetooth_pkg=(bluez bluez-utils)
     local touch_pkg=(libinput)
 
     local driver_pkg=(${ucode_pkg[@]} ${gpu_pkg[@]} ${audio_pkg[@]} ${bluetooth_pkg[@]} ${touch_pkg[@]})
-    local manager_pkg=(networkmanager network-manager-applet tlp)
+    local manager_pkg=(networkmanager tlp)
     local desktop_pkg=(xorg xorg-xinit plasma-meta flameshot)
     local browser_pkg=(firefox firefox-i18n-zh-cn firefox-ublock-origin firefox-decentraleyes)
     local media_pkg=(ueberzug imv vlc)
     local input_pkg=(fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-zhwiki)
-    local control_pkg=(alacritty light playerctl sddm udiskie)
+    local control_pkg=(alacritty sddm)
     local virtual_pkg=(flatpak qemu-desktop libvirt virt-manager dnsmasq bridge-utils openbsd-netcat edk2-ovmf)
     local office_pkg=(foliate libreoffice-fresh-zh-cn)
-    local font_pkg=(noto-fonts-cjk noto-fonts-emoji otf-font-awesome ttf-ubuntu-font-family)
+    local font_pkg=(noto-fonts-cjk noto-fonts-emoji ttf-ubuntu-font-family)
 
     pacman_install ${driver_pkg[@]}  ${manager_pkg[@]}
     pacman_install ${desktop_pkg[@]}
