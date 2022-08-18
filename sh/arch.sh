@@ -521,20 +521,18 @@ install_gui_pkg() {
     local touch_pkg=(libinput)
 
     local driver_pkg=(${ucode_pkg[@]} ${gpu_pkg[@]} ${audio_pkg[@]} ${bluetooth_pkg[@]} ${touch_pkg[@]})
-    local manager_pkg=(networkmanager)
     local desktop_pkg=(xorg xorg-xinit plasma-meta flameshot)
+    local control_pkg=(alacritty networkmanager sddm)
     local browser_pkg=(firefox firefox-i18n-zh-cn firefox-ublock-origin firefox-decentraleyes)
     local media_pkg=(ueberzug imv vlc)
     local input_pkg=(fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-zhwiki)
-    local control_pkg=(alacritty sddm)
     local virtual_pkg=(flatpak qemu-desktop libvirt virt-manager dnsmasq bridge-utils openbsd-netcat edk2-ovmf)
     local office_pkg=(foliate libreoffice-fresh-zh-cn)
     local font_pkg=(noto-fonts-cjk noto-fonts-emoji ttf-ubuntu-font-family)
 
-    pacman_install ${driver_pkg[@]}  ${manager_pkg[@]}
-    pacman_install ${desktop_pkg[@]}
-    pacman_install ${browser_pkg[@]} ${media_pkg[@]}
-    pacman_install ${input_pkg[@]}   ${control_pkg[@]}
+    pacman_install ${driver_pkg[@]}  ${desktop_pkg[@]}
+    pacman_install ${control_pkg[@]} ${browser_pkg[@]}
+    pacman_install ${media_pkg[@]}   ${input_pkg[@]}
     pacman_install ${virtual_pkg[@]} ${office_pkg[@]}
     pacman_install ${font_pkg[@]}
 }
