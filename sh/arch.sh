@@ -682,7 +682,7 @@ set_virtualizer() {
 
 set_wallpaper() {
     local wallpaper_dir='a/pixra/bimple'
-    local wallpaper_name='86094212_p0.png'
+    local wallpaper_name='ArchLinux.png'
 
     do_as_user mkdir -p ${user_home}/"$wallpaper_dir"
     sync_cfg_dir "$wallpaper_name" ${user_home}/"$wallpaper_dir"/"$wallpaper_name"
