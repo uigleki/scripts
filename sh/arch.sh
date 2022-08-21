@@ -521,7 +521,7 @@ install_gui_pkg() {
     local touch_pkg=(libinput)
 
     local driver_pkg=(${ucode_pkg[@]} ${gpu_pkg[@]} ${audio_pkg[@]} ${bluetooth_pkg[@]} ${touch_pkg[@]})
-    local desktop_pkg=(xorg xorg-xinit plasma-meta flameshot)
+    local desktop_pkg=(xorg plasma-meta flameshot)
     local control_pkg=(alacritty networkmanager sddm)
     local browser_pkg=(firefox firefox-i18n-zh-cn firefox-ublock-origin firefox-decentraleyes)
     local media_pkg=(ueberzug imv vlc)
