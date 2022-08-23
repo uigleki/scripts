@@ -450,7 +450,7 @@ install_bootloader() {
     if [ "$use_gui" = 1 ]; then
         echo "GRUB_DISABLE_OS_PROBER=false" >> /etc/default/grub
         # 禁用看门狗定时器
-        sed -i '/GRUB_CMDLINE_LINUX_DEFAULT=/s/"$/ nowatchdog&/' /etc/default/grub
+        sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="/&nowatchdog /' /etc/default/grub
     fi
 
     grub-mkconfig -o /boot/grub/grub.cfg
@@ -627,9 +627,9 @@ set_shell() {
 
 set_snapper() {
     # 防止快照被索引
-    sed -i '/PRUNENAMES/s/.git/& .snapshots/' /etc/updatedb.conf
+    sed -i 's/PRUNENAMES = "/&.snapshots /' /etc/updatedb.conf
 
-    sed -i '/SNAPPER_CONFIGS=/s/""/"root"/' /etc/conf.d/snapper
+    sed -i 's/SNAPPER_CONFIGS="/&root/' /etc/conf.d/snapper
 
     local date=$(date +'%F %T')
     cat << EOF > /.snapshots/1/info.xml
@@ -710,7 +710,7 @@ set_auto_start() {
 fix_mnt_point() {
     local default_subvol="\/@\/.snapshots\/1\/snapshot"
 
-    sed -i "/${default_subvol}/s/,subvolid=[0-9]\+,subvol=${default_subvol}//" /etc/fstab
+    sed -i "s/,subvolid=[0-9]\+,subvol=${default_subvol}//" /etc/fstab
 }
 
 check_efi() {
