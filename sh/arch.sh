@@ -586,9 +586,9 @@ sync_cfg_dir() {
     local src_dir="${cfg_dir}/${src_in_cfg_dir}"
 
     if echo "$dest_dir" | grep -q '^/home'; then
-        local option="-a"
+        local option="-ro"
     else
-        local option="-rlptD"
+        local option="-r"
     fi
     rsync ${option} --inplace --no-whole-file "$src_dir" "$dest_dir"
 }

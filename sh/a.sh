@@ -1,4 +1,4 @@
-rsync_argu=(-ahP --delete --inplace --no-whole-file)
+rsync_argu=(-rP --delete --inplace --no-whole-file)
 rsync -n ${rsync_argu[@]} "$@"
 echo -ne "are you sure? "
 read sure
