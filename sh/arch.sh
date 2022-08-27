@@ -472,7 +472,7 @@ pacman_install() {
 
 install_pkg() {
     local network_pkg=(aria2 curl git lazygit openssh wireguard-tools)
-    local terminal_pkg=(emacs-nox starship tmux zoxide zsh)
+    local terminal_pkg=(emacs-nox starship zellij zoxide zsh)
     local file_pkg=(ranger p7zip snapper snap-pac)
     local sync_pkg=(chrony rsync)
     local search_pkg=(fzf mlocate)
