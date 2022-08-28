@@ -472,7 +472,7 @@ pacman_install() {
 
 install_pkg() {
     local network_pkg=(aria2 curl git lazygit openssh wireguard-tools)
-    local terminal_pkg=(emacs-nox starship tmux zoxide zsh)
+    local terminal_pkg=(starship tmux zoxide zsh)
     local file_pkg=(ranger p7zip snapper snap-pac)
     local sync_pkg=(chrony rsync)
     local search_pkg=(fzf mlocate)
@@ -496,6 +496,8 @@ install_pkg() {
 
     if [ "$use_gui" = 1 ]; then
         install_gui_pkg
+    else
+        pacman_install emacs-nox
     fi
 }
 
@@ -522,7 +524,7 @@ install_gui_pkg() {
 
     local driver_pkg=(${ucode_pkg[@]} ${gpu_pkg[@]} ${audio_pkg[@]} ${bluetooth_pkg[@]} ${touch_pkg[@]})
     local desktop_pkg=(xorg plasma-meta flameshot)
-    local control_pkg=(alacritty networkmanager sddm)
+    local control_pkg=(alacritty emacs networkmanager sddm)
     local browser_pkg=(firefox firefox-i18n-zh-cn firefox-ublock-origin firefox-decentraleyes)
     local media_pkg=(ueberzug imv vlc)
     local input_pkg=(fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-zhwiki)
