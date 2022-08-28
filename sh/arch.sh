@@ -624,7 +624,6 @@ set_shell() {
 
     rm /etc/skel/.bash*
     rm ${user_home}/.bash*
-    echo "# 如果没有 .zshrc，zsh 会要你新建一个" > ${user_home}/.zshrc
 }
 
 set_snapper() {
