@@ -98,6 +98,7 @@
 | 安卓音乐播放器 | Vinyl Music Player |
 | 安卓终端 | Termux |
 | 文档编辑器 | emacs |
+| 模态编辑 | Xah Fly Keys |
 | 文件管理器 | ranger |
 | 即时通信 | matrix |
 | 微软包管理 | winget |
