@@ -604,6 +604,7 @@ write_config() {
     set_tldr
 
     if [ "$use_gui" = 1 ]; then
+        set_capslock
         set_virtualizer
         set_wallpaper
     fi
@@ -673,6 +674,14 @@ set_swap() {
 
 set_tldr() {
     do_as_user tldr --update
+}
+
+set_capslock() {
+    cat << EOF > $user_name/.Xmodmap
+! 将 CapsLock 作为额外的 Home 键
+clear Lock
+keycode 66 = Home NoSymbol Home
+EOF
 }
 
 set_virtualizer() {
