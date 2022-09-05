@@ -679,8 +679,8 @@ set_tldr() {
 set_capslock() {
     cat << EOF > $user_name/.Xmodmap
 ! 将 CapsLock 作为额外的 Home 键
-clear Lock
-keycode 66 = Home NoSymbol Home
+remove Lock = Caps_Lock
+keysym Caps_Lock = Home
 EOF
 }
 
