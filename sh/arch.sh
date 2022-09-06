@@ -132,11 +132,11 @@ in_chroot_proc() {
 connect_wifi() {
     local iw_dev=$(iw dev | awk '$1=="Interface"{print $2}')
 
-    iwctl station ${iw_dev} scan
-    iwctl station ${iw_dev} get-networks
+    iwctl station $iw_dev scan
+    iwctl station $iw_dev get-networks
     echo -ne "${y}read:${e} wifi name you want to connect to: "
     read ssid
-    iwctl station ${iw_dev} connect "${ssid}"
+    iwctl station $iw_dev connect "$ssid"
 }
 
 open_ssh() {
@@ -170,7 +170,7 @@ read_only_format() {
         fi
     done
 
-    eval ${var_name_to_be_set}="$reply"
+    eval $var_name_to_be_set="$reply"
 }
 
 check_network() {
@@ -217,25 +217,25 @@ set_partition() {
         umount -fR /mnt
     fi
 
-    sel reply "automatic partition or manual partition" "automatic" "manual"
+    sel reply "automatic partition or manual partition" automatic manual
 
     if [ "$reply" = "automatic" ]; then
         select_partition main_part
 
-        parted -s ${main_part} mklabel gpt
+        parted -s $main_part mklabel gpt
         if [ "$bios_type" = "uefi" ]; then
-            parted -s ${main_part} \
+            parted -s $main_part \
                    mkpart esp 1m 513m \
                    set 1 esp on \
                    mkpart arch 513m 100%
         else
-            parted -s ${main_part} \
+            parted -s $main_part \
                    mkpart grub 1m 3m \
                    set 1 bios_grub on \
                    mkpart arch 3m 100%
         fi
 
-        if echo ${main_part} | grep -q 'nvme'; then
+        if echo $main_part | grep -q 'nvme'; then
             boot_part="${main_part}p1"
             root_part="${main_part}p2"
         else
@@ -244,7 +244,7 @@ set_partition() {
         fi
 
         if [ "$bios_type" = "uefi" ]; then
-            mkfs.fat -F32 ${boot_part}
+            mkfs.fat -F32 $boot_part
         fi
     else
         select_partition boot_part
@@ -259,7 +259,7 @@ select_partition() {
     lsblk -o NAME,SIZE
 
     sel part "select a partition as the ${y}${partition_name}${e} partition" ${partition_list[@]}
-    eval ${partition_name}="/dev/${part}"
+    eval $partition_name=/dev/$part
 }
 
 sel() {
@@ -279,20 +279,20 @@ sel() {
         fi
     done
 
-    eval ${var_name_to_be_set}=${option}
+    eval $var_name_to_be_set=$option
 }
 
 set_subvol() {
     local subvol_list=(.snapshots 'boot/grub' home opt root srv 'usr/local' var)
 
-    mkfs.btrfs -fL arch ${root_part}
-    mount ${root_part} /mnt
+    mkfs.btrfs -fL arch $root_part
+    mount $root_part /mnt
 
     btrfs subvolume create /mnt/@
 
     for subvol in ${subvol_list[@]}; do
         mkdir -p /mnt/@/$(dirname $subvol)
-        btrfs subvolume create /mnt/@/${subvol}
+        btrfs subvolume create /mnt/@/$subvol
     done
 
     chattr +C /mnt/@/var
@@ -301,20 +301,20 @@ set_subvol() {
     btrfs subvolume create /mnt/@/.snapshots/1/snapshot
 
     local default_id=$(btrfs inspect-internal rootid /mnt/@/.snapshots/1/snapshot)
-    btrfs subvolume set-default ${default_id} /mnt
+    btrfs subvolume set-default $default_id /mnt
 
     umount -R /mnt
 
-    mount -o noatime,autodefrag,compress=zstd,discard=async ${root_part} /mnt
+    mount -o noatime,autodefrag,compress=zstd,discard=async $root_part /mnt
 
     for subvol in ${subvol_list[@]}; do
-        mkdir -p /mnt/${subvol}
-        mount -o subvol=/@/${subvol} ${root_part} /mnt/${subvol}
+        mkdir -p /mnt/$subvol
+        mount -o subvol=/@/$subvol $root_part /mnt/$subvol
     done
 
     if [ "$bios_type" = 'uefi' ]; then
         mkdir -p /mnt/boot/efi
-        mount ${boot_part} /mnt/boot/efi
+        mount $boot_part /mnt/boot/efi
     fi
 
     # 避免回滚时 pacman 数据库和软件不同步
@@ -343,16 +343,16 @@ set_fstab() {
 }
 
 set_hostname() {
-    echo ${host_name} > /mnt/etc/hostname
+    echo $host_name > /mnt/etc/hostname
 }
 
 change_root() {
-    local script_url="https://gitlab.com/glek/scripts/raw/main/sh/arch.sh"
+    local script_url=https://gitlab.com/glek/scripts/raw/main/sh/arch.sh
 
-    curl -fLo /mnt/arch.sh ${script_url}
+    curl -fLo /mnt/arch.sh $script_url
     chmod +x /mnt/arch.sh
 
-    arch-chroot /mnt /arch.sh --in-chroot "$user_name" "$user_pass" "$use_gui"
+    arch-chroot /mnt /arch.sh --in-chroot $user_name $user_pass $use_gui
 
     set_resolve
     rm /mnt/arch.sh
@@ -372,9 +372,9 @@ EOF
 }
 
 set_time_zone() {
-    local city="Asia/Shanghai"
+    local city=Asia/Shanghai
 
-    ln -sf /usr/share/zoneinfo/${city} /etc/localtime
+    ln -sf /usr/share/zoneinfo/$city /etc/localtime
     hwclock --systohc
 }
 
@@ -397,7 +397,7 @@ EOF
 set_passwd() {
     echo "root:${user_pass}" | chpasswd
 
-    useradd -mG wheel ${user_name}
+    useradd -mG wheel $user_name
     echo "${user_name}:${user_pass}" | chpasswd
     sed -i '/# %wheel .* NOPASSWD/s/# //' /etc/sudoers
 }
@@ -432,12 +432,12 @@ install_bootloader() {
             grub-install --target=x86_64-efi --efi-directory=/boot/efi
             ;;
         bios)
-            if echo ${root_part} | grep -q 'nvme'; then
-                local grub_part=$(echo ${root_part} | sed 's/p[0-9]$//')
+            if echo $root_part | grep -q 'nvme'; then
+                local grub_part=$(echo $root_part | sed 's/p[0-9]$//')
             else
-                local grub_part=$(echo ${root_part} | sed 's/[0-9]$//')
+                local grub_part=$(echo $root_part | sed 's/[0-9]$//')
             fi
-            grub-install --target=i386-pc ${grub_part}
+            grub-install --target=i386-pc $grub_part
             ;;
     esac
 
@@ -504,18 +504,18 @@ install_pkg() {
 install_gui_pkg() {
     local cpu_vendor=$(grep vendor_id /proc/cpuinfo)
     if echo "$cpu_vendor" | grep -q 'AuthenticAMD'; then
-        local ucode_pkg="amd-ucode"
+        local ucode_pkg=amd-ucode
     elif echo "$cpu_vendor" | grep -q 'GenuineIntel'; then
-        local ucode_pkg="intel-ucode"
+        local ucode_pkg=intel-ucode
     fi
 
     local lspci_VGA="$(lspci | grep '3D\|VGA')"
     if echo "$lspci_VGA" | grep -q 'AMD'; then
-        local gpu_pkg="xf86-video-amdgpu"
+        local gpu_pkg=xf86-video-amdgpu
     elif echo "$lspci_VGA" | grep -q 'Intel'; then
-        local gpu_pkg="xf86-video-intel"
+        local gpu_pkg=xf86-video-intel
     elif echo "$lspci_VGA" | grep -q 'NVIDIA'; then
-        local gpu_pkg="xf86-video-nouveau"
+        local gpu_pkg=xf86-video-nouveau
     fi
 
     local audio_pkg=(pipewire pipewire-alsa pipewire-pulse)
@@ -540,24 +540,24 @@ install_gui_pkg() {
 }
 
 copy_config() {
-    user_home="/home/${user_name}"
+    user_home=/home/$user_name
 
     set_cfg_repo
 
-    fish ${cfg_dir}/env.fish
-    do_as_user fish ${cfg_dir}/env.fish
+    fish $cfg_dir/env.fish
+    do_as_user fish $cfg_dir/env.fish
 
     sync_cfg_dir etc /
     sync_cfg_dir .config /root
-    sync_cfg_dir .config ${user_home}
+    sync_cfg_dir .config $user_home
 }
 
 do_as_user() {
 
     # 避免创建出的目录或文件，用户无权操作。
 
-    cd ${user_home}
-    sudo -u ${user_name} "$@"
+    cd $user_home
+    sudo -u $user_name "$@"
     cd
 }
 
@@ -565,12 +565,12 @@ set_cfg_repo() {
 
     # 存放设定的仓库
 
-    cfg_dir="${user_home}/dotfiles"
-    cfg_url="https://gitlab.com/glek/dotfiles.git"
+    cfg_dir=$user_home/dotfiles
+    cfg_url=https://gitlab.com/glek/dotfiles.git
 
-    do_as_user git clone --depth=1 ${cfg_url} ${cfg_dir}
+    do_as_user git clone --depth=1 $cfg_url $cfg_dir
 
-    cd ${cfg_dir}
+    cd $cfg_dir
     do_as_user git config --global credential.helper store
     do_as_user git config --global pull.rebase false
     do_as_user git config --global user.email 'rraayy246@gmail.com'
@@ -585,14 +585,14 @@ sync_cfg_dir() {
 
     local src_in_cfg_dir="$1"
     local dest_dir="$2"
-    local src_dir="${cfg_dir}/${src_in_cfg_dir}"
+    local src_dir=$cfg_dir/"$src_in_cfg_dir"
 
     if echo "$dest_dir" | grep -q '^/home'; then
-        local option="-ro"
+        local option="-ort"
     else
-        local option="-r"
+        local option="-rt"
     fi
-    rsync ${option} --inplace --no-whole-file "$src_dir" "$dest_dir"
+    rsync $option --inplace --no-whole-file "$src_dir" "$dest_dir"
 }
 
 write_config() {
@@ -612,11 +612,11 @@ write_config() {
 
 set_cron() {
     if [ "$use_gui" = 1 ]; then
-        sed '/[^@]reboot/s/^/#/' ${cfg_dir}/cron > /tmp/cron
+        sed '/[^@]reboot/s/^/#/' $cfg_dir/cron > /tmp/cron
         fcrontab /tmp/cron
         rm /tmp/cron
     else
-        fcrontab ${cfg_dir}/cron
+        fcrontab $cfg_dir/cron
     fi
 }
 
@@ -624,7 +624,7 @@ set_shell() {
     sed -i '/home\|root/s/bash/zsh/' /etc/passwd
 
     rm /etc/skel/.bash*
-    rm ${user_home}/.bash*
+    rm $user_home/.bash*
 }
 
 set_snapper() {
@@ -652,18 +652,18 @@ set_ssh() {
 }
 
 set_swap() {
-    local swap_file="/var/lib/swap/swapfile"
+    local swap_file=/var/lib/swap/swapfile
     local swap_size=2G
 
     mkdir -p $(dirname $swap_file)
-    touch ${swap_file}
-    chattr +C ${swap_file}
-    chattr -c ${swap_file}
+    touch $swap_file
+    chattr +C $swap_file
+    chattr -c $swap_file
 
-    fallocate -l ${swap_size} ${swap_file}
+    fallocate -l $swap_size $swap_file
 
-    chmod 600 ${swap_file}
-    mkswap ${swap_file}
+    chmod 600 $swap_file
+    mkswap $swap_file
 
     echo "${swap_file} none swap defaults 0 0" >> /etc/fstab
 
@@ -677,7 +677,7 @@ set_tldr() {
 }
 
 set_capslock() {
-    cat << EOF > $user_name/.Xmodmap
+    cat << EOF > $user_home/.Xmodmap
 ! 将 CapsLock 作为额外的 Home 键
 remove Lock = Caps_Lock
 keysym Caps_Lock = Home
@@ -687,22 +687,29 @@ EOF
 set_virtualizer() {
     sed -i '/#unix_sock_group = "libvirt"/s/#//' /etc/libvirt/libvirtd.conf
     sed -i '/#unix_sock_rw_perms = "0770"/s/#//' /etc/libvirt/libvirtd.conf
-    usermod -aG libvirt ${user_name}
+    usermod -aG libvirt $user_name
 }
 
 set_wallpaper() {
-    local wallpaper_dir='a/pixra/bimple'
-    local wallpaper_name='ArchLinux.png'
+    local wallpaper_dir=$user_home/a/pixra/bimple
+    local wallpaper_name=ArchLinux.png
 
-    do_as_user mkdir -p ${user_home}/"$wallpaper_dir"
-    sync_cfg_dir "$wallpaper_name" ${user_home}/"$wallpaper_dir"/"$wallpaper_name"
+    do_as_user mkdir -p $wallpaper_dir
+    sync_cfg_dir $wallpaper_name $wallpaper_dir/$wallpaper_name
+
+    sync_cfg_dir $wallpaper_name /usr/share/sddm/themes/breeze/$wallpaper_name
+    cat << EOF > /usr/share/sddm/themes/breeze/theme.conf.user
+[General]
+background=${wallpaper_name}
+type=image
+EOF
 }
 
 set_auto_start() {
     local mask_list=(systemd-resolved)
     local disable_list=(systemd-timesyncd)
-    local btrfs_scrub="btrfs-scrub@$(systemd-escape -p /).timer"
-    local enable_list=(${btrfs_scrub} chronyd dnscrypt-proxy fcron grub-btrfs.path nftables paccache.timer pkgstats.timer sshd)
+    local btrfs_scrub=btrfs-scrub@$(systemd-escape -p /).timer
+    local enable_list=($btrfs_scrub chronyd dnscrypt-proxy fcron grub-btrfs.path nftables paccache.timer pkgstats.timer sshd)
 
     if [ "$use_gui" = 1 ]; then
         # dhcpcd 和 NetworkManager 不能同时启动
@@ -725,9 +732,9 @@ fix_mnt_point() {
 
 check_efi() {
     if [ -d /sys/firmware/efi ]; then
-        bios_type="uefi"
+        bios_type=uefi
     else
-        bios_type="bios"
+        bios_type=bios
     fi
 }
 
