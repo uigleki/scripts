@@ -448,7 +448,11 @@ install_bootloader() {
     sed -i '/GRUB_TIMEOUT=/s/5/1/' /etc/default/grub
 
     if [ "$use_gui" = 1 ]; then
-        echo "GRUB_DISABLE_OS_PROBER=false" >> /etc/default/grub
+        # 设置主题
+        pacman_install breeze-grub
+        echo GRUB_THEME=/usr/share/grub/themes/breeze/theme.txt >> /etc/default/grub
+        # 多系统检测
+        echo GRUB_DISABLE_OS_PROBER=false >> /etc/default/grub
         # 禁用看门狗定时器
         sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="/&nowatchdog /' /etc/default/grub
     fi
@@ -693,16 +697,20 @@ set_virtualizer() {
 set_wallpaper() {
     local wallpaper_dir=$user_home/a/pixra/bimple
     local wallpaper_name=ArchLinux.png
+    local sddm_theme_dir=/usr/share/sddm/themes/breeze
 
     do_as_user mkdir -p $wallpaper_dir
     sync_cfg_dir $wallpaper_name $wallpaper_dir/$wallpaper_name
 
-    sync_cfg_dir $wallpaper_name /usr/share/sddm/themes/breeze/$wallpaper_name
-    cat << EOF > /usr/share/sddm/themes/breeze/theme.conf.user
+    sync_cfg_dir $wallpaper_name $sddm_theme_dir/$wallpaper_name
+    cat << EOF > $sddm_theme_dir/theme.conf.user
 [General]
 background=${wallpaper_name}
 type=image
 EOF
+
+    echo GRUB_BACKGROUND=${sddm_theme_dir}/${wallpaper_name} >> /etc/default/grub
+    grub-mkconfig -o /boot/grub/grub.cfg
 }
 
 set_auto_start() {
