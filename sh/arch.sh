@@ -708,9 +708,6 @@ set_wallpaper() {
 background=${wallpaper_name}
 type=image
 EOF
-
-    echo GRUB_BACKGROUND=${sddm_theme_dir}/${wallpaper_name} >> /etc/default/grub
-    grub-mkconfig -o /boot/grub/grub.cfg
 }
 
 set_auto_start() {
