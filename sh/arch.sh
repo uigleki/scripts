@@ -283,7 +283,7 @@ sel() {
 }
 
 set_subvol() {
-    local subvol_list=(.snapshots 'boot/grub' home opt root srv 'usr/local' var)
+    local subvol_list=(.snapshots boot home opt root srv 'usr/local' var)
 
     mkfs.btrfs -fL arch $root_part
     mount $root_part /mnt
