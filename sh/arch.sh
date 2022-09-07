@@ -450,8 +450,6 @@ install_bootloader() {
     if [ "$use_gui" = 1 ]; then
         # 多系统检测
         echo GRUB_DISABLE_OS_PROBER=false >> /etc/default/grub
-        # 禁用看门狗定时器
-        sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="/&nowatchdog /' /etc/default/grub
     fi
 
     grub-mkconfig -o /boot/grub/grub.cfg
@@ -587,13 +585,12 @@ sync_cfg_dir() {
     local src_in_cfg_dir="$1"
     local dest_dir="$2"
     local src_dir=$cfg_dir/"$src_in_cfg_dir"
+    local option=(--inplace --no-whole-file --recursive --times)
 
     if echo "$dest_dir" | grep -q '^/home'; then
-        local option="-ort"
-    else
-        local option="-rt"
+        option+=(--group --owner)
     fi
-    rsync $option --inplace --no-whole-file "$src_dir" "$dest_dir"
+    rsync $option "$src_dir" "$dest_dir"
 }
 
 write_config() {
