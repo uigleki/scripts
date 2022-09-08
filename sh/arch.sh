@@ -590,7 +590,7 @@ sync_cfg_dir() {
     if echo "$dest_dir" | grep -q '^/home'; then
         option+=(--group --owner)
     fi
-    rsync $option "$src_dir" "$dest_dir"
+    rsync ${option[@]} "$src_dir" "$dest_dir"
 }
 
 write_config() {
