@@ -57,8 +57,7 @@ parse_arguments() {
                 user_name="$2"
                 user_pass="$3"
                 use_gui="$4"
-                crypt_part="$5"
-                shift 4
+                shift 3
                 ;;
             -h | --help)
                 usage 0
@@ -114,6 +113,7 @@ live_env_proc() {
     set_subvol
     install_base_system
     set_fstab
+    set_mkinitcpio
     set_hostname
     change_root
 }
@@ -124,7 +124,6 @@ in_chroot_proc() {
     set_network
     set_passwd
     set_pacman
-    set_mkinitcpio
     install_bootloader
     install_pkg
     copy_config
@@ -266,7 +265,7 @@ set_partition() {
 
 set_crypt() {
     if [ "$use_crypt" = 1 ]; then
-        local mapping_name=arch
+        mapping_name=arch
         crypt_part=$root_part
         root_part=/dev/mapper/$mapping_name
 
@@ -370,6 +369,16 @@ set_fstab() {
     echo '/usr/lib/pacman/local /var/lib/pacman/local none defaults,bind 0 0' >> /mnt/etc/fstab
 }
 
+set_mkinitcpio() {
+    if [ -n "crypt_part" ]; then
+        cat << EOF > /mnt/etc/crypttab.initramfs
+# Fields are: name, underlying device, passphrase, cryptsetup options.
+${mapping_name} ${crypt_part} - tpm2-device=auto
+EOF
+        sed -i '/^HOOKS=/s/filesystems/systemd sd-encrypt &/' /mnt/etc/mkinitcpio.conf
+    fi
+}
+
 set_hostname() {
     echo $host_name > /mnt/etc/hostname
 }
@@ -380,7 +389,7 @@ change_root() {
     curl -fLo /mnt/arch.sh $script_url
     chmod +x /mnt/arch.sh
 
-    arch-chroot /mnt /arch.sh --in-chroot $user_name $user_pass "$use_gui" "$crypt_part"
+    arch-chroot /mnt /arch.sh --in-chroot $user_name $user_pass "$use_gui"
 
     set_resolve
     rm /mnt/arch.sh
@@ -439,19 +448,6 @@ Server = http://repo.archlinuxcn.org/\$arch
 EOF
 
     pacman -Syy --noconfirm archlinuxcn-keyring
-}
-
-set_mkinitcpio() {
-    if [ -n "crypt_part" ]; then
-        local mapping_name=arch
-
-        cat << EOF > /etc/crypttab.initramfs
-# Fields are: name, underlying device, passphrase, cryptsetup options.
-${mapping_name} ${crypt_part} - tpm2-device=auto
-EOF
-        sed -i '/^HOOKS=/s/filesystems/systemd sd-encrypt &/' /etc/mkinitcpio.conf
-        mkinitcpio -p linux
-    fi
 }
 
 install_bootloader() {
