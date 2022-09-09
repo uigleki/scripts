@@ -99,7 +99,7 @@ usage() {
     echo -e "    ${g}wi${e}, ${g}wifi${e}"
     echo -e "        connect to a wifi"
 
-    exit ${exit_code}
+    exit $exit_code
 }
 
 live_env_proc() {
@@ -206,7 +206,7 @@ use_gui_or_not() {
             use_gui=0
             ;;
         *)
-            if [ $(systemd-detect-virt) = "none" ]; then
+            if [ $(systemd-detect-virt) = none ]; then
                 use_gui=1
             else
                 use_gui=0
@@ -216,7 +216,7 @@ use_gui_or_not() {
 }
 
 use_crypt_or_not() {
-    if [ "$bios_type" = 'uefi' ] && [ -n "$(cat /sys/class/tpm/tpm0/tpm_version_major)" ]; then
+    if [ "$bios_type" = uefi ] && [ -n "$(cat /sys/class/tpm/tpm0/tpm_version_major)" ]; then
         use_crypt=1
     else
         use_crypt=0
@@ -230,11 +230,11 @@ set_partition() {
 
     sel reply "automatic partition or manual partition" automatic manual
 
-    if [ "$reply" = "automatic" ]; then
+    if [ "$reply" = automatic ]; then
         select_partition main_part
 
         parted -s $main_part mklabel gpt
-        if [ "$bios_type" = "uefi" ]; then
+        if [ "$bios_type" = uefi ]; then
             parted -s $main_part \
                    mkpart esp 1m 513m \
                    set 1 esp on \
@@ -254,7 +254,7 @@ set_partition() {
             root_part="${main_part}2"
         fi
 
-        if [ "$bios_type" = "uefi" ]; then
+        if [ "$bios_type" = uefi ]; then
             mkfs.fat -F32 $boot_part
         fi
     else
@@ -370,7 +370,7 @@ set_fstab() {
 }
 
 set_mkinitcpio() {
-    if [ -n "crypt_part" ]; then
+    if [ -n "$crypt_part" ]; then
         cat << EOF > /mnt/etc/crypttab.initramfs
 # Fields are: name, underlying device, passphrase, cryptsetup options.
 ${mapping_name} ${crypt_part} - tpm2-device=auto
@@ -454,7 +454,7 @@ install_bootloader() {
     local root_part=$(df | awk '$6=="/" {print $1}')
     local boot_pkg=(grub grub-btrfs)
 
-    if [ "$bios_type" = 'uefi' ]; then
+    if [ "$bios_type" = uefi ]; then
         boot_pkg+=(efibootmgr)
     fi
 
@@ -775,7 +775,7 @@ check_efi() {
 }
 
 check_root_permission() {
-    if [ "$USER" != "root" ]; then
+    if [ "$USER" != root ]; then
         error "no permission"
     fi
 }
