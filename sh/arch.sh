@@ -57,6 +57,7 @@ parse_arguments() {
                 user_name="$2"
                 user_pass="$3"
                 use_gui="$4"
+                crypt_part="$5"
                 shift 3
                 ;;
             -h | --help)
@@ -107,7 +108,9 @@ live_env_proc() {
     update_system_clock
     enter_user_var
     use_gui_or_not
+    use_crypt_or_not
     set_partition
+    set_crypt
     set_subvol
     install_base_system
     set_fstab
@@ -121,6 +124,7 @@ in_chroot_proc() {
     set_network
     set_passwd
     set_pacman
+    set_mkinitcpio
     install_bootloader
     install_pkg
     copy_config
@@ -188,7 +192,7 @@ update_system_clock() {
 enter_user_var() {
     read_only_format host_name "enter your hostname:"    '^[a-zA-Z][-a-zA-Z0-9]*$'
     read_only_format user_name "enter your username:"    '^[a-z][-a-z0-9]*$'
-    read_only_format user_pass "enter your user passwd:" '^[-_,.a-zA-Z0-9]*$'
+    read_only_format user_pass "enter your user passwd:" '^[-_,.a-zA-Z0-9]\+$'
 }
 
 use_gui_or_not() {
@@ -210,6 +214,14 @@ use_gui_or_not() {
             fi
             ;;
     esac
+}
+
+use_crypt_or_not() {
+    if [ "$bios_type" = uefi ] && [ -n "$(cat /sys/class/tpm/tpm0/tpm_version_major)"]; then
+        use_crypt=1
+    else
+        use_crypt=0
+    fi
 }
 
 set_partition() {
@@ -249,6 +261,18 @@ set_partition() {
     else
         select_partition boot_part
         select_partition root_part
+    fi
+}
+
+set_crypt() {
+    if [ "$use_crypt" = 1 ]; then
+        local mapping_name=arch
+        crypt_part=$root_part
+        root_part=/dev/mapper/$mapping_name
+
+        cryptsetup luksFormat $crypt_part
+        systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+7 $crypt_part
+        /usr/lib/systemd/systemd-cryptsetup attach $mapping_name $crypt_part
     fi
 }
 
@@ -313,8 +337,7 @@ set_subvol() {
     done
 
     if [ "$bios_type" = 'uefi' ]; then
-        mkdir -p /mnt/boot/efi
-        mount $boot_part /mnt/boot/efi
+        mount $boot_part /mnt/boot
     fi
 
     # 避免回滚时 pacman 数据库和软件不同步
@@ -352,7 +375,7 @@ change_root() {
     curl -fLo /mnt/arch.sh $script_url
     chmod +x /mnt/arch.sh
 
-    arch-chroot /mnt /arch.sh --in-chroot $user_name $user_pass $use_gui
+    arch-chroot /mnt /arch.sh --in-chroot $user_name $user_pass "$use_gui" "$crypt_part"
 
     set_resolve
     rm /mnt/arch.sh
@@ -413,6 +436,19 @@ EOF
     pacman -Syy --noconfirm archlinuxcn-keyring
 }
 
+set_mkinitcpio() {
+    if [ -n "crypt_part" ]; then
+        local mapping_name=arch
+
+        cat << EOF > /etc/crypttab.initramfs
+# Fields are: name, underlying device, passphrase, cryptsetup options.
+${mapping_name} ${crypt_part} - tpm2-device=auto
+EOF
+        sed -i '/^HOOKS=/s/filesystems/systemd sd-encrypt &/' /etc/mkinitcpio.conf
+        mkinitcpio -p linux
+    fi
+}
+
 install_bootloader() {
     local root_part=$(df | awk '$6=="/" {print $1}')
     local boot_pkg=(grub grub-btrfs)
@@ -429,7 +465,7 @@ install_bootloader() {
 
     case "$bios_type" in
         uefi)
-            grub-install --target=x86_64-efi --efi-directory=/boot/efi
+            grub-install --target=x86_64-efi --efi-directory=/boot
             ;;
         bios)
             if echo $root_part | grep -q 'nvme'; then
