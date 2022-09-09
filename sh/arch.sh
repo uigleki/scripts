@@ -58,7 +58,7 @@ parse_arguments() {
                 user_pass="$3"
                 use_gui="$4"
                 crypt_part="$5"
-                shift 3
+                shift 4
                 ;;
             -h | --help)
                 usage 0
