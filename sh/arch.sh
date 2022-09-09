@@ -307,7 +307,11 @@ sel() {
 }
 
 set_subvol() {
-    local subvol_list=(.snapshots boot home opt root srv 'usr/local' var)
+    local subvol_list=(.snapshots home opt root srv 'usr/local' var)
+
+    if [ "$bios_type" = bios ]; then
+        subvol_list+=(boot)
+    fi
 
     mkfs.btrfs -fL arch $root_part
     mount $root_part /mnt
@@ -336,7 +340,8 @@ set_subvol() {
         mount -o subvol=/@/$subvol $root_part /mnt/$subvol
     done
 
-    if [ "$bios_type" = 'uefi' ]; then
+    if [ "$bios_type" = uefi ]; then
+        mkdir /mnt/boot
         mount $boot_part /mnt/boot
     fi
 
