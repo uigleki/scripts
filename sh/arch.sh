@@ -217,7 +217,7 @@ use_gui_or_not() {
 }
 
 use_crypt_or_not() {
-    if [ "$bios_type" = 'uefi' ] && [ -n "$(cat /sys/class/tpm/tpm0/tpm_version_major)"]; then
+    if [ "$bios_type" = 'uefi' ] && [ -n "$(cat /sys/class/tpm/tpm0/tpm_version_major)" ]; then
         use_crypt=1
     else
         use_crypt=0
