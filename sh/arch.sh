@@ -1,89 +1,57 @@
 #!/usr/bin/env bash
-
+#
 # 安装 Arch Linux 系统
 
 set -eo pipefail
 
+script_name=arch.sh
+script_url=https://gitlab.com/glek/scripts/raw/main/sh/$script_name
+cfg_name=dotfiles
+cfg_url=https://gitlab.com/glek/$cfg_name.git
+
+user_var_file=/user_var
+mapping_name=arch
+city=Asia/Shanghai
+
+pac_lib_src=/usr/lib/pacman/local
+pac_lib_dest=/var/lib/pacman/local
+
+swap_file=/var/lib/swap/swapfile
+swap_size=2G
+
 main() {
     color
-    global_var
-    parse_arguments "$@"
-    check_root_permission
 
-    if [ "$do_connect_wifi" = 1 ]; then
-        connect_wifi
-    fi
-    if [ "$do_open_ssh" = 1 ]; then
-        open_ssh
-        exit 0
-    fi
+    case "$1" in
+        --chroot)
+            do_chroot_env_proc=1
+            ;;
+        re | reinstall)
+            do_reinstall=1
+            ;;
+        ss | ssh)
+            open_ssh
+            exit
+            ;;
+        wi | wifi)
+            connect_wifi
+            exit
+            ;;
+        -h | --help)
+            usage 0
+            ;;
+        *)
+            usage 1
+            ;;
+    esac
 
-    check_efi
-
-    if [ "$do_live_env_proc" = 1 ]; then
+    if [ "$do_reinstall" = 1 ]; then
+        rm -f $user_var_file
         live_env_proc
-        exit 0
+    else
+        source $user_var_file
+        continue_install
     fi
-    if [ "$do_in_chroot_proc" = 1 ]; then
-        in_chroot_proc
-        exit 0
-    fi
-
-    if [ "$do_install_pkg" = 1 ]; then
-        install_pkg
-    fi
-    if [ "$do_copy_config" = 1 ]; then
-        copy_config
-    fi
-}
-
-live_env_proc() {
-    check_network
-    update_system_clock
-    set_reinstall
-    enter_user_var
-    use_gui_or_not
-    use_crypt_or_not
-    set_partition
-    set_crypt
-    set_subvol
-    install_base_system
-    set_fstab
-    set_mkinitcpio
-    set_hostname
-    change_root
-}
-
-in_chroot_proc() {
-    enter_user_var
-    set_time_zone
-    set_locale
-    set_network
-    set_passwd
-    set_pacman
-    install_bootloader
-    install_pkg
-    copy_config
-    write_config
-    set_auto_start
-    fix_mnt_point
-}
-
-global_var() {
-    script_name=arch.sh
-    script_url=https://gitlab.com/glek/scripts/raw/main/sh/$script_name
-    cfg_name=dotfiles
-    cfg_url=https://gitlab.com/glek/$cfg_name.git
-
-    user_var_file=/user_var
-    mapping_name=arch
-    city=Asia/Shanghai
-
-    swap_file=/var/lib/swap/swapfile
-    swap_size=2G
-
-    pac_lib_src=/usr/lib/pacman/local
-    pac_lib_dest=/var/lib/pacman/local
 }
 
 connect_wifi() {
@@ -108,35 +76,74 @@ open_ssh() {
     echo -e "${g}passwd = ${user_pass}${e}"
 }
 
-set_user_var() {
-    local var_name="$1"
-    local var_value="$2"
-
-    eval $var_name="$var_value"
-    echo "${var_name}=${var_value}" >> $user_var_file
+continue_install() {
+    if [ "$do_chroot_env_proc" = 1 ]; then
+        chroot_env_proc
+    elif [ "$download_status" = 1 ]; then
+        first_download
+        after_first_download
+    elif [ "$download_status" = 2 ]; then
+        second_download
+        after_second_download
+    else
+        live_env_proc
+    fi
 }
 
-read_only_format() {
-    local var_name="$1"
-    local output_hint="$2"
-    local matching_format="$3"
+live_env_proc() {
+    before_first_download
+    first_download
+    after_first_download
+}
 
-    if [ -z "${!var_name}" ]; then
-        while true; do
-            echo -ne "${y}read:${e} ${output_hint} "
-            read reply
-            if echo "$reply" | grep -q "$matching_format"; then
-                echo -ne "${y}sure:${e} ${reply}, are you sure? "
-                read sure
-                if [ "$sure" = 'y' -o "$sure" = '' ]; then
-                    break
-                fi
-            else
-                echo -e "${r}wrong format.${e}"
-            fi
-        done
+chroot_env_proc() {
+    before_second_download
+    second_download
+    after_second_download
+}
 
-        set_user_var $var_name "$reply"
+before_first_download() {
+    insure_mount_point
+    check_network
+    update_system_clock
+    enter_user_var
+    use_gui_or_not
+    use_crypt_or_not
+    set_partition
+    set_crypt
+    set_subvol
+}
+
+after_first_download() {
+    set_fstab
+    set_mkinitcpio
+    set_hostname
+    change_root
+}
+
+before_second_download() {
+    set_time_zone
+    set_locale
+    set_network
+    set_passwd
+    set_pacman
+    install_bootloader
+}
+
+after_second_download() {
+    copy_config
+    write_config
+    set_auto_start
+    fix_mnt_point
+}
+
+insure_mount_point() {
+    if [ -n "$(findmnt /mnt)" ]; then
+        umount -fR /mnt
+    fi
+
+    if [ -b /dev/mapper/$mapping_name ]; then
+        cryptsetup close /dev/mapper/$mapping_name
     fi
 }
 
@@ -144,25 +151,7 @@ update_system_clock() {
     timedatectl set-ntp true
 }
 
-set_reinstall() {
-    if [ "$do_reinstall" = 1 ]; then
-        if [ -e "$user_var_file" ]; then
-            rm $user_var_file
-        fi
-
-        if [ -n "$(findmnt /mnt)" ]; then
-            umount -fR /mnt
-        fi
-
-        if [ -b /dev/mapper/$mapping_name ]; then
-            cryptsetup close /dev/mapper/$mapping_name
-        fi
-    fi
-}
-
 enter_user_var() {
-    source $user_var_file
-
     read_only_format host_name "enter your hostname:"    '^[a-zA-Z][-a-zA-Z0-9]*$'
     read_only_format user_name "enter your username:"    '^[a-z][-a-z0-9]*$'
     read_only_format user_pass "enter your user passwd:" '^[-_,.a-zA-Z0-9]\+$'
@@ -175,194 +164,152 @@ use_gui_or_not() {
 
         case "$sure" in
             y*)
-                use_gui=1
+                set_user_var use_gui 1
                 ;;
             n*)
-                use_gui=0
+                set_user_var use_gui 0
                 ;;
             *)
                 if [ $(systemd-detect-virt) = none ]; then
-                    use_gui=1
+                    set_user_var use_gui 1
                 else
-                    use_gui=0
+                    set_user_var use_gui 0
                 fi
                 ;;
         esac
-        echo "use_gui=${use_gui}"
     fi
 }
 
 use_crypt_or_not() {
     if [ "$bios_type" = uefi ] && [ -n "$(cat /sys/class/tpm/tpm0/tpm_version_major)" ]; then
-        use_crypt=1
+        set_user_var use_crypt 1
     else
-        use_crypt=0
+        set_user_var use_crypt 0
     fi
 }
 
 set_partition() {
-    if [ -z "$root_part" ]; then
-        select_a reply "automatic partition or manual partition" automatic manual
+    select_a reply "automatic partition or manual partition" automatic manual
 
-        if [ "$reply" = automatic ]; then
-            select_partition main_part
+    if [ "$reply" = automatic ]; then
+        select_partition main_part
 
-            parted -s $main_part mklabel gpt
-            if [ "$bios_type" = uefi ]; then
-                parted -s $main_part \
-                       mkpart esp 1m 513m \
-                       set 1 esp on \
-                       mkpart $mapping_name 513m 100%
-            else
-                parted -s $main_part \
-                       mkpart grub 1m 3m \
-                       set 1 bios_grub on \
-                       mkpart $mapping_name 3m 100%
-            fi
-
-            if echo $main_part | grep -q 'nvme'; then
-                boot_part="${main_part}p1"
-                root_part="${main_part}p2"
-            else
-                boot_part="${main_part}1"
-                root_part="${main_part}2"
-            fi
-
-            if [ "$bios_type" = uefi ]; then
-                mkfs.fat -F32 $boot_part
-            fi
+        parted -s $main_part mklabel gpt
+        if [ "$bios_type" = uefi ]; then
+            parted -s $main_part \
+                   mkpart esp 1m 513m \
+                   set 1 esp on \
+                   mkpart $mapping_name 513m 100%
         else
-            select_partition boot_part
-            select_partition root_part
+            parted -s $main_part \
+                   mkpart grub 1m 3m \
+                   set 1 bios_grub on \
+                   mkpart $mapping_name 3m 100%
         fi
+
+        if echo $main_part | grep -q 'nvme'; then
+            set_user_var boot_part "${main_part}p1"
+            set_user_var root_part "${main_part}p2"
+        else
+            set_user_var boot_part "${main_part}1"
+            set_user_var root_part "${main_part}2"
+        fi
+
+        if [ "$bios_type" = uefi ]; then
+            mkfs.fat -F32 $boot_part
+        fi
+    else
+        select_partition boot_part
+        select_partition root_part
     fi
 }
 
 set_crypt() {
     if [ "$use_crypt" = 1 ]; then
-        crypt_part=$root_part
-        root_part=/dev/mapper/$mapping_name
+        set_user_var crypt_part $root_part
+        set_user_var root_part /dev/mapper/$mapping_name
 
-        if [ ! -e "$root_part" ]; then
-            cryptsetup luksFormat $crypt_part
-            systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+7 $crypt_part
-            /usr/lib/systemd/systemd-cryptsetup attach $mapping_name $crypt_part
-        fi
-    fi
-}
-
-select_partition() {
-    local partition_name="$1"
-    local partition_list=($(lsblk -lno NAME | grep '^\(nvme\|sd.\|vd.\)'))
-
-    if [ -z "${!partition_name}" ]; then
-        lsblk -o NAME,SIZE
-
-        select_a part "select a partition as the ${y}${partition_name}${e} partition" ${partition_list[@]}
-        set_user_var $partition_name /dev/$part
-    fi
-}
-
-select_a() {
-    local var_name="$1"
-    local output_hint="$2"
-    shift 2
-    local option_list=($@)
-
-    if [ -z "${!var_name}" ]; then
-        echo -e "${y}sele:${e} ${output_hint}:"
-        select option in ${option_list[@]}; do
-            if [ "$option" != "" ] && [[ "${option_list[@]}" =~ "$option"  ]]; then
-                echo -ne "${y}sure:${e} ${option}, are you sure? "
-                read sure
-                if [ "$sure" = 'y' -o "$sure" = '' ]; then
-                    break
-                fi
-            fi
-        done
-
-        set_user_var $var_name $option
+        cryptsetup luksFormat $crypt_part
+        systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+7 $crypt_part
+        /usr/lib/systemd/systemd-cryptsetup attach $mapping_name $crypt_part
     fi
 }
 
 set_subvol() {
-    if [ -z "$(findmnt /mnt)" ]; then
-        local subvol_list=(.snapshots home opt root srv 'usr/local' var)
+    local subvol_list=(.snapshots home opt root srv 'usr/local' var)
+    local default_id=$(btrfs inspect-internal rootid /mnt/@/.snapshots/1/snapshot)
 
-        if [ "$bios_type" = bios ]; then
-            subvol_list+=(boot)
-        fi
-
-        mkfs.btrfs -fL $mapping_name $root_part
-        mount $root_part /mnt
-
-        btrfs subvolume create /mnt/@
-
-        for subvol in ${subvol_list[@]}; do
-            mkdir -p /mnt/@/$(dirname $subvol)
-            btrfs subvolume create /mnt/@/$subvol
-        done
-
-        chattr +C /mnt/@/var
-
-        mkdir /mnt/@/.snapshots/1
-        btrfs subvolume create /mnt/@/.snapshots/1/snapshot
-
-        local default_id=$(btrfs inspect-internal rootid /mnt/@/.snapshots/1/snapshot)
-        btrfs subvolume set-default $default_id /mnt
-
-        umount -R /mnt
-
-        mount -o noatime,autodefrag,compress=zstd,discard=async $root_part /mnt
-
-        for subvol in ${subvol_list[@]}; do
-            mkdir -p /mnt/$subvol
-            mount -o subvol=/@/$subvol $root_part /mnt/$subvol
-        done
-
-        if [ "$bios_type" = uefi ]; then
-            mkdir /mnt/boot
-            mount $boot_part /mnt/boot
-        fi
-
-        # 避免回滚时 pacman 数据库和软件不同步
-        mkdir -p     /mnt$pac_lib_src /mnt$pac_lib_dest
-        mount --bind /mnt$pac_lib_src /mnt$pac_lib_dest
+    if [ "$bios_type" = bios ]; then
+        subvol_list+=(boot)
     fi
+
+    mkfs.btrfs -fL $mapping_name $root_part
+    mount $root_part /mnt
+    btrfs subvolume create /mnt/@
+
+    for subvol in ${subvol_list[@]}; do
+        mkdir -p /mnt/@/$(dirname $subvol)
+        btrfs subvolume create /mnt/@/$subvol
+    done
+
+    chattr +C /mnt/@/var
+    mkdir /mnt/@/.snapshots/1
+    btrfs subvolume create /mnt/@/.snapshots/1/snapshot
+    btrfs subvolume set-default $default_id /mnt
+    umount -R /mnt
+    mount -o noatime,autodefrag,compress=zstd,discard=async $root_part /mnt
+
+    for subvol in ${subvol_list[@]}; do
+        mkdir -p /mnt/$subvol
+        mount -o subvol=/@/$subvol $root_part /mnt/$subvol
+    done
+
+    if [ "$bios_type" = uefi ]; then
+        mkdir /mnt/boot
+        mount $boot_part /mnt/boot
+    fi
+
+    # 避免回滚时 pacman 数据库和软件不同步
+    mkdir -p     /mnt$pac_lib_src /mnt$pac_lib_dest
+    mount --bind /mnt$pac_lib_src /mnt$pac_lib_dest
 }
 
-install_base_system() {
+first_download() {
     local basic_pkg=(base base-devel linux linux-firmware btrfs-progs fish dhcpcd reflector neovim)
+    local boot_pkg=(grub grub-btrfs)
+    set_user_var download_status 1
+
+    if [ "$bios_type" = uefi ]; then
+        boot_pkg+=(efibootmgr)
+    fi
+    if [ "$use_gui" = 1 ]; then
+        boot_pkg+=(os-prober)
+    fi
 
     pacman -Sy --needed --noconfirm archlinux-keyring
+    pacstrap /mnt ${basic_pkg[@]} ${boot_pkg[@]}
 
-    pacstrap /mnt ${basic_pkg[@]}
+    del_user_var download_status
 }
 
 set_fstab() {
-    if [ ! -e /mnt/etc/fstab ]; then
-        # 绑定挂载无法被 genfstab 正确识别，所以先卸载
-        umount /mnt$pac_lib_dest
+    # 绑定挂载无法被 genfstab 正确识别，所以先卸载
+    umount /mnt$pac_lib_dest
 
-        genfstab -L /mnt >> /mnt/etc/fstab
+    genfstab -L /mnt >> /mnt/etc/fstab
 
-        mount --bind /mnt$pac_lib_src /mnt$pac_lib_dest
+    mount --bind /mnt$pac_lib_src /mnt$pac_lib_dest
 
-        # 手动写入绑定挂载
-        echo "${pac_lib_src} ${pac_lib_dest} none defaults,bind 0 0" >> /mnt/etc/fstab
-    fi
+    # 手动写入绑定挂载
+    echo "${pac_lib_src} ${pac_lib_dest} none defaults,bind 0 0" >> /mnt/etc/fstab
 }
 
 set_mkinitcpio() {
-    local crypttab_file=/mnt/etc/crypttab.initramfs
-
-    if [ -n "$crypt_part" ] && [ ! -e $crypttab_file ]; then
-        cat << EOF > $crypttab_file
+    cat << EOF > /mnt/etc/crypttab.initramfs
 # Fields are: name, underlying device, passphrase, cryptsetup options.
 ${mapping_name} ${crypt_part} - tpm2-device=auto
 EOF
-        sed -i '/^HOOKS=/s/filesystems/systemd sd-encrypt &/' /mnt/etc/mkinitcpio.conf
-    fi
+    sed -i '/^HOOKS=/s/filesystems/systemd sd-encrypt &/' /mnt/etc/mkinitcpio.conf
 }
 
 set_hostname() {
@@ -406,75 +353,50 @@ set_locale() {
 }
 
 set_network() {
-    if ! cat /etc/hosts | grep -q '127.0.0.1'; then
-        local host_name=$(cat /etc/hostname)
-
-        cat << EOF >> /etc/hosts
+    cat << EOF >> /etc/hosts
 127.0.0.1       localhost
 ::1             localhost
 127.0.1.1       ${host_name}.localdomain ${host_name}
 EOF
-    fi
 }
 
 set_passwd() {
-    if ! id -u $user_name 2>1 | grep -q '^[0-9]*$'; then
-        echo "root:${user_pass}" | chpasswd
+    echo "root:${user_pass}" | chpasswd
 
-        useradd -mG wheel $user_name
-        echo "${user_name}:${user_pass}" | chpasswd
-        sed -i '/# %wheel .* NOPASSWD/s/# //' /etc/sudoers
-    fi
+    useradd -mG wheel $user_name
+    echo "${user_name}:${user_pass}" | chpasswd
+    sed -i '/# %wheel .* NOPASSWD/s/# //' /etc/sudoers
 }
 
 set_pacman() {
     sed -i '/^#Color$/s/#//' /etc/pacman.conf
 
-    if ! cat /etc/pacman.conf | grep -q 'archlinuxcn'; then
-        cat << EOF >> /etc/pacman.conf
+    cat << EOF >> /etc/pacman.conf
 [archlinuxcn]
 Server = http://repo.archlinuxcn.org/\$arch
 EOF
-    fi
 
     pacman -Syy --needed --noconfirm archlinuxcn-keyring
 }
 
 install_bootloader() {
-    local root_part=$(df | awk '$6=="/" {print $1}')
-    local boot_pkg=(grub grub-btrfs)
-
     if [ "$bios_type" = uefi ]; then
-        boot_pkg+=(efibootmgr)
+        grub-install --target=x86_64-efi --efi-directory=/boot
+    else
+        if echo $root_part | grep -q 'nvme'; then
+            local grub_part=$(echo $root_part | sed 's/p[0-9]$//')
+        else
+            local grub_part=$(echo $root_part | sed 's/[0-9]$//')
+        fi
+        grub-install --target=i386-pc $grub_part
     fi
-
-    if [ "$use_gui" = 1 ]; then
-        boot_pkg+=(os-prober)
-    fi
-
-    pacman_install ${boot_pkg[@]}
-
-    case "$bios_type" in
-        uefi)
-            grub-install --target=x86_64-efi --efi-directory=/boot
-            ;;
-        bios)
-            if echo $root_part | grep -q 'nvme'; then
-                local grub_part=$(echo $root_part | sed 's/p[0-9]$//')
-            else
-                local grub_part=$(echo $root_part | sed 's/[0-9]$//')
-            fi
-            grub-install --target=i386-pc $grub_part
-            ;;
-    esac
-
     # 修正 grub 查找内核
     sed -i 's/rootflags=subvol=${rootsubvol} //' /etc/grub.d/10_linux
     sed -i 's/rootflags=subvol=${rootsubvol} //' /etc/grub.d/20_linux_xen
 
     sed -i '/GRUB_TIMEOUT=/s/5/1/' /etc/default/grub
 
-    if [ "$use_gui" = 1 ] && ! cat /etc/default/grub | grep -q '^GRUB_DISABLE_OS_PROBER'; then
+    if [ "$use_gui" = 1 ]; then
         # 多系统检测
         echo GRUB_DISABLE_OS_PROBER=false >> /etc/default/grub
     fi
@@ -482,21 +404,7 @@ install_bootloader() {
     grub-mkconfig -o /boot/grub/grub.cfg
 }
 
-pacman_install() {
-
-    # 一次性安装太多软件容易安装失败，
-    # 所以连试三次，增加成功的几率。
-
-    local pkg_list=($@)
-
-    for i in $(seq 3); do
-        if pacman -S --needed --noconfirm ${pkg_list[@]}; then
-            break
-        fi
-    done
-}
-
-install_pkg() {
+second_download() {
     local network_pkg=(aria2 curl git lazygit openssh wireguard-tools)
     local terminal_pkg=(starship tmux zoxide zsh)
     local file_pkg=(ranger p7zip snapper snap-pac)
@@ -566,7 +474,7 @@ install_gui_pkg() {
 }
 
 copy_config() {
-    user_home=/home/$user_name
+    set_user_var user_home /home/$user_name
 
     set_cfg_repo
 
@@ -578,27 +486,13 @@ copy_config() {
     sync_cfg_dir .config $user_home
 }
 
-do_as_user() {
-
-    # 避免创建出的目录或文件，用户无权操作。
-
-    cd $user_home
-    sudo -u $user_name "$@"
-    cd
-}
-
 set_cfg_repo() {
 
     # 存放设定的仓库
 
     cfg_dir=$user_home/$cfg_name
 
-    if [ -e $cfg_dir ]; then
-        cd $cfg_dir
-        do_as_user git pull
-    else
-        do_as_user git clone --depth=1 $cfg_url $cfg_dir
-    fi
+    do_as_user git clone --depth=1 $cfg_url $cfg_dir
 
     cd $cfg_dir
     do_as_user git config --global credential.helper store
@@ -606,22 +500,6 @@ set_cfg_repo() {
     do_as_user git config --global user.email 'rraayy246@gmail.com'
     do_as_user git config --global user.name 'ray'
     cd
-}
-
-sync_cfg_dir() {
-
-    # 如果目标目录非用户的目录，则不复制所有者信息，
-    # 以免其他程序无权限操作。
-
-    local src_in_cfg_dir="$1"
-    local dest_dir="$2"
-    local src_dir=$cfg_dir/"$src_in_cfg_dir"
-    local option=(--inplace --no-whole-file --recursive --times)
-
-    if echo "$dest_dir" | grep -q '^/home'; then
-        option+=(--group --owner)
-    fi
-    rsync ${option[@]} "$src_dir" "$dest_dir"
 }
 
 write_config() {
@@ -659,14 +537,13 @@ set_shell() {
 }
 
 set_snapper() {
-    if [ ! -e /.snapshots/1/info.xml ]; then
-        # 防止快照被索引
-        sed -i 's/PRUNENAMES = "/&.snapshots /' /etc/updatedb.conf
+    # 防止快照被索引
+    sed -i 's/PRUNENAMES = "/&.snapshots /' /etc/updatedb.conf
 
-        sed -i 's/SNAPPER_CONFIGS="/&root/' /etc/conf.d/snapper
+    sed -i 's/SNAPPER_CONFIGS="/&root/' /etc/conf.d/snapper
 
-        local date=$(date +'%F %T')
-        cat << EOF > /.snapshots/1/info.xml
+    local date=$(date +'%F %T')
+    cat << EOF > /.snapshots/1/info.xml
 <?xml version="1.0"?>
 <snapshot>
   <type>single</type>
@@ -676,8 +553,7 @@ set_snapper() {
   <description>first root filesystem</description>
 </snapshot>
 EOF
-        chmod 600 /.snapshots/1/info.xml
-    fi
+    chmod 600 /.snapshots/1/info.xml
 }
 
 set_ssh() {
@@ -685,23 +561,21 @@ set_ssh() {
 }
 
 set_swap() {
-    if [ ! -e $swap_file ]; then
-        mkdir -p $(dirname $swap_file)
-        touch $swap_file
-        chattr +C $swap_file
-        chattr -c $swap_file
+    mkdir -p $(dirname $swap_file)
+    touch $swap_file
+    chattr +C $swap_file
+    chattr -c $swap_file
 
-        fallocate -l $swap_size $swap_file
+    fallocate -l $swap_size $swap_file
 
-        chmod 600 $swap_file
-        mkswap $swap_file
+    chmod 600 $swap_file
+    mkswap $swap_file
 
-        echo "${swap_file} none swap defaults 0 0" >> /etc/fstab
+    echo "${swap_file} none swap defaults 0 0" >> /etc/fstab
 
-        # 最大限度使用物理内存
-        echo "vm.swappiness = 0" > /etc/sysctl.d/swappiness.conf
-        sysctl $(cat /etc/sysctl.d/swappiness.conf | sed 's/ //g')
-    fi
+    # 最大限度使用物理内存
+    echo "vm.swappiness = 0" > /etc/sysctl.d/swappiness.conf
+    sysctl $(cat /etc/sysctl.d/swappiness.conf | sed 's/ //g')
 }
 
 set_tldr() {
@@ -727,17 +601,15 @@ set_wallpaper() {
     local wallpaper_name=ArchLinux.png
     local sddm_theme_dir=/usr/share/sddm/themes/breeze
 
-    if [ ! -e $wallpaper_dir ]; then
-        do_as_user mkdir -p $wallpaper_dir
-        sync_cfg_dir $wallpaper_name $wallpaper_dir/$wallpaper_name
+    do_as_user mkdir -p $wallpaper_dir
+    sync_cfg_dir $wallpaper_name $wallpaper_dir/$wallpaper_name
 
-        sync_cfg_dir $wallpaper_name $sddm_theme_dir/$wallpaper_name
-        cat << EOF > $sddm_theme_dir/theme.conf.user
+    sync_cfg_dir $wallpaper_name $sddm_theme_dir/$wallpaper_name
+    cat << EOF > $sddm_theme_dir/theme.conf.user
 [General]
 background=${wallpaper_name}
 type=image
 EOF
-    fi
 }
 
 set_auto_start() {
@@ -765,6 +637,111 @@ fix_mnt_point() {
     sed -i "s/,subvolid=[0-9]\+,subvol=${default_subvol}//" /etc/fstab
 }
 
+sync_cfg_dir() {
+
+    # 如果目标目录非用户的目录，则不复制所有者信息，
+    # 以免其他程序无权限操作。
+
+    local src_in_cfg_dir="$1"
+    local dest_dir="$2"
+    local src_dir=$cfg_dir/"$src_in_cfg_dir"
+    local option=(--inplace --no-whole-file --recursive --times)
+
+    if echo "$dest_dir" | grep -q '^/home'; then
+        option+=(--group --owner)
+    fi
+    rsync ${option[@]} "$src_dir" "$dest_dir"
+}
+
+do_as_user() {
+
+    # 避免创建出的目录或文件，用户无权操作。
+
+    cd $user_home
+    sudo -u $user_name "$@"
+    cd
+}
+
+pacman_install() {
+
+    # 一次性安装太多软件容易安装失败，
+    # 所以连试三次，增加成功的几率。
+
+    local pkg_list=($@)
+
+    for i in $(seq 3); do
+        if pacman -S --needed --noconfirm ${pkg_list[@]}; then
+            break
+        fi
+    done
+}
+
+read_only_format() {
+    local var_name="$1"
+    local output_hint="$2"
+    local matching_format="$3"
+
+    if [ -z "${!var_name}" ]; then
+        while true; do
+            echo -ne "${y}read:${e} ${output_hint} "
+            read reply
+            if echo "$reply" | grep -q "$matching_format"; then
+                break
+            else
+                echo -e "${r}wrong format.${e}"
+            fi
+        done
+        set_user_var $var_name "$reply"
+    fi
+}
+
+select_a() {
+    local var_name="$1"
+    local output_hint="$2"
+    shift 2
+    local option_list=($@)
+
+    if [ -z "${!var_name}" ]; then
+        echo -e "${y}sele:${e} ${output_hint}:"
+        select option in ${option_list[@]}; do
+            if [ "$option" != '' ] && [[ "${option_list[@]}" =~ "$option"  ]]; then
+                break
+            fi
+        done
+        set_user_var $var_name $option
+    fi
+}
+
+select_partition() {
+    local partition_name="$1"
+    local partition_list=($(lsblk -lno NAME | grep '^\(nvme\|sd.\|vd.\)'))
+
+    if [ -z "${!partition_name}" ]; then
+        lsblk -o NAME,SIZE
+
+        select_a part "select a partition as the ${y}${partition_name}${e} partition" ${partition_list[@]}
+        set_user_var $partition_name /dev/$part
+        del_user_var part
+    fi
+}
+
+set_user_var() {
+    local var_name="$1"
+    local var_value="$2"
+
+    eval $var_name="$var_value"
+    echo "${var_name}=${var_value}"
+
+    del_user_var $var_name
+    echo "${var_name}=${var_value}" >> $user_var_file
+}
+
+del_user_var() {
+    local var_name="$1"
+
+    sed -i "/${var_name}=/d" $user_var_file
+}
+
 check_network() {
     if ping -c 1 -w 1 1.1.1.1 &> /dev/null; then
         echo -e "${g}network connection is successful.${e}"
@@ -783,7 +760,7 @@ check_efi() {
 
 check_root_permission() {
     if [ "$USER" != root ]; then
-        error "no permission"
+        error 'no permission'
     fi
 }
 
@@ -795,53 +772,14 @@ error() {
 }
 
 color() {
-    r="\033[31m" # 红
-    g="\033[32m" # 绿
-    y="\033[33m" # 黄
-    b="\033[34m" # 蓝
-    p="\033[35m" # 紫
-    c="\033[36m" # 青
-    w="\033[37m" # 白
-    e="\033[0m"  # 后缀
-}
-
-parse_arguments() {
-    if [ "$#" -eq 0 ]; then
-        do_live_env_proc=1
-    fi
-
-    while [ "$#" -gt 0 ]; do
-        case "$1" in
-            co | config)
-                do_copy_config=1
-                ;;
-            in | install)
-                do_install_pkg=1
-                ;;
-            re | reinstall)
-                do_reinstall=1
-                ;;
-            ss | ssh)
-                do_open_ssh=1
-                ;;
-            wi | wifi)
-                do_connect_wifi=1
-                ;;
-            --in-chroot)
-                do_in_chroot_proc=1
-                ;;
-            -h | --help)
-                usage 0
-                ;;
-            --)
-                break
-                ;;
-            *)
-                usage 1
-                ;;
-        esac
-        shift
-    done
+    r='\033[31m' # 红
+    g='\033[32m' # 绿
+    y='\033[33m' # 黄
+    b='\033[34m' # 蓝
+    p='\033[35m' # 紫
+    c='\033[36m' # 青
+    w='\033[37m' # 白
+    e='\033[0m'  # 后缀
 }
 
 usage() {
@@ -858,12 +796,6 @@ usage() {
     echo -e "        print this help message"
     echo -e ""
     echo -e "${y}subcommands:${e}"
-    echo -e "    ${g}co${e}, ${g}config${e}"
-    echo -e "        copy config"
-    echo -e ""
-    echo -e "    ${g}in${e}, ${g}install${e}"
-    echo -e "        install basic pkg"
-    echo -e ""
     echo -e "    ${g}re${e}, ${g}reinstall${e}"
     echo -e "        reinstall arch"
     echo -e ""
