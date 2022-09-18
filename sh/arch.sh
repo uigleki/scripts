@@ -312,11 +312,13 @@ set_fstab() {
 }
 
 set_mkinitcpio() {
-    cat << EOF > /mnt/etc/crypttab.initramfs
+    if [ "$use_crypt" = 1 ]; then
+        cat << EOF > /mnt/etc/crypttab.initramfs
 # Fields are: name, underlying device, passphrase, cryptsetup options.
 ${mapping_name} ${crypt_part} - tpm2-device=auto
 EOF
-    sed -i '/^HOOKS=/s/filesystems/systemd sd-encrypt &/' /mnt/etc/mkinitcpio.conf
+        sed -i '/^HOOKS=/s/filesystems/systemd sd-encrypt &/' /mnt/etc/mkinitcpio.conf
+    fi
 }
 
 set_hostname() {
