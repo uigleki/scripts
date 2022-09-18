@@ -750,7 +750,7 @@ set_user_var() {
 del_user_var() {
     local var_name="$1"
 
-    sed -i "/${var_name}=/d" $user_var_file
+    sed -i "/^${var_name}=/d" $user_var_file
 }
 
 check_network() {
