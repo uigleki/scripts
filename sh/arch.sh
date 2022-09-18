@@ -77,14 +77,16 @@ open_ssh() {
 }
 
 continue_install() {
-    if [ "$do_chroot_env_proc" = 1 ]; then
+    if [ "$do_chroot_env_proc" = 1 ] && [ "$download_status" = 2 ]; then
+        second_download
+        after_second_download
+    elif [ "$do_chroot_env_proc" = 1 ]; then
         chroot_env_proc
     elif [ "$download_status" = 1 ]; then
         first_download
         after_first_download
     elif [ "$download_status" = 2 ]; then
-        second_download
-        after_second_download
+        change_root
     else
         live_env_proc
     fi
