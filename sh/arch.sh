@@ -217,33 +217,34 @@ set_partition() {
 
         if echo $main_part | grep -q 'nvme'; then
             boot_part="${main_part}p1"
-            root_part="${main_part}p2"
+            crypt_part="${main_part}p2"
         else
             boot_part="${main_part}1"
-            root_part="${main_part}2"
+            crypt_part="${main_part}2"
         fi
         set_user_var boot_part
-        set_user_var root_part
+        set_user_var crypt_part
 
         if [ "$bios_type" = uefi ]; then
             mkfs.fat -F32 $boot_part
         fi
     else
         select_partition boot_part
-        select_partition root_part
+        select_partition crypt_part
     fi
 }
 
 set_crypt() {
     if [ "$use_crypt" = 1 ]; then
-        crypt_part=$root_part
-        set_user_var crypt_part
-        set_user_var root_part /dev/mapper/$mapping_name
+        root_part=/dev/mapper/$mapping_name
 
         cryptsetup luksFormat $crypt_part
         systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+7 $crypt_part
         /usr/lib/systemd/systemd-cryptsetup attach $mapping_name $crypt_part
+    else
+        root_part=$crypt_part
     fi
+    set_user_var root_part
 }
 
 set_subvol() {
