@@ -26,9 +26,6 @@ main() {
         '')
             do_continue_install=1
             ;;
-        --chroot)
-            do_chroot_env_proc=1
-            ;;
         re | reinstall)
             do_reinstall=1
             ;;
@@ -54,6 +51,7 @@ main() {
     else
         touch $user_var_file
         source $user_var_file
+        check_chroot
         continue_install
     fi
 }
@@ -81,10 +79,10 @@ open_ssh() {
 }
 
 continue_install() {
-    if [ "$do_chroot_env_proc" = 1 ] && [ "$download_status" = 2 ]; then
+    if [ "$in_chroot" = 1 ] && [ "$download_status" = 2 ]; then
         second_download
         after_second_download
-    elif [ "$do_chroot_env_proc" = 1 ]; then
+    elif [ "$in_chroot" = 1 ]; then
         chroot_env_proc
     elif [ "$download_status" = 1 ]; then
         first_download
@@ -337,7 +335,7 @@ change_root() {
 
     rsync -t $user_var_file /mnt/$user_var_file
 
-    arch-chroot /mnt /$script_name --chroot
+    arch-chroot /mnt /$script_name
 
     set_resolve
     rm /mnt/$script_name /mnt/$user_var_file
@@ -781,6 +779,14 @@ check_efi() {
         bios_type=uefi
     else
         bios_type=bios
+    fi
+}
+
+check_chroot() {
+    if systemd-detect-virt --chroot; then
+        in_chroot=1
+    else
+        in_chroot=0
     fi
 }
 
