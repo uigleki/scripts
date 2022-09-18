@@ -277,9 +277,10 @@ set_subvol() {
 }
 
 first_download() {
+    set_user_var download_status 1
+
     local basic_pkg=(base base-devel linux linux-firmware btrfs-progs fish dhcpcd reflector neovim)
     local boot_pkg=(grub grub-btrfs)
-    set_user_var download_status 1
 
     if [ "$bios_type" = uefi ]; then
         boot_pkg+=(efibootmgr)
@@ -407,6 +408,8 @@ install_bootloader() {
 }
 
 second_download() {
+    set_user_var download_status 1
+
     local network_pkg=(aria2 curl git lazygit openssh wireguard-tools)
     local terminal_pkg=(starship tmux zoxide zsh)
     local file_pkg=(ranger p7zip snapper snap-pac)
@@ -435,6 +438,8 @@ second_download() {
     else
         pacman_install emacs-nox
     fi
+
+    del_user_var download_status
 }
 
 install_gui_pkg() {
