@@ -197,9 +197,9 @@ use_crypt_or_not() {
 }
 
 set_partition() {
-    select_a reply "automatic partition or manual partition" automatic manual
+    select_a part_way "automatic partition or manual partition" automatic manual
 
-    if [ "$reply" = automatic ]; then
+    if [ "$part_way" = automatic ]; then
         select_partition main_part
 
         parted -s $main_part mklabel gpt
