@@ -741,7 +741,7 @@ set_user_var() {
     local var_value="$2"
 
     eval $var_name="$var_value"
-    echo "${b}var${e} ${c}${var_name}${e} = ${g}${var_value}${e}"
+    echo -e "${b}var${e} ${c}${var_name}${e} = ${g}${var_value}${e}"
 
     del_user_var $var_name
     echo "${var_name}=${var_value}" >> $user_var_file
