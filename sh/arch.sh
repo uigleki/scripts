@@ -52,6 +52,7 @@ main() {
         rm -f $user_var_file
         live_env_proc
     else
+        touch $user_var_file
         source $user_var_file
         continue_install
     fi
