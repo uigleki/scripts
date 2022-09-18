@@ -45,13 +45,15 @@ main() {
             ;;
     esac
 
+    check_chroot
+    check_efi
+
     if [ "$do_reinstall" = 1 ]; then
         rm -f $user_var_file
         live_env_proc
     else
         touch $user_var_file
         source $user_var_file
-        check_chroot
         continue_install
     fi
 }
