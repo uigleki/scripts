@@ -741,10 +741,9 @@ select_partition() {
 
 set_user_var() {
     local var_name="$1"
-    if [ -n "$2" ]; then
-        local var_value="$2"
-    else
-        local var_value="${!var_name}"
+    local var_value="$2"
+    if [ -z "$var_value" ]; then
+        var_value="${!var_name}"
     fi
 
     eval $var_name="$var_value"
