@@ -23,6 +23,9 @@ main() {
     color
 
     case "$1" in
+        '')
+            do_continue_install=1
+            ;;
         --chroot)
             do_chroot_env_proc=1
             ;;
