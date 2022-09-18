@@ -337,7 +337,7 @@ change_root() {
 
     rsync -t $user_var_file /mnt/$user_var_file
 
-    arch-chroot /mnt /$script_name --in-chroot
+    arch-chroot /mnt /$script_name --chroot
 
     set_resolve
     rm /mnt/$script_name /mnt/$user_var_file
