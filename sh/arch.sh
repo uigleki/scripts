@@ -420,7 +420,7 @@ install_bootloader() {
 }
 
 second_download() {
-    download_status=1
+    download_status=2
     set_user_var download_status
 
     local network_pkg=(aria2 curl git lazygit openssh wireguard-tools)
