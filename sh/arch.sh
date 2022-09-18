@@ -170,28 +170,30 @@ use_gui_or_not() {
 
         case "$sure" in
             y*)
-                set_user_var use_gui 1
+                use_gui=1
                 ;;
             n*)
-                set_user_var use_gui 0
+                use_gui=0
                 ;;
             *)
                 if [ $(systemd-detect-virt) = none ]; then
-                    set_user_var use_gui 1
+                    use_gui=1
                 else
-                    set_user_var use_gui 0
+                    use_gui=0
                 fi
                 ;;
         esac
+        set_user_var use_gui
     fi
 }
 
 use_crypt_or_not() {
     if [ "$bios_type" = uefi ] && [ -n "$(cat /sys/class/tpm/tpm0/tpm_version_major)" ]; then
-        set_user_var use_crypt 1
+        use_crypt=1
     else
-        set_user_var use_crypt 0
+        use_crypt=0
     fi
+    set_user_var use_crypt
 }
 
 set_partition() {
@@ -214,12 +216,14 @@ set_partition() {
         fi
 
         if echo $main_part | grep -q 'nvme'; then
-            set_user_var boot_part "${main_part}p1"
-            set_user_var root_part "${main_part}p2"
+            boot_part="${main_part}p1"
+            root_part="${main_part}p2"
         else
-            set_user_var boot_part "${main_part}1"
-            set_user_var root_part "${main_part}2"
+            boot_part="${main_part}1"
+            root_part="${main_part}2"
         fi
+        set_user_var boot_part
+        set_user_var root_part
 
         if [ "$bios_type" = uefi ]; then
             mkfs.fat -F32 $boot_part
@@ -232,7 +236,8 @@ set_partition() {
 
 set_crypt() {
     if [ "$use_crypt" = 1 ]; then
-        set_user_var crypt_part $root_part
+        crypt_part=$root_part
+        set_user_var crypt_part
         set_user_var root_part /dev/mapper/$mapping_name
 
         cryptsetup luksFormat $crypt_part
@@ -281,7 +286,8 @@ set_subvol() {
 }
 
 first_download() {
-    set_user_var download_status 1
+    download_status=1
+    set_user_var download_status
 
     local basic_pkg=(base base-devel linux linux-firmware btrfs-progs fish dhcpcd reflector neovim)
     local boot_pkg=(grub grub-btrfs)
@@ -414,7 +420,8 @@ install_bootloader() {
 }
 
 second_download() {
-    set_user_var download_status 1
+    download_status=1
+    set_user_var download_status
 
     local network_pkg=(aria2 curl git lazygit openssh wireguard-tools)
     local terminal_pkg=(starship tmux zoxide zsh)
@@ -487,7 +494,8 @@ install_gui_pkg() {
 }
 
 copy_config() {
-    set_user_var user_home /home/$user_name
+    user_home=/home/$user_name
+    set_user_var user_home
 
     set_cfg_repo
 
@@ -740,7 +748,11 @@ select_partition() {
 
 set_user_var() {
     local var_name="$1"
-    local var_value="$2"
+    if [ -n "$2" ]; then
+        local var_value="$2"
+    else
+        local var_value="${!var_name}"
+    fi
 
     eval $var_name="$var_value"
     echo -e "${b}var${e} ${c}${var_name}${e} = ${g}${var_value}${e}"
