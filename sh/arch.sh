@@ -249,7 +249,6 @@ set_crypt() {
 
 set_subvol() {
     local subvol_list=(.snapshots home opt root srv 'usr/local' var)
-    local default_id=$(btrfs inspect-internal rootid /mnt/@/.snapshots/1/snapshot)
 
     if [ "$bios_type" = bios ]; then
         subvol_list+=(boot)
@@ -267,6 +266,7 @@ set_subvol() {
     chattr +C /mnt/@/var
     mkdir /mnt/@/.snapshots/1
     btrfs subvolume create /mnt/@/.snapshots/1/snapshot
+    local default_id=$(btrfs inspect-internal rootid /mnt/@/.snapshots/1/snapshot)
     btrfs subvolume set-default $default_id /mnt
     umount -R /mnt
     mount -o noatime,autodefrag,compress=zstd,discard=async $root_part /mnt
