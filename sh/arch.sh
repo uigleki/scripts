@@ -51,9 +51,6 @@ main() {
         rm -f $user_var_file
         live_env_proc
     else
-        touch $user_var_file
-        source $user_var_file
-        check_chroot
         continue_install
     fi
 }
@@ -81,6 +78,15 @@ open_ssh() {
 }
 
 continue_install() {
+    if [ -f /mnt/$user_var_file ]; then
+        rsync -t /mnt/$user_var_file /$user_var_file
+    else
+        touch $user_var_file
+    fi
+
+    source $user_var_file
+    check_chroot
+
     if [ "$in_chroot" = 1 ] && [ "$download_status" = 2 ]; then
         second_download
         after_second_download
