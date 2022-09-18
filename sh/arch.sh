@@ -684,17 +684,9 @@ do_as_user() {
 }
 
 pacman_install() {
-
-    # 一次性安装太多软件容易安装失败，
-    # 所以连试三次，增加成功的几率。
-
     local pkg_list=($@)
 
-    for i in $(seq 3); do
-        if pacman -S --needed --noconfirm ${pkg_list[@]}; then
-            break
-        fi
-    done
+    pacman -S --needed --noconfirm ${pkg_list[@]}
 }
 
 read_only_format() {
