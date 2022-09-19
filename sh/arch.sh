@@ -769,7 +769,7 @@ check_network() {
     if ping -c 1 -w 1 1.1.1.1 &> /dev/null; then
         echo -e "${g}network connection is successful.${e}"
     else
-        error "Network connection failed."
+        error 'Network connection failed.'
     fi
 }
 
