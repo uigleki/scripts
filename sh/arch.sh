@@ -21,6 +21,7 @@ swap_size=2G
 
 main() {
     color
+    check_root_permission
 
     case "$1" in
         '')
