@@ -27,6 +27,7 @@ main() {
             do_continue_install=1
             ;;
         re | reinstall)
+            rm -f $user_var_file
             do_reinstall=1
             ;;
         ss | ssh)
@@ -46,13 +47,7 @@ main() {
     esac
 
     check_efi
-
-    if [ "$do_reinstall" = 1 ]; then
-        rm -f $user_var_file
-        live_env_proc
-    else
-        continue_install
-    fi
+    continue_install
 }
 
 connect_wifi() {
@@ -97,6 +92,8 @@ continue_install() {
         after_first_download
     elif [ "$download_status" = 2 ]; then
         change_root
+    elif [ "$download_status" = 0 ]; then
+        error 'already finished'
     else
         live_env_proc
     fi
@@ -351,6 +348,7 @@ change_root() {
 
     umount -R /mnt
 
+    set_user_var download_status 0
     echo -e "${y}please reboot.${e}"
 }
 
