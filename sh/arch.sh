@@ -468,6 +468,7 @@ install_gui_pkg() {
     elif echo "$cpu_vendor" | grep -q 'GenuineIntel'; then
         local ucode_pkg=intel-ucode
     fi
+    rm -f /boot/${ucode_pkg}.img
 
     local lspci_VGA="$(lspci | grep '3D\|VGA')"
     if echo "$lspci_VGA" | grep -q 'AMD'; then
@@ -761,6 +762,7 @@ set_user_var() {
 del_user_var() {
     local var_name="$1"
 
+    unset $var_name
     touch $user_var_file
     sed -i "/^${var_name}=/d" $user_var_file
 }
