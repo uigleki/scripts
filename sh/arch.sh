@@ -752,10 +752,9 @@ set_user_var() {
         var_value="${!var_name}"
     fi
 
+    del_user_var $var_name
     eval $var_name="$var_value"
     echo -e "${b}var${e} ${c}${var_name}${e} = ${g}${var_value}${e}"
-
-    del_user_var $var_name
     echo "${var_name}=${var_value}" >> $user_var_file
 }
 
