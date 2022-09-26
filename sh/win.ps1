@@ -12,7 +12,7 @@ winget install Mozilla.Firefox
 
 # 小鹤双拼 键位
 Invoke-WebRequest "$url/xhup.reg" -OutFile "xhup.reg"
-regedit /s "xhup.reg"
+reg import "xhup.reg"
 Remove-Item "xhup.reg"
 
 # UTC 时间 (需要管理员权限)
