@@ -21,7 +21,7 @@ Reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsU
 
 # 键盘映射
 $dest = "$env:LOCALAPPDATA/Microsoft/PowerToys"
-mkdir -p "$dest/Keyboard Manager"
+mkdir -fp "$dest/Keyboard Manager"
 Invoke-WebRequest "$url/powertoys/settings.json" -OutFile "$dest/settings.json"
 Invoke-WebRequest "$url/powertoys/keyboard/settings.json" -OutFile "$dest/Keyboard Manager/settings.json"
 Invoke-WebRequest "$url/powertoys/keyboard/default.json" -OutFile "$dest/Keyboard Manager/default.json"
