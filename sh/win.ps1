@@ -2,6 +2,7 @@
 $url = "https://gitlab.com/glek/scripts/raw/main/win"
 
 # 提示
+chcp 65001
 Write-Output "记得关闭 bitlocker 和安全启动，禁用快速启动，关闭时间同步，硬件时钟设置为 UTC。"
 
 # 下载常用软件
