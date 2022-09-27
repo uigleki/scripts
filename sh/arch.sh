@@ -485,7 +485,7 @@ install_gui_pkg() {
 
     local driver_pkg=(${ucode_pkg[@]} ${gpu_pkg[@]} ${audio_pkg[@]} ${bluetooth_pkg[@]} ${touch_pkg[@]})
     local desktop_pkg=(xorg plasma-meta flameshot)
-    local control_pkg=(alacritty emacs networkmanager sddm)
+    local control_pkg=(alacritty emacs networkmanager sddm nextcloud-client)
     local browser_pkg=(firefox firefox-i18n-zh-cn firefox-ublock-origin firefox-decentraleyes)
     local media_pkg=(ueberzug imv vlc)
     local input_pkg=(fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-zhwiki)
