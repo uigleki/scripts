@@ -480,20 +480,21 @@ install_gui_pkg() {
     fi
 
     local audio_pkg=(pipewire pipewire-alsa pipewire-pulse)
-    local bluetooth_pkg=(bluez bluez-utils)
+    local bluetooth_pkg=(bluez)
     local touch_pkg=(libinput)
 
     local driver_pkg=(${ucode_pkg[@]} ${gpu_pkg[@]} ${audio_pkg[@]} ${bluetooth_pkg[@]} ${touch_pkg[@]})
-    local desktop_pkg=(xorg plasma-meta flameshot)
-    local control_pkg=(alacritty emacs networkmanager sddm nextcloud-client)
+    local display_pkg=(xorg plasma-meta)
+    local desktop_pkg=(konsole yakuake dolphin ffmpegthumbs spectacle kwalletmanager ark)
+    local control_pkg=(emacs networkmanager sddm nextcloud-client)
     local browser_pkg=(firefox firefox-i18n-zh-cn firefox-ublock-origin firefox-decentraleyes)
-    local media_pkg=(ueberzug imv vlc)
+    local media_pkg=(gwenview elisa vlc)
     local input_pkg=(fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-zhwiki)
     local virtual_pkg=(flatpak qemu-desktop libvirt virt-manager dnsmasq bridge-utils openbsd-netcat edk2-ovmf)
-    local office_pkg=(foliate libreoffice-fresh-zh-cn)
+    local office_pkg=(foliate okular libreoffice-fresh-zh-cn)
     local font_pkg=(noto-fonts-cjk noto-fonts-emoji ttf-ubuntu-font-family)
 
-    pacman_install ${driver_pkg[@]}  ${desktop_pkg[@]}
+    pacman_install ${driver_pkg[@]}  ${display_pkg[@]} ${desktop_pkg[@]}
     pacman_install ${control_pkg[@]} ${browser_pkg[@]}
     pacman_install ${media_pkg[@]}   ${input_pkg[@]}
     pacman_install ${virtual_pkg[@]} ${office_pkg[@]}
