@@ -485,7 +485,7 @@ install_gui_pkg() {
 
     local driver_pkg=(${ucode_pkg[@]} ${gpu_pkg[@]} ${audio_pkg[@]} ${bluetooth_pkg[@]} ${touch_pkg[@]})
     local display_pkg=(xorg plasma-meta)
-    local desktop_pkg=(konsole yakuake dolphin ffmpegthumbs spectacle kwalletmanager ark)
+    local desktop_pkg=(konsole yakuake dolphin ffmpegthumbs kio-gdrive spectacle kwalletmanager ark)
     local control_pkg=(emacs networkmanager sddm nextcloud-client)
     local browser_pkg=(firefox firefox-i18n-zh-cn firefox-ublock-origin firefox-decentraleyes)
     local media_pkg=(gwenview elisa vlc)
