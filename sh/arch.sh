@@ -513,6 +513,7 @@ copy_config() {
     sync_cfg_dir etc /
     sync_cfg_dir .config /root
     sync_cfg_dir .config $user_home
+    sync_cfg_dir .local $user_home
 }
 
 set_cfg_repo() {
