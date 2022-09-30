@@ -441,7 +441,7 @@ second_download() {
     local depend_pkg=(perl-file-mimeinfo qrencode)
     local aur_pkg=(paru)
     local language_pkg=(bash-language-server python-lsp-server)
-    local docker_pkg=(podman-docker fuse-overlayfs slirp4netns)
+    local docker_pkg=(podman-docker fuse-overlayfs)
 
     pacman_install ${network_pkg[@]}  ${terminal_pkg[@]}
     pacman_install ${file_pkg[@]}     ${sync_pkg[@]}
