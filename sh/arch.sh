@@ -441,6 +441,7 @@ second_download() {
     local depend_pkg=(perl-file-mimeinfo qrencode)
     local aur_pkg=(paru)
     local language_pkg=(bash-language-server python-lsp-server)
+    local docker_pkg=(podman-docker fuse-overlayfs slirp4netns)
 
     pacman_install ${network_pkg[@]}  ${terminal_pkg[@]}
     pacman_install ${file_pkg[@]}     ${sync_pkg[@]}
@@ -448,6 +449,7 @@ second_download() {
     pacman_install ${system_pkg[@]}   ${maintain_pkg[@]}
     pacman_install ${security_pkg[@]} ${depend_pkg[@]}
     pacman_install ${aur_pkg[@]}      ${language_pkg[@]}
+    pacman_install ${docker_pkg[@]}
 
     # iptables-nft 不能直接装，需要进行确认
     echo -e "y\n\n" | pacman -S --needed iptables-nft
@@ -534,6 +536,7 @@ set_cfg_repo() {
 
 write_config() {
     set_cron
+    set_docker
     set_shell
     set_snapper
     set_ssh
@@ -555,6 +558,13 @@ set_cron() {
     else
         fcrontab $cfg_dir/cron
     fi
+}
+
+set_docker() {
+    # 让用户可以运行容器
+    touch /etc/subuid /etc/subgid
+    chmod 644 /etc/subuid /etc/subgid
+    usermod --add-subuids 100000-165535 --add-subgids 100000-165535 $user_name
 }
 
 set_shell() {
