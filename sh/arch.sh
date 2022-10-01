@@ -503,7 +503,6 @@ install_gui_pkg() {
     pacman_install ${office_pkg[@]}  ${font_pkg[@]}
 
     set_flatpak
-    install_flat_pkg
 }
 
 set_flatpak() {
