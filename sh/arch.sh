@@ -470,7 +470,6 @@ install_gui_pkg() {
     elif echo "$cpu_vendor" | grep -q 'GenuineIntel'; then
         local ucode_pkg=intel-ucode
     fi
-    rm -f /boot/${ucode_pkg}.img
 
     local lspci_VGA="$(lspci | grep '3D\|VGA')"
     if echo "$lspci_VGA" | grep -q 'AMD'; then
@@ -495,6 +494,9 @@ install_gui_pkg() {
     local virtual_pkg=(flatpak qemu-desktop libvirt virt-manager dnsmasq bridge-utils openbsd-netcat edk2-ovmf)
     local office_pkg=(foliate okular)
     local font_pkg=(noto-fonts-cjk noto-fonts-emoji ttf-ubuntu-font-family)
+
+    rm -f /boot/${ucode_pkg}.img
+    pacman -S --noconfirm ${ucode_pkg[@]}
 
     pacman_install ${driver_pkg[@]}  ${display_pkg[@]}
     pacman_install ${desktop_pkg[@]} ${control_pkg[@]}
