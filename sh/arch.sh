@@ -501,23 +501,6 @@ install_gui_pkg() {
     pacman_install ${browser_pkg[@]} ${media_pkg[@]}
     pacman_install ${input_pkg[@]}   ${virtual_pkg[@]}
     pacman_install ${office_pkg[@]}  ${font_pkg[@]}
-
-    set_flatpak
-}
-
-set_flatpak() {
-    # 设置语言环境
-    flatpak config --set languages 'en;zh'
-}
-
-install_flat_pkg() {
-    local office_pkg=(org.libreoffice.LibreOffice)
-
-    flatpak_install ${office_pkg[@]}
-}
-
-flatpak_install() {
-    do_as_user flatpak install --noninteractive "$@"
 }
 
 copy_config() {
@@ -562,6 +545,7 @@ write_config() {
 
     if [ "$use_gui" = 1 ]; then
         set_capslock
+        set_flatpak
         set_virtualizer
         set_wallpaper
     fi
@@ -648,6 +632,11 @@ set_capslock() {
 remove Lock = Caps_Lock
 keysym Caps_Lock = Home
 EOF
+}
+
+set_flatpak() {
+    # 设置语言环境
+    flatpak config --set languages 'en;zh'
 }
 
 set_virtualizer() {
