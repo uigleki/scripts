@@ -489,6 +489,7 @@ install_gui_pkg() {
     local display_pkg=(xorg plasma-meta)
     local desktop_pkg=(konsole yakuake dolphin ffmpegthumbs kio-gdrive spectacle kwalletmanager ark)
     local control_pkg=(emacs networkmanager sddm nextcloud-client)
+    local browser_pkg=(firefox firefox-i18n-zh-cn firefox-ublock-origin firefox-decentraleyes)
     local media_pkg=(gwenview elisa vlc)
     local input_pkg=(fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-zhwiki)
     local virtual_pkg=(flatpak qemu-desktop libvirt virt-manager dnsmasq bridge-utils openbsd-netcat edk2-ovmf)
@@ -497,9 +498,9 @@ install_gui_pkg() {
 
     pacman_install ${driver_pkg[@]}  ${display_pkg[@]}
     pacman_install ${desktop_pkg[@]} ${control_pkg[@]}
-    pacman_install ${media_pkg[@]}   ${input_pkg[@]}
-    pacman_install ${virtual_pkg[@]} ${office_pkg[@]}
-    pacman_install ${font_pkg[@]}
+    pacman_install ${browser_pkg[@]} ${media_pkg[@]}
+    pacman_install ${input_pkg[@]}   ${virtual_pkg[@]}
+    pacman_install ${office_pkg[@]}  ${font_pkg[@]}
 
     set_flatpak
     install_flat_pkg
@@ -511,10 +512,9 @@ set_flatpak() {
 }
 
 install_flat_pkg() {
-    local browser_pkg=(org.mozilla.firefox)
     local office_pkg=(org.libreoffice.LibreOffice)
 
-    flatpak_install ${browser_pkg[@]} ${office_pkg[@]}
+    flatpak_install ${office_pkg[@]}
 }
 
 flatpak_install() {
