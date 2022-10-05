@@ -437,7 +437,7 @@ second_download() {
     local new_search_pkg=(bat exa fd ripgrep tealdeer)
     local system_pkg=(fcron bottom man pacman-contrib pkgstats)
     local maintain_pkg=(arch-install-scripts dosfstools parted)
-    local security_pkg=(dnscrypt-proxy gocryptfs nftables)
+    local security_pkg=(dnscrypt-proxy firewalld gocryptfs)
     local depend_pkg=(perl-file-mimeinfo qrencode)
     local aur_pkg=(paru)
     local language_pkg=(bash-language-server python-lsp-server)
@@ -667,7 +667,7 @@ set_auto_start() {
     local mask_list=(systemd-resolved)
     local disable_list=(systemd-timesyncd)
     local btrfs_scrub=btrfs-scrub@$(systemd-escape -p /).timer
-    local enable_list=($btrfs_scrub chronyd dnscrypt-proxy fcron grub-btrfs.path nftables paccache.timer pkgstats.timer sshd)
+    local enable_list=($btrfs_scrub chronyd dnscrypt-proxy fcron firewalld grub-btrfs.path paccache.timer pkgstats.timer sshd)
 
     if [ "$use_gui" = 1 ]; then
         # dhcpcd 和 NetworkManager 不能同时启动
