@@ -5,10 +5,12 @@ $url = "https://gitlab.com/glek/scripts/raw/main/win"
 Write-Output "记得关闭 bitlocker 和安全启动，禁用快速启动，关闭时间同步，硬件时钟设置为 UTC。"
 
 # 下载常用软件
+winget install Git.Git
 winget install 7zip.7zip
-winget install Klocman.BulkCrapUninstaller
 winget install Microsoft.PowerToys
 winget install Mozilla.Firefox
+winget install CrowTranslate.CrowTranslate
+winget install Klocman.BulkCrapUninstaller
 
 # 小鹤双拼 键位
 Invoke-WebRequest "$url/xhup.reg" -OutFile "xhup.reg"
