@@ -5,9 +5,9 @@
 set -eo pipefail
 
 script_name=arch.sh
-script_url=https://gitlab.com/glek/scripts/raw/main/sh/$script_name
+script_url=https://gitlab.com/gleki3/scripts/raw/main/sh/$script_name
 cfg_name=dotfiles
-cfg_url=https://gitlab.com/glek/$cfg_name.git
+cfg_url=https://gitlab.com/gleki3/$cfg_name.git
 
 user_var_file=/user_var
 mapping_name=arch

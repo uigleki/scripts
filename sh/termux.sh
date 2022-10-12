@@ -102,7 +102,7 @@ clone_cfg_repo() {
     cfg_dir="$HOME/dotfiles"
 
     if [ ! -d "$cfg_dir" ]; then
-        git clone --depth=1 https://gitlab.com/glek/dotfiles.git ${cfg_dir}
+        git clone --depth=1 https://gitlab.com/gleki3/dotfiles.git ${cfg_dir}
     fi
 
     cd ${cfg_dir}
