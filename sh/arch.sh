@@ -648,7 +648,7 @@ set_virtualizer() {
 }
 
 set_wallpaper() {
-    local wallpaper_dir=$user_home/a/pixra/bimple
+    local wallpaper_dir=$user_home/dilnu/jmaji/pixra/bimple
     local wallpaper_name=ArchLinux.png
     local sddm_theme_dir=/usr/share/sddm/themes/breeze
 
