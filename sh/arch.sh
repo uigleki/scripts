@@ -666,8 +666,7 @@ EOF
 set_auto_start() {
     local mask_list=(systemd-resolved)
     local disable_list=(systemd-timesyncd)
-    local btrfs_scrub=btrfs-scrub@$(systemd-escape -p /).timer
-    local enable_list=($btrfs_scrub chronyd dnscrypt-proxy fcron firewalld grub-btrfs.path paccache.timer pkgstats.timer sshd)
+    local enable_list=(btrfs-scrub@-.timer chronyd dnscrypt-proxy fcron firewalld grub-btrfs.path paccache.timer pkgstats.timer sshd)
 
     if [ "$use_gui" = 1 ]; then
         # dhcpcd 和 NetworkManager 不能同时启动
