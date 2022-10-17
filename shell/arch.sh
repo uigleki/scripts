@@ -620,7 +620,6 @@ set_swap() {
 
     # 最大限度使用物理内存
     echo "vm.swappiness = 0" > /etc/sysctl.d/swappiness.conf
-    sysctl $(cat /etc/sysctl.d/swappiness.conf | sed 's/ //g')
 }
 
 set_tldr() {
