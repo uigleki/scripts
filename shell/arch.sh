@@ -543,12 +543,11 @@ fix_mnt_point() {
 }
 
 set_cron() {
-    if [ "$use_gui" = 1 ]; then
-        sed '/[^@]reboot/s/^/#/' $config_dir/cron > /tmp/cron
-        fcrontab /tmp/cron
-        rm /tmp/cron
-    else
-        fcrontab $config_dir/cron
+    if [ "$use_gui" != 1 ]; then
+        cat << EOF | fcrontab
+# 自动更新系统
+@weekly bash -c 'systemctl start reflector && pacman -Syu --noconfirm && reboot'
+EOF
     fi
 }
 
