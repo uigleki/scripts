@@ -506,10 +506,10 @@ set_user_config() {
     local setup_sh=$scripts_dir/shell/setup.sh
 
     do_as_user git clone --depth=1 $scripts_repo $scripts_dir
-    do_as_user bash $scripts_dir/shell/setup.sh
+    do_as_user bash $setup_sh
 
     if [ "$use_gui" = 1 ]; then
-        do_as_user bash $scripts_dir/shell/setup.sh graphic
+        do_as_user bash $setup_sh graphic
     fi
 }
 
