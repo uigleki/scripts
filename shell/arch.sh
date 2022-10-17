@@ -506,14 +506,28 @@ set_user_config() {
     set_user_var user_home
 
     local scripts_dir=$user_home/$scripts_name
-    local setup_sh=$scripts_dir/shell/setup.sh
 
     do_as_user git clone --depth=1 $scripts_repo $scripts_dir
-    do_as_user bash $setup_sh
+    setp_sh
 
     if [ "$use_gui" = 1 ]; then
-        do_as_user bash $setup_sh graphic
+        setup_sh graphic
     fi
+}
+
+setup_sh() {
+    local setup_sh=$scripts_dir/shell/setup.sh
+    local setup_dir=$scripts_dir/shell/common
+
+    if [ -n "$1" ]; then
+        setup_dir=$scripts_dir/shell/$1
+    fi
+
+    cat << EOF | do_as_user bash
+for file in ${setup_dir}/*.sh; do
+    source \$file
+done
+EOF
 }
 
 system_config() {
