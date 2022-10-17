@@ -4,7 +4,7 @@ set -eo pipefail
 # 安装 Arch Linux 系统
 
 script_name=arch.sh
-script_url=https://gitlab.com/uigleki/scripts/raw/main/sh/$script_name
+script_url=https://gitlab.com/uigleki/scripts/raw/main/shell/$script_name
 
 scripts_name=scripts
 scripts_repo=https://gitlab.com/uigleki/$scripts_name.git
