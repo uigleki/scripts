@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
 # rsync 以修改日期和文件大小判断是不是同一个文件
 exclude_list=$HOME/exclude.list
 rsync_argu=(--delete --exclude-from=$exclude_list --inplace --no-whole-file --partial --progress --recursive --times)

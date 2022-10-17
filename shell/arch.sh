@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-#
-# 安装 Arch Linux 系统
-
 set -eo pipefail
+
+# 安装 Arch Linux 系统
 
 script_name=arch.sh
 script_url=https://gitlab.com/gleki3/scripts/raw/main/sh/$script_name

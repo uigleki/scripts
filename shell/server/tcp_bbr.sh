@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
 # 为内核加载 bbr 模块
 echo "tcp_bbr" | sudo tee -a /etc/modules-load.d/modules.conf
 
