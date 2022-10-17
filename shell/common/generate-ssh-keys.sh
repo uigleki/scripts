@@ -1,1 +1,0 @@
-sudo ssh-keygen -A
