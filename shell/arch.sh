@@ -544,10 +544,14 @@ fix_mnt_point() {
 
 set_cron() {
     if [ "$use_gui" != 1 ]; then
-        cat << EOF | fcrontab
+        local cron_file=/etc/cron.weekly/system-update
+        cat << EOF > $cron_file
+#!/usr/bin/env bash
+
 # 自动更新系统
-@weekly bash -c 'systemctl start reflector && pacman -Syu --noconfirm && reboot'
+systemctl start reflector && pacman -Syu --noconfirm && reboot
 EOF
+        chmod +x $cron_file
     fi
 }
 
