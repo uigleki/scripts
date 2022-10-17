@@ -502,6 +502,9 @@ install_gui_pkg() {
 }
 
 set_user_config() {
+    user_home=/home/$user_name
+    set_user_var user_home
+
     local scripts_dir=$user_home/$scripts_name
     local setup_sh=$scripts_dir/shell/setup.sh
 
