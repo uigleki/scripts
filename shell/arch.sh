@@ -544,11 +544,11 @@ fix_mnt_point() {
 
 set_cron() {
     if [ "$use_gui" = 1 ]; then
-        sed '/[^@]reboot/s/^/#/' $cfg_dir/cron > /tmp/cron
+        sed '/[^@]reboot/s/^/#/' $config_dir/cron > /tmp/cron
         fcrontab /tmp/cron
         rm /tmp/cron
     else
-        fcrontab $cfg_dir/cron
+        fcrontab $config_dir/cron
     fi
 }
 
