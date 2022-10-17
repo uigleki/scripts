@@ -508,7 +508,7 @@ set_user_config() {
     local scripts_dir=$user_home/$scripts_name
 
     do_as_user git clone --depth=1 $scripts_repo $scripts_dir
-    setp_sh
+    setup_sh
 
     if [ "$use_gui" = 1 ]; then
         setup_sh graphic
