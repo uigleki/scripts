@@ -1,4 +1,4 @@
-git clone --depth=1 $config_url $config_dir
+git clone --depth=1 $config_repo $config_dir
 
 git config --global credential.helper store
 git config --global pull.rebase false

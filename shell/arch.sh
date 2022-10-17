@@ -4,9 +4,10 @@ set -eo pipefail
 # 安装 Arch Linux 系统
 
 script_name=arch.sh
-script_url=https://gitlab.com/gleki3/scripts/raw/main/sh/$script_name
-cfg_name=dotfiles
-cfg_url=https://gitlab.com/gleki3/$cfg_name.git
+script_url=https://gitlab.com/uigleki/scripts/raw/main/sh/$script_name
+
+scripts_name=scripts
+scripts_repo=https://gitlab.com/uigleki/$scripts_name.git
 
 user_var_file=/user_var
 mapping_name=arch
@@ -14,9 +15,6 @@ city=Asia/Shanghai
 
 pac_lib_src=/usr/lib/pacman/local
 pac_lib_dest=/var/lib/pacman/local
-
-swap_file=/var/lib/swap/swapfile
-swap_size=2G
 
 main() {
     color
@@ -140,10 +138,9 @@ before_second_download() {
 }
 
 after_second_download() {
-    copy_config
-    write_config
+    set_user_config
+    system_config
     set_auto_start
-    fix_mnt_point
 }
 
 insure_mount_point() {
@@ -504,52 +501,28 @@ install_gui_pkg() {
     pacman_install ${office_pkg[@]}  ${font_pkg[@]}
 }
 
-copy_config() {
-    user_home=/home/$user_name
-    set_user_var user_home
+set_user_config() {
+    local scripts_dir=$user_home/$scripts_name
+    local setup_sh=$scripts_dir/shell/setup.sh
 
-    set_cfg_repo
-
-    fish $cfg_dir/env.fish
-    do_as_user fish $cfg_dir/env.fish
-
-    sync_cfg_dir etc /
-    sync_cfg_dir .config /root
-    sync_cfg_dir .config $user_home
-    sync_cfg_dir .local $user_home
-}
-
-set_cfg_repo() {
-
-    # 存放设定的仓库
-
-    cfg_dir=$user_home/$cfg_name
-
-    do_as_user git clone --depth=1 $cfg_url $cfg_dir
-
-    cd $cfg_dir
-    do_as_user git config --global credential.helper store
-    do_as_user git config --global pull.rebase false
-    do_as_user git config --global user.email 'rraayy246@gmail.com'
-    do_as_user git config --global user.name 'ray'
-    cd
-}
-
-write_config() {
-    set_cron
-    set_docker
-    set_shell
-    set_snapper
-    set_ssh
-    set_swap
-    set_tldr
+    do_as_user git clone --depth=1 $scripts_repo $scripts_dir
+    do_as_user bash $scripts_dir/shell/setup.sh
 
     if [ "$use_gui" = 1 ]; then
-        set_capslock
-        set_flatpak
-        set_virtualizer
-        set_wallpaper
+        do_as_user bash $scripts_dir/shell/setup.sh graphic
     fi
+}
+
+system_config() {
+    fix_mnt_point
+    set_cron
+    set_snapper
+}
+
+fix_mnt_point() {
+    local default_subvol="\/@\/.snapshots\/1\/snapshot"
+
+    sed -i "s/,subvolid=[0-9]\+,subvol=${default_subvol}//" /etc/fstab
 }
 
 set_cron() {
@@ -559,25 +532,6 @@ set_cron() {
         rm /tmp/cron
     else
         fcrontab $cfg_dir/cron
-    fi
-}
-
-set_docker() {
-    # 让用户可以运行容器
-    touch /etc/subuid /etc/subgid
-    chmod 644 /etc/subuid /etc/subgid
-    usermod --add-subuids 100000-165535 --add-subgids 100000-165535 $user_name
-
-    # docker 镜像拉取
-    echo 'unqualified-search-registries = ["docker.io"]' >> /etc/containers/registries.conf
-}
-
-set_shell() {
-    sed -i '/home\|root/s/bash/zsh/' /etc/passwd
-
-    if ls -a /etc/skel | grep -q '\.bash'; then
-        rm /etc/skel/.bash*
-        rm $user_home/.bash*
     fi
 }
 
@@ -601,66 +555,6 @@ EOF
     chmod 600 /.snapshots/1/info.xml
 }
 
-set_ssh() {
-    ssh-keygen -A
-}
-
-set_swap() {
-    mkdir -p $(dirname $swap_file)
-    touch $swap_file
-    chattr +C $swap_file
-    chattr -c $swap_file
-
-    fallocate -l $swap_size $swap_file
-
-    chmod 600 $swap_file
-    mkswap $swap_file
-
-    echo "${swap_file} none swap defaults 0 0" >> /etc/fstab
-
-    # 最大限度使用物理内存
-    echo "vm.swappiness = 0" > /etc/sysctl.d/swappiness.conf
-}
-
-set_tldr() {
-    do_as_user tldr --update
-}
-
-set_capslock() {
-    cat << EOF > $user_home/.Xmodmap
-! 将 CapsLock 作为额外的 Home 键
-remove Lock = Caps_Lock
-keysym Caps_Lock = Home
-EOF
-}
-
-set_flatpak() {
-    # 设置语言环境
-    flatpak config --set languages 'en;zh'
-}
-
-set_virtualizer() {
-    sed -i '/#unix_sock_group = "libvirt"/s/#//' /etc/libvirt/libvirtd.conf
-    sed -i '/#unix_sock_rw_perms = "0770"/s/#//' /etc/libvirt/libvirtd.conf
-    usermod -aG libvirt $user_name
-}
-
-set_wallpaper() {
-    local wallpaper_dir=$user_home/dilnu/jmaji/pixra/bimple
-    local wallpaper_name=ArchLinux.png
-    local sddm_theme_dir=/usr/share/sddm/themes/breeze
-
-    do_as_user mkdir -p $wallpaper_dir
-    sync_cfg_dir $wallpaper_name $wallpaper_dir/$wallpaper_name
-
-    sync_cfg_dir $wallpaper_name $sddm_theme_dir/$wallpaper_name
-    cat << EOF > $sddm_theme_dir/theme.conf.user
-[General]
-background=${wallpaper_name}
-type=image
-EOF
-}
-
 set_auto_start() {
     local mask_list=(systemd-resolved)
     local disable_list=(systemd-timesyncd)
@@ -677,28 +571,6 @@ set_auto_start() {
     systemctl mask    ${mask_list[@]}
     systemctl disable ${disable_list[@]}
     systemctl enable  ${enable_list[@]}
-}
-
-fix_mnt_point() {
-    local default_subvol="\/@\/.snapshots\/1\/snapshot"
-
-    sed -i "s/,subvolid=[0-9]\+,subvol=${default_subvol}//" /etc/fstab
-}
-
-sync_cfg_dir() {
-
-    # 如果目标目录非用户的目录，则不复制所有者信息，
-    # 以免其他程序无权限操作。
-
-    local src_in_cfg_dir="$1"
-    local dest_dir="$2"
-    local src_dir=$cfg_dir/"$src_in_cfg_dir"
-    local option=(--inplace --no-whole-file --recursive --times)
-
-    if echo "$dest_dir" | grep -q '^/home'; then
-        option+=(--group --owner)
-    fi
-    rsync ${option[@]} "$src_dir" "$dest_dir"
 }
 
 do_as_user() {
