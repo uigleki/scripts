@@ -8,4 +8,4 @@ echo "tcp_bbr" | sudo tee -a /etc/modules-load.d/modules.conf
 echo "net.core.default_qdisc = cake" | sudo tee /etc/sysctl.d/tcp_bbr.conf
 echo "net.ipv4.tcp_congestion_control = bbr" | sudo tee -a /etc/sysctl.d/tcp_bbr.conf
 
-echo "please reboot."
+# need reboot
