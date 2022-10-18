@@ -523,6 +523,7 @@ setup_sh() {
 
 system_config() {
     fix_mnt_point
+    improve_security
     set_cron
     set_snapper
 }
@@ -531,6 +532,10 @@ fix_mnt_point() {
     local default_subvol="\/@\/.snapshots\/1\/snapshot"
 
     sed -i "s/,subvolid=[0-9]\+,subvol=${default_subvol}//" /etc/fstab
+}
+
+improve_security() {
+    sed -i '/umask/s/022/077/' /etc/profile
 }
 
 set_cron() {
@@ -569,7 +574,7 @@ EOF
 set_auto_start() {
     local mask_list=(systemd-resolved)
     local disable_list=(systemd-timesyncd)
-    local enable_list=(btrfs-scrub@-.timer chronyd dnscrypt-proxy fcron firewalld grub-btrfs.path paccache.timer pkgstats.timer sshd)
+    local enable_list=(btrfs-scrub@-.timer chronyd dnscrypt-proxy fcron firewalld fstrim.timer grub-btrfs.path paccache.timer pkgstats.timer sshd systemd-oomd)
 
     if [ "$use_gui" = 1 ]; then
         # dhcpcd 和 NetworkManager 不能同时启动
