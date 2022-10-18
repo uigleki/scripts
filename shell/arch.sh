@@ -45,7 +45,7 @@ main() {
     esac
 
     check_efi
-    continue_install
+    install_proc
 }
 
 connect_wifi() {
@@ -70,7 +70,7 @@ open_ssh() {
     echo -e "${g}passwd = ${user_pass}${e}"
 }
 
-continue_install() {
+install_proc() {
     check_chroot
 
     if [ "$do_reinstall" != 1 ] && [ "$in_chroot" != 1 ] && [ -f /mnt$user_var_file ]; then

@@ -1,48 +1,26 @@
 #!/data/data/com.termux/files/usr/bin/env bash
 set -eo pipefail
 
+config_name=dotfiles
+config_dir=$HOME/$config_name
+config_repo=https://gitlab.com/uigleki/$config_name.git
+
+git_user_email=rraayy246@gmail.com
+git_user_name=ray
+
 main() {
     color
-    parse_arguments "$@"
 
-    if [ "$do_install_proc" = 1 ]; then
-        install_proc
-        exit 0
-    fi
+    case "$1" in
+        -h | --help)
+            usage 0
+            ;;
+        *)
+            usage 1
+            ;;
+    esac
 
-    if [ "$do_install_pkg" = 1 ]; then
-        install_pkg
-    fi
-    if [ "$do_copy_config" = 1 ]; then
-        copy_config
-    fi
-}
-
-parse_arguments() {
-    if [ "$#" -eq 0 ]; then
-        do_install_proc=1
-    fi
-
-    while [ "$#" -gt 0 ]; do
-        case "$1" in
-            co | config)
-                do_copy_config=1
-                ;;
-            in | install)
-                do_install_pkg=1
-                ;;
-            -h | --help)
-                usage 0
-                ;;
-            --)
-                break
-                ;;
-            *)
-                usage 1
-                ;;
-        esac
-        shift
-    done
+    install_proc
 }
 
 usage() {
@@ -52,18 +30,11 @@ usage() {
     echo -e "install basic pkg and config"
     echo -e ""
     echo -e "${y}usage:${e}"
-    echo -e "    termux.sh [options] [subcommand]"
+    echo -e "    termux.sh [options]"
     echo -e ""
     echo -e "${y}options:${e}"
     echo -e "    ${g}-h${e}, ${g}--help${e}"
     echo -e "        print this help message"
-    echo -e ""
-    echo -e "${y}subcommands:${e}"
-    echo -e "    ${g}co${e}, ${g}config${e}"
-    echo -e "        copy config"
-    echo -e ""
-    echo -e "    ${g}in${e}, ${g}install${e}"
-    echo -e "        install basic pkg"
 
     exit ${exit_code}
 }
@@ -71,8 +42,8 @@ usage() {
 install_proc() {
     termux_set
     install_pkg
-    copy_config
-    write_config
+    set_user_config
+    system_config
 
     echo "please reboot"
 }
@@ -98,29 +69,24 @@ install_pkg() {
     pkg install -y ${base_pkg[@]} ${shell_pkg[@]} ${other_pkg[@]}
 }
 
-clone_cfg_repo() {
-    cfg_dir="$HOME/dotfiles"
+clone_config_repo() {
+    git clone --depth=1 $config_repo $config_dir
 
-    if [ ! -d "$cfg_dir" ]; then
-        git clone --depth=1 https://gitlab.com/gleki3/dotfiles.git ${cfg_dir}
-    fi
-
-    cd ${cfg_dir}
     git config --global credential.helper store
     git config --global pull.rebase false
-    git config --global user.email 'rraayy246@gmail.com'
-    git config --global user.name 'ray'
-    cd
+    git config --global user.email $git_user_email
+    git config --global user.name $git_user_name
 }
 
-copy_config() {
-    clone_cfg_repo
+set_user_config() {
+    clone_config_repo
 
-    rsync -a ${cfg_dir}/.config $HOME
-    fish ${cfg_dir}/env.fish
+    cd $config_dir
+    fish env.fish
+    rsync -a .config $HOME
 }
 
-write_config() {
+system_config() {
     chsh -s fish
 
     curl -fLo $HOME/.termux/font.ttf --create-dirs https://github.com/powerline/fonts/raw/master/UbuntuMono/Ubuntu%20Mono%20derivative%20Powerline.ttf
