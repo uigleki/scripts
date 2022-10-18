@@ -431,9 +431,9 @@ second_download() {
     local sync_pkg=(chrony rsync)
     local search_pkg=(fzf mlocate)
     local new_search_pkg=(bat exa fd ripgrep tealdeer)
-    local system_pkg=(fcron bottom man pacman-contrib pkgstats)
+    local system_pkg=(fcron bottom man pacman-contrib pkgstats zram-generator)
     local maintain_pkg=(arch-install-scripts dosfstools parted)
-    local security_pkg=(dnscrypt-proxy firewalld gocryptfs)
+    local security_pkg=(apparmor dnscrypt-proxy firewalld gocryptfs)
     local depend_pkg=(perl-file-mimeinfo qrencode)
     local aur_pkg=(paru)
     local language_pkg=(bash-language-server python-lsp-server)
@@ -476,7 +476,7 @@ install_gui_pkg() {
         local gpu_pkg=xf86-video-nouveau
     fi
 
-    local audio_pkg=(pipewire pipewire-alsa pipewire-pulse)
+    local audio_pkg=(pipewire-alsa pipewire-pulse pipewire-jack)
     local bluetooth_pkg=(bluez)
     local touch_pkg=(libinput)
 
