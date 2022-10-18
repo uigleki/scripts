@@ -517,17 +517,8 @@ set_user_config() {
 
 setup_sh() {
     local setup_sh=$scripts_dir/shell/setup.sh
-    local setup_dir=$scripts_dir/shell/common
 
-    if [ -n "$1" ]; then
-        setup_dir=$scripts_dir/shell/$1
-    fi
-
-    cat << EOF | do_as_user bash
-for file in ${setup_dir}/*.sh; do
-    source \$file
-done
-EOF
+    do_as_user bash $setup_sh $1
 }
 
 system_config() {
