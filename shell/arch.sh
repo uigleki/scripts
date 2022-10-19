@@ -555,7 +555,7 @@ apparmor_config() {
     sed -i "s/quiet/& lsm=landlock,lockdown,yama,integrity,apparmor,bpf/" /etc/default/grub
     # 配置 AppArmor 解析器缓存
     sed -i '/#write-cache/s/#//' /etc/apparmor/parser.conf
-    sed -i ',#Include /etc/apparmor.d/,s,#,,' /etc/apparmor/parser.conf
+    sed -i 's,#\(Include /etc/apparmor.d\)/,\1,' /etc/apparmor/parser.conf
 
     # Apparmor 自启动
     chmod 700 /home/$user_name/.config/autostart/apparmor-notify.desktop
