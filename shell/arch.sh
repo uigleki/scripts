@@ -134,12 +134,12 @@ before_second_download() {
     set_network
     set_passwd
     set_pacman
-    install_bootloader
 }
 
 after_second_download() {
     set_user_config
     system_config
+    install_bootloader
     set_auto_start
 }
 
@@ -396,31 +396,6 @@ EOF
     pacman -Syy --needed --noconfirm archlinuxcn-keyring
 }
 
-install_bootloader() {
-    if [ "$bios_type" = uefi ]; then
-        grub-install --target=x86_64-efi --efi-directory=/boot
-    else
-        if echo $root_part | grep -q 'nvme'; then
-            local grub_part=$(echo $root_part | sed 's/p[0-9]$//')
-        else
-            local grub_part=$(echo $root_part | sed 's/[0-9]$//')
-        fi
-        grub-install --target=i386-pc $grub_part
-    fi
-    # 修正 grub 查找内核
-    sed -i 's/rootflags=subvol=${rootsubvol} //' /etc/grub.d/10_linux
-    sed -i 's/rootflags=subvol=${rootsubvol} //' /etc/grub.d/20_linux_xen
-
-    sed -i '/GRUB_TIMEOUT=/s/5/1/' /etc/default/grub
-
-    if [ "$use_gui" = 1 ]; then
-        # 多系统检测
-        echo GRUB_DISABLE_OS_PROBER=false >> /etc/default/grub
-    fi
-
-    grub-mkconfig -o /boot/grub/grub.cfg
-}
-
 second_download() {
     download_status=2
     set_user_var download_status
@@ -483,7 +458,7 @@ install_gui_pkg() {
     local driver_pkg=(${ucode_pkg[@]} ${gpu_pkg[@]} ${audio_pkg[@]} ${bluetooth_pkg[@]} ${touch_pkg[@]})
     local display_pkg=(xorg plasma-meta)
     local desktop_pkg=(konsole yakuake dolphin ffmpegthumbs kio-gdrive spectacle kwalletmanager ark)
-    local control_pkg=(emacs networkmanager sddm nextcloud-client)
+    local control_pkg=(emacs networkmanager sddm nextcloud-client python-notify2 python-psutil)
     local browser_pkg=(firefox firefox-i18n-zh-cn firefox-ublock-origin firefox-decentraleyes)
     local media_pkg=(gwenview elisa vlc)
     local input_pkg=(fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-zhwiki)
@@ -535,7 +510,57 @@ fix_mnt_point() {
 }
 
 improve_security() {
+    local security_misc_url=https://raw.githubusercontent.com/Whonix/security-misc/master/etc
+
+    security_grub
+    security_kernel
+    apparmor_config
+
+    # 网络时间协议
+    curl https://raw.githubusercontent.com/GrapheneOS/infrastructure/main/chrony.conf > /etc/chrony.conf
+    # 用户禁止空密码
+    sed -i 's/ nullok//g' /etc/pam.d/system-auth
+    # 关闭 coredump
+    echo "* hard core 0" >> /etc/security/limits.conf
+    # 普通用户禁用 su
+    sed -i '/#auth *required/s/#//' /etc/pam.d/su
+    # 网络配置访问权限
+    chmod 600 /etc/NetworkManager/conf.d/*
+    # 设置文件默认访问权限
     sed -i '/umask/s/022/077/' /etc/profile
+}
+
+security_grub() {
+    curl $security_misc_url/default/grub.d/40_cpu_mitigations.cfg > /etc/grub.d/40_cpu_mitigations
+    curl $security_misc_url/default/grub.d/40_distrust_cpu.cfg > /etc/grub.d/40_distrust_cpu
+    curl $security_misc_url/default/grub.d/40_enable_iommu.cfg > /etc/grub.d/40_enable_iommu
+    chmod 755 /etc/grub.d/*
+}
+
+security_kernel() {
+    # 内核模块黑名单
+    curl $security_misc_url/modprobe.d/30_security-misc.conf > /etc/modprobe.d/30_security-misc.conf
+    # 启用蓝牙
+    sed -i '/[Bb]luetooth/s/^/#/' /etc/modprobe.d/30_security-misc.conf
+    chmod 600 /etc/modprobe.d/*
+
+    # 安全内核设置
+    curl $security_misc_url/sysctl.d/30_security-misc.conf > /etc/sysctl.d/30_security-misc.conf
+    sed -i '/kernel.yama.ptrace_scope=/s/2/3/' /etc/sysctl.d/30_security-misc.conf
+    curl $security_misc_url/sysctl.d/30_silent-kernel-printk.conf > /etc/sysctl.d/30_silent-kernel-printk.conf
+    chmod 600 /etc/sysctl.d/*
+}
+
+apparmor_config() {
+    sed -i "s/quiet/& lsm=landlock,lockdown,yama,integrity,apparmor,bpf/" /etc/default/grub
+    # 配置 AppArmor 解析器缓存
+    sed -i '/#write-cache/s/#//' /etc/apparmor/parser.conf
+    sed -i ',#Include /etc/apparmor.d/,s,#,,' /etc/apparmor/parser.conf
+
+    # Apparmor 自启动
+    chmod 700 /home/$user_name/.config/autostart/apparmor-notify.desktop
+    # 审计日志组
+    echo "log_group = wheel" >> /etc/audit/auditd.conf
 }
 
 set_cron() {
@@ -571,10 +596,39 @@ EOF
     chmod 600 /.snapshots/1/info.xml
 }
 
+install_bootloader() {
+    # 生成初始化文件
+    chmod 600 /boot/initramfs-linux*
+    mkinitcpio -P
+
+    if [ "$bios_type" = uefi ]; then
+        grub-install --target=x86_64-efi --efi-directory=/boot
+    else
+        if echo $root_part | grep -q 'nvme'; then
+            local grub_part=$(echo $root_part | sed 's/p[0-9]$//')
+        else
+            local grub_part=$(echo $root_part | sed 's/[0-9]$//')
+        fi
+        grub-install --target=i386-pc $grub_part
+    fi
+    # 修正 grub 查找内核
+    sed -i 's/rootflags=subvol=${rootsubvol} //' /etc/grub.d/10_linux
+    sed -i 's/rootflags=subvol=${rootsubvol} //' /etc/grub.d/20_linux_xen
+
+    sed -i '/GRUB_TIMEOUT=/s/5/1/' /etc/default/grub
+
+    if [ "$use_gui" = 1 ]; then
+        # 多系统检测
+        echo GRUB_DISABLE_OS_PROBER=false >> /etc/default/grub
+    fi
+
+    grub-mkconfig -o /boot/grub/grub.cfg
+}
+
 set_auto_start() {
     local mask_list=(systemd-resolved)
     local disable_list=(systemd-timesyncd)
-    local enable_list=(btrfs-scrub@-.timer chronyd dnscrypt-proxy fcron firewalld fstrim.timer grub-btrfs.path paccache.timer pkgstats.timer sshd systemd-oomd)
+    local enable_list=(auditd apparmor btrfs-scrub@-.timer chronyd dnscrypt-proxy fcron firewalld fstrim.timer grub-btrfs.path paccache.timer pkgstats.timer sshd systemd-oomd)
 
     if [ "$use_gui" = 1 ]; then
         # dhcpcd 和 NetworkManager 不能同时启动
