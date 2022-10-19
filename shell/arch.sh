@@ -269,7 +269,7 @@ set_subvol() {
     local default_id=$(btrfs inspect-internal rootid /mnt/@/.snapshots/1/snapshot)
     btrfs subvolume set-default $default_id /mnt
     umount -R /mnt
-    mount -o noatime,autodefrag,compress=zstd,discard=async,nodev,nosuid,noexec $root_part /mnt
+    mount -o noatime,autodefrag,compress=zstd,discard=async $root_part /mnt
 
     for subvol in ${subvol_list[@]}; do
         mkdir -p /mnt/$subvol
@@ -278,7 +278,7 @@ set_subvol() {
 
     if [ "$bios_type" = uefi ]; then
         mkdir /mnt/boot
-        mount $boot_part /mnt/boot
+        mount -o nodev,nosuid,noexec $boot_part /mnt/boot
     fi
 
     # 避免回滚时 pacman 数据库和软件不同步
