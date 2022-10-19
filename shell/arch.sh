@@ -388,9 +388,9 @@ set_passwd() {
 set_pacman() {
     sed -i '/^#Color$/s/#//' /etc/pacman.conf
 
-    cat << EOF >> /etc/pacman.conf
+    cat << 'EOF' >> /etc/pacman.conf
 [archlinuxcn]
-Server = http://repo.archlinuxcn.org/\$arch
+Server = http://repo.archlinuxcn.org/$arch
 EOF
 
     pacman -Syy --needed --noconfirm archlinuxcn-keyring
@@ -558,7 +558,7 @@ apparmor_config() {
     sed -i 's,#\(Include /etc/apparmor.d\)/,\1,' /etc/apparmor/parser.conf
 
     # Apparmor 自启动
-    chmod 700 /home/$user_name/.config/autostart/apparmor-notify.desktop
+    chmod 600 /home/$user_name/.config/autostart/apparmor-notify.desktop
     # 审计日志组
     echo "log_group = wheel" >> /etc/audit/auditd.conf
 }
