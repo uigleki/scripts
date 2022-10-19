@@ -273,15 +273,8 @@ set_subvol() {
 
     for subvol in ${subvol_list[@]}; do
         mkdir -p /mnt/$subvol
+        mount -o subvol=/@/$subvol $root_part /mnt/$subvol
     done
-
-    mount_subvol .snapshots
-    mount_subvol home       nodev,nosuid
-    mount_subvol opt        nodev,nosuid
-    mount_subvol root       nodev,nosuid
-    mount_subvol srv
-    mount_subvol usr/local  nodev,nosuid
-    mount_subvol var        nodev,nosuid,noexec
 
     if [ "$bios_type" = uefi ]; then
         mkdir /mnt/boot
@@ -291,13 +284,6 @@ set_subvol() {
     # 避免回滚时 pacman 数据库和软件不同步
     mkdir -p     /mnt$pac_lib_src /mnt$pac_lib_dest
     mount --bind /mnt$pac_lib_src /mnt$pac_lib_dest
-}
-
-mount_subvol() {
-    local mount_point="$1"
-    local option="$2"
-
-    mount -o $option,subvol=/@/$mount_point $root_part /mnt/$mount_point
 }
 
 first_download() {
