@@ -18,4 +18,5 @@ tmp() {
     echo "vm.swappiness = 0" | sudo tee /etc/sysctl.d/swappiness.conf
 }
 
-tmp
+# 用 zram 替代
+#tmp
