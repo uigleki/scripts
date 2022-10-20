@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-gleki_repo=https://gtialb.com/uigleki/gleki.git
+gleki_repo=https://gitlab.com/uigleki/gleki.git
 
 var_read() {
     local var_name="$1"
@@ -18,6 +18,7 @@ git clone --depth=1 $gleki_repo
 cd gleki
 gocryptfs cry ../mnt
 rsync -rt ../mnt/etc ..
+fusermount -u ../mnt
 
 var_read admin
 var_read cloudpass
