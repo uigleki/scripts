@@ -7,7 +7,7 @@ var_read() {
     local var_name="$1"
 
     read -p "${var_name}: " $1
-    echo "${var_name}=${!varn_name}"
+    echo "${var_name}=${!var_name}"
 }
 
 sudo chown -R $USER: /srv/http
