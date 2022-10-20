@@ -269,7 +269,7 @@ set_subvol() {
     local default_id=$(btrfs inspect-internal rootid /mnt/@/.snapshots/1/snapshot)
     btrfs subvolume set-default $default_id /mnt
     umount -R /mnt
-    mount -o noatime,autodefrag,compress=zstd,discard=async $root_part /mnt
+    mount -o noatime,autodefrag,compress-force=zstd:3,discard=async $root_part /mnt
 
     for subvol in ${subvol_list[@]}; do
         mkdir -p /mnt/$subvol
