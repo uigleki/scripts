@@ -4,3 +4,5 @@ sudo pacman -S nvidia
 crow &
 yakuake &
 nextcloud &
+
+echo 'need reboot'
