@@ -465,6 +465,7 @@ install_gui_pkg() {
     local virtual_pkg=(flatpak qemu-desktop libvirt virt-manager dnsmasq bridge-utils openbsd-netcat edk2-ovmf)
     local office_pkg=(foliate okular)
     local font_pkg=(noto-fonts-cjk noto-fonts-emoji ttf-ubuntu-font-family)
+    local aur_pkg=(crow-translate tesseract-data-eng)
 
     rm -f /boot/${ucode_pkg}.img
     pacman -S --noconfirm ${ucode_pkg[@]}
@@ -474,6 +475,7 @@ install_gui_pkg() {
     pacman_install ${browser_pkg[@]} ${media_pkg[@]}
     pacman_install ${input_pkg[@]}   ${virtual_pkg[@]}
     pacman_install ${office_pkg[@]}  ${font_pkg[@]}
+    pacman_install ${aur_pkg[@]}
 }
 
 set_user_config() {
