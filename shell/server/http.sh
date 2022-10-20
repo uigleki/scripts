@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-sudo chown -R $USER: /srv/http
-
 # 允许用户使用 80 端口
 echo 'net.ipv4.ip_unprivileged_port_start = 80' | sudo tee /etc/sysctl.d/podman.conf
 
