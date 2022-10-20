@@ -427,8 +427,6 @@ second_download() {
 
     if [ "$use_gui" = 1 ]; then
         install_gui_pkg
-    else
-        pacman_install emacs-nox
     fi
 
     del_user_var download_status
