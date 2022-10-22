@@ -30,5 +30,7 @@ podman play kube cloud.yaml
 
 mkdir -p ~/.config/systemd/user
 cd ~/.config/systemd/user
+# 用户实例自动启动，让用户进程跟会话分离
+sudo loginctl enable-linger $USER
 podman generate systemd -f -n cloud
 systemctl --user enable pod-cloud
