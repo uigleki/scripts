@@ -24,7 +24,6 @@ var_read admin
 var_read cloudpass
 sed -i "s/admin/${admin}/" pod/cloud.yaml
 sed -i "s/cloudpass/${cloudpass}/" pod/cloud.yaml
-sed -i "/image: postgres/s/latest/14/" pod/cloud.yaml
 
 cd pod
 podman play kube cloud.yaml
