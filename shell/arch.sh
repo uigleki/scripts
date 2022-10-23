@@ -547,8 +547,10 @@ security_kernel() {
     # 安全内核设置
     curl $security_misc_url/sysctl.d/30_security-misc.conf > /etc/sysctl.d/30_security-misc.conf
     sed -i '/kernel.yama.ptrace_scope=/s/2/3/' /etc/sysctl.d/30_security-misc.conf
-    # 允许 icmp 请求 (ping)
-    sed -i '/icmp.*ignore_all/s/^/#/' /etc/sysctl.d/30_security-misc.conf
+    if [ "$use_gui" != 1 ]; then
+        # 允许 icmp 请求 (ping)
+        sed -i '/icmp.*ignore_all/s/^/#/' /etc/sysctl.d/30_security-misc.conf
+    fi
     curl $security_misc_url/sysctl.d/30_silent-kernel-printk.conf > /etc/sysctl.d/30_silent-kernel-printk.conf
     chmod 600 /etc/sysctl.d/*
 }
