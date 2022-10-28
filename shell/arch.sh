@@ -457,7 +457,7 @@ install_gui_pkg() {
     local display_pkg=(xorg plasma-meta)
     local desktop_pkg=(konsole yakuake dolphin ffmpegthumbs kio-gdrive spectacle kwalletmanager ark)
     local control_pkg=(emacs networkmanager sddm nextcloud-client python-notify2 python-psutil)
-    local browser_pkg=(firefox firefox-i18n-zh-cn firefox-ublock-origin firefox-decentraleyes)
+    local browser_pkg=(firefox firefox-i18n-zh-cn)
     local media_pkg=(gwenview elisa vlc)
     local input_pkg=(fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-zhwiki)
     local virtual_pkg=(flatpak qemu-desktop libvirt virt-manager dnsmasq bridge-utils openbsd-netcat edk2-ovmf)
