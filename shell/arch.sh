@@ -632,14 +632,14 @@ install_bootloader() {
 set_auto_start() {
     local mask_list=(systemd-resolved)
     local disable_list=(systemd-timesyncd)
-    local enable_list=(auditd apparmor btrfs-scrub@-.timer chronyd dnscrypt-proxy fcron firewalld fstrim.timer grub-btrfs.path paccache.timer pkgstats.timer sshd systemd-oomd)
+    local enable_list=(auditd apparmor btrfs-scrub@-.timer chronyd dnscrypt-proxy fcron firewalld fstrim.timer grub-btrfs.path paccache.timer pkgstats.timer systemd-oomd)
 
     if [ "$use_gui" = 1 ]; then
         # dhcpcd 和 NetworkManager 不能同时启动
         disable_list+=(dhcpcd)
         enable_list+=(bluetooth libvirtd NetworkManager reflector.timer sddm)
     else
-        enable_list+=(dhcpcd)
+        enable_list+=(dhcpcd sshd)
     fi
 
     systemctl mask    ${mask_list[@]}
