@@ -35,7 +35,7 @@ change_cloud_pass() {
 
 set_synapse() {
     cd /srv/http/gleki
-    chmod -R a+r ../etc/synapse
+    chmod -R a+rX ../etc/synapse
     podman run -it --rm \
            -v synapse:/data \
            -v ../etc/synapse:/data/config \
