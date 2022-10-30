@@ -26,6 +26,7 @@ copy_config() {
 }
 
 change_cloud_pass() {
+    cd /srv/http/gleki
     var_read admin
     var_read cloudpass
     sed -i "s/admin/${admin}/" pod/cloud.yaml
