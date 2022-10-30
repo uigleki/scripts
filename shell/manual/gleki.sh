@@ -35,6 +35,7 @@ change_cloud_pass() {
 
 set_synapse() {
     cd /srv/http/gleki
+    chmod -R a+r ../etc/synapse
     podman run -it --rm \
            -v synapse:/data \
            -v ../etc/synapse:/data/config \
@@ -46,7 +47,7 @@ set_synapse() {
 
 run_pod() {
     cd /srv/http/gleki/pod
-    podman play kube cloud.yaml
+    podman kube play cloud.yaml
 }
 
 auto_start() {
