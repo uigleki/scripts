@@ -10,4 +10,9 @@ net.core.default_qdisc = fq
 net.ipv4.tcp_congestion_control = bbr
 EOF
 
+# quic 增加缓冲区大小
+cat << EOF | sudo tee /etc/sysctl.d/quic.conf
+net.core.rmem_max = 2500000
+EOF
+
 echo 'need reboot'
