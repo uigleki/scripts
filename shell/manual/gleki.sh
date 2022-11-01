@@ -2,6 +2,7 @@
 set -eo pipefail
 
 gleki_repo=https://gitlab.com/uigleki/gleki.git
+srv=/srv/http
 
 var_read() {
     local var_name="$1"
@@ -11,22 +12,21 @@ var_read() {
 }
 
 clone_repo() {
-    sudo chown -R $USER: /srv/http
-    cd /srv/http
+    sudo chown -R $USER: $srv
+    cd $srv
     mkdir mnt
     git clone --depth=1 $gleki_repo
 }
 
 
 copy_config() {
-    cd /srv/http/gleki
+    cd $srv/gleki
     gocryptfs cry ../mnt
     rsync -rt ../mnt/etc ..
-    fusermount -u ../mnt
 }
 
 change_cloud_pass() {
-    cd /srv/http/gleki
+    cd $srv/gleki
     var_read admin
     var_read cloudpass
     sed -i "s/admin/${admin}/" pod/cloud.yaml
@@ -34,7 +34,7 @@ change_cloud_pass() {
 }
 
 set_synapse() {
-    cd /srv/http/gleki
+    cd $srv/gleki
     chmod -R a+rX ../etc/synapse
     podman run -it --rm \
            -v synapse:/data \
@@ -46,8 +46,10 @@ set_synapse() {
 }
 
 run_pod() {
-    cd /srv/http/gleki/pod
+    cd $srv/mnt/pod
     podman kube play cloud.yaml
+    cd $srv
+    fusermount -u $srv/mnt
 }
 
 auto_start() {
