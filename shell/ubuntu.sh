@@ -28,6 +28,13 @@ install_pkg() {
     sudo snap install --beta nvim --classic
 }
 
+install_cluster() {
+    sudo snap install kubeadm --classic
+    sudo snap install kubectl --classic
+    sudo snap install kubelet --classic
+    sudo snap install kube-proxy --classic
+}
+
 set_user_config() {
     user_home=/home/$USER
 
