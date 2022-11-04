@@ -14,7 +14,6 @@ install_pkg() {
     snap_list=(starship bottom)
 
     sudo apt-get update
-    sudo apt-get dist-upgrade -y
     sudo apt-get install -y ${pkg_list[@]}
 
     sudo snap install ${snap_list[@]}
@@ -26,6 +25,11 @@ install_pkg() {
     # nvim
     sudo apt-get install -y g++
     sudo snap install --beta nvim --classic
+
+    install_cluster
+
+    # 系统更新
+    sudo apt-get dist-upgrade -y
 }
 
 install_cluster() {
@@ -33,6 +37,16 @@ install_cluster() {
     sudo snap install kubectl --classic
     sudo snap install kubelet --classic
     sudo snap install kube-proxy --classic
+
+    sudo firewall-cmd \
+         --add-service etcd-client \
+         --add-service etcd-server \
+         --add-service kube-api \
+         --add-service kube-apiserver \
+         --add-service kube-controller-manager \
+         --add-service kube-scheduler \
+         --add-service kubelet-worker \
+         --permanent
 }
 
 set_user_config() {
