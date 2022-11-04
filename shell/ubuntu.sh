@@ -14,11 +14,16 @@ install_pkg() {
     snap_list=(starship bottom)
 
     sudo apt-get update
-    sudo apt-get dist-upgrade -y
+    sudo apt-get upgrade -y
     sudo apt-get install -y ${pkg_list[@]}
 
     sudo snap install ${snap_list[@]}
 
+    # 防火墙
+    sudo apt-get install -y firewalld
+    sudo apt-get purge -y ufw
+
+    # nvim
     sudo apt-get install -y g++
     sudo snap install --beta nvim --classic
 }
