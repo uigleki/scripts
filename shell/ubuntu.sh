@@ -10,14 +10,17 @@ main() {
 }
 
 install_pkg() {
-    pkg_list=(zsh fish ranger rsync neovim podman zoxide cargo gocryptfs exa tmux)
-    rust_list=(starship bottom)
+    pkg_list=(snap zsh fish fzf ranger rsync podman zoxide gocryptfs exa tmux)
+    snap_list=(starship bottom)
 
     sudo apt-get update
     sudo apt-get dist-upgrade -y
     sudo apt-get install -y ${pkg_list[@]}
 
-    cargo install --locked ${rust_list[@]}
+    sudo snap install ${snap_list[@]}
+
+    sudo apt-get install -y g++
+    sudo snap install --beta nvim --classic
 }
 
 set_user_config() {
