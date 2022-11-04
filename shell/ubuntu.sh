@@ -14,7 +14,7 @@ install_pkg() {
     snap_list=(starship bottom)
 
     sudo apt-get update
-    sudo apt-get upgrade -y
+    sudo apt-get dist-upgrade --force-yes
     sudo apt-get install -y ${pkg_list[@]}
 
     sudo snap install ${snap_list[@]}
