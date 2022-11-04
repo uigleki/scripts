@@ -10,11 +10,14 @@ main() {
 }
 
 install_pkg() {
-    pkg_list=(zsh fish ranger rsync neovim podman zoxide gocryptfs exa tmux)
+    pkg_list=(zsh fish ranger rsync neovim podman zoxide cargo gocryptfs exa tmux)
+    rust_list=(starship bottom)
 
     sudo apt-get update
     sudo apt-get dist-upgrade -y
     sudo apt-get install -y ${pkg_list[@]}
+
+    cargo install --locked ${rust_list[@]}
 }
 
 set_user_config() {

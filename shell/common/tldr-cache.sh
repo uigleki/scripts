@@ -1,3 +1,3 @@
-if [ -x "$(command -v tldr)"]; then
+if [ -x "$(command -v tldr)" ]; then
     tldr --update
 fi
