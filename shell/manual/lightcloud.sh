@@ -4,13 +4,6 @@ set -eo pipefail
 gleki_repo=https://gitlab.com/uigleki/gleki.git
 srv=/srv/http
 
-var_read() {
-    local var_name="$1"
-
-    read -p "${var_name}: " $1
-    echo "${var_name}=${!var_name}"
-}
-
 clone_repo() {
     sudo mkdir -p $srv
     sudo chown -R $USER: $srv
@@ -26,17 +19,10 @@ copy_config() {
     rsync -rt ../mnt/vpn/etc ..
 }
 
-change_cloud_pass() {
-    cd $srv/gleki
-    var_read admin
-    var_read cloudpass
-    sed -i "s/admin/${admin}/" pod/cloud.yaml
-    sed -i "s/cloudpass/${cloudpass}/" pod/cloud.yaml
-}
-
 run_pod() {
     cd $srv/mnt/vpn/pod
     podman kube play cloud.yaml
+    cd $srv
     fusermount -u $srv/mnt
 }
 
@@ -52,7 +38,6 @@ auto_start() {
 main() {
     clone_repo
     copy_config
-    change_cloud_pass
     run_pod
     auto_start
 }
