@@ -21,7 +21,7 @@ copy_config() {
 
 run_pod() {
     cd $srv/mnt/vpn/pod
-    podman kube play cloud.yaml
+    podman play kube cloud.yaml
     cd $srv
     fusermount -u $srv/mnt
 }
