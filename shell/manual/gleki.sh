@@ -19,9 +19,8 @@ var_read() {
 clone_repo() {
     sudo mkdir $srv
     sudo chown -R $USER: $srv
-    cd $srv
     mkdir $mnt
-    git clone --depth=1 $gleki_repo
+    git clone --depth=1 $gleki_repo $gleki
 }
 
 
@@ -33,13 +32,12 @@ replace_doname() {
 }
 
 copy_config() {
-    cd $gleki
-    gocryptfs cry $mnt
-    rsync -rt $mnt/etc ..
+    gocryptfs $gleki/cry $mnt
+    replace_doname
+    rsync -rt $mnt/etc $srv
 }
 
 change_cloud_pass() {
-    cd $gleki
     var_read admin
     var_read cloudpass
     sed -i "s/admin/${admin}/" $mnt/pod/http.yaml
@@ -47,11 +45,10 @@ change_cloud_pass() {
 }
 
 set_synapse() {
-    cd $gleki
     chmod -R a+rX $srv/etc/synapse
     podman run -it --rm \
            -v synapse:/data \
-           -v ../etc/synapse:/data/config \
+           -v $srv/etc/synapse:/data/config \
            -e SYNAPSE_CONFIG_DIR=/data/config \
            -e SYNAPSE_SERVER_NAME=$doname \
            -e SYNAPSE_REPORT_STATS=yes \
@@ -74,7 +71,6 @@ auto_start() {
 
 main() {
     clone_repo
-    replace_doname
     copy_config
     change_cloud_pass
     set_synapse
