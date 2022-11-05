@@ -28,6 +28,7 @@ replace_doname() {
     if [ -n "$prefix" ]; then
         doname=$prefix.$doname
         sed -i "s/gleki.com/${prefix}.&/g" $(grep -rl 'gleki.com' $mnt)
+        sed -i "/[./]${prefix}.gleki/s/${prefix}.gleki.com/gleki.com/g" $mnt/etc/caddy/Caddyfile
     fi
 }
 
