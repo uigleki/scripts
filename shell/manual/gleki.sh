@@ -3,7 +3,8 @@ set -eo pipefail
 
 gleki_repo=https://gitlab.com/uigleki/gleki.git
 srv=/srv/http
-sec=$srv/mnt
+gleki=$srv/gleki
+mnt=$srv/mnt
 prefix=$1
 
 var_read() {
@@ -16,28 +17,28 @@ var_read() {
 clone_repo() {
     sudo chown -R $USER: $srv
     cd $srv
-    mkdir $sec
+    mkdir $mnt
     git clone --depth=1 $gleki_repo
 }
 
 
 copy_config() {
-    cd $srv/gleki
-    gocryptfs cry $sec
-    rsync -rt $sec/etc ..
+    cd $gleki
+    gocryptfs cry $mnt
+    rsync -rt $mnt/etc ..
 }
 
 change_cloud_pass() {
-    cd $srv/gleki
+    cd $gleki
     var_read admin
     var_read cloudpass
-    sed -i "s/admin/${admin}/" pod/http.yaml
-    sed -i "s/cloudpass/${cloudpass}/" pod/http.yaml
+    sed -i "s/admin/${admin}/" $mnt/pod/http.yaml
+    sed -i "s/cloudpass/${cloudpass}/" $mnt/pod/http.yaml
 }
 
 set_synapse() {
-    cd $srv/gleki
-    chmod -R a+rX ../etc/synapse
+    cd $gleki
+    chmod -R a+rX $srv/etc/synapse
     podman run -it --rm \
            -v synapse:/data \
            -v ../etc/synapse:/data/config \
@@ -49,15 +50,15 @@ set_synapse() {
 
 replace_doname() {
     if [ -n "$prefix" ]; then
-        sed -i "s/gleki.com/${prefix}.&" $(grep 'gleki.com' $sec)
+        sed -i "s/gleki.com/${prefix}.&" $(grep 'gleki.com' $mnt)
     fi
 }
 
 run_pod() {
-    cd $sec/pod
+    cd $mnt/pod
     podman play kube http.yaml
     cd $srv
-    fusermount -u $sec
+    fusermount -u $mnt
 }
 
 auto_start() {
