@@ -41,7 +41,7 @@ change_cloud_pass() {
 replace_doname() {
     if [ -n "$prefix" ]; then
         doname=$prefix.$doname
-        sed -i "s/gleki.com/${prefix}.&" $(grep -rl 'gleki.com' $mnt)
+        sed -i "s/gleki.com/${prefix}.&/g" $(grep -rl 'gleki.com' $mnt)
     fi
 }
 
