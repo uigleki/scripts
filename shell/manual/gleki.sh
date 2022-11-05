@@ -17,6 +17,7 @@ var_read() {
 }
 
 clone_repo() {
+    sudo mkdir $srv
     sudo chown -R $USER: $srv
     cd $srv
     mkdir $mnt
