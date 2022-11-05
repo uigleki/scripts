@@ -17,9 +17,9 @@ var_read() {
 }
 
 clone_repo() {
-    sudo mkdir $srv
+    sudo mkdir -p $srv
     sudo chown -R $USER: $srv
-    mkdir $mnt
+    mkdir -p $mnt
     git clone --depth=1 $gleki_repo $gleki
 }
 
