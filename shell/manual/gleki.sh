@@ -31,8 +31,8 @@ change_cloud_pass() {
     cd $srv/gleki
     var_read admin
     var_read cloudpass
-    sed -i "s/admin/${admin}/" pod/cloud.yaml
-    sed -i "s/cloudpass/${cloudpass}/" pod/cloud.yaml
+    sed -i "s/admin/${admin}/" pod/http.yaml
+    sed -i "s/cloudpass/${cloudpass}/" pod/http.yaml
 }
 
 set_synapse() {
