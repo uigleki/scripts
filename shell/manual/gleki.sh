@@ -6,6 +6,8 @@ srv=/srv/http
 gleki=$srv/gleki
 mnt=$srv/mnt
 prefix=$1
+doname=gleki.com
+
 
 var_read() {
     local var_name="$1"
@@ -36,6 +38,13 @@ change_cloud_pass() {
     sed -i "s/cloudpass/${cloudpass}/" $mnt/pod/http.yaml
 }
 
+replace_doname() {
+    if [ -n "$prefix" ]; then
+        doname=$prefix.$doname
+        sed -i "s/gleki.com/${prefix}.&" $(grep -rl 'gleki.com' $mnt)
+    fi
+}
+
 set_synapse() {
     cd $gleki
     chmod -R a+rX $srv/etc/synapse
@@ -43,15 +52,9 @@ set_synapse() {
            -v synapse:/data \
            -v ../etc/synapse:/data/config \
            -e SYNAPSE_CONFIG_DIR=/data/config \
-           -e SYNAPSE_SERVER_NAME=gleki.com \
+           -e SYNAPSE_SERVER_NAME=$doname \
            -e SYNAPSE_REPORT_STATS=yes \
            matrixdotorg/synapse generate
-}
-
-replace_doname() {
-    if [ -n "$prefix" ]; then
-        sed -i "s/gleki.com/${prefix}.&" $(grep 'gleki.com' $mnt)
-    fi
 }
 
 run_pod() {
@@ -74,8 +77,8 @@ main() {
     clone_repo
     copy_config
     change_cloud_pass
-    set_synapse
     replace_doname
+    set_synapse
     run_pod
     auto_start
 }
