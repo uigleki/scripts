@@ -60,8 +60,6 @@ set_synapse() {
 run_pod() {
     cd $mnt/pod
     podman play kube http.yaml
-    cd $srv
-    fusermount -u $mnt
 }
 
 auto_start() {
