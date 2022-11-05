@@ -24,6 +24,13 @@ clone_repo() {
 }
 
 
+replace_doname() {
+    if [ -n "$prefix" ]; then
+        doname=$prefix.$doname
+        sed -i "s/gleki.com/${prefix}.&/g" $(grep -rl 'gleki.com' $mnt)
+    fi
+}
+
 copy_config() {
     cd $gleki
     gocryptfs cry $mnt
@@ -36,13 +43,6 @@ change_cloud_pass() {
     var_read cloudpass
     sed -i "s/admin/${admin}/" $mnt/pod/http.yaml
     sed -i "s/cloudpass/${cloudpass}/" $mnt/pod/http.yaml
-}
-
-replace_doname() {
-    if [ -n "$prefix" ]; then
-        doname=$prefix.$doname
-        sed -i "s/gleki.com/${prefix}.&/g" $(grep -rl 'gleki.com' $mnt)
-    fi
 }
 
 set_synapse() {
@@ -73,9 +73,9 @@ auto_start() {
 
 main() {
     clone_repo
+    replace_doname
     copy_config
     change_cloud_pass
-    replace_doname
     set_synapse
     run_pod
     auto_start
