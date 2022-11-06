@@ -52,18 +52,24 @@ change_cloud_pass() {
 }
 
 set_synapse() {
-    chmod -R a+rX $srv/etc/synapse
-    podman run -it --rm \
-           -v synapse:/data \
-           -v $srv/etc/synapse:/data/config \
-           -e SYNAPSE_CONFIG_DIR=/data/config \
-           -e SYNAPSE_SERVER_NAME=$doname \
-           -e SYNAPSE_REPORT_STATS=yes \
-           matrixdotorg/synapse generate
+    if [ -z "$prefix" ]; then
+        chmod -R a+rX $srv/etc/synapse
+        podman run -it --rm \
+               -v synapse:/data \
+               -v $srv/etc/synapse:/data/config \
+               -e SYNAPSE_CONFIG_DIR=/data/config \
+               -e SYNAPSE_SERVER_NAME=$doname \
+               -e SYNAPSE_REPORT_STATS=yes \
+               matrixdotorg/synapse generate
+    fi
 }
 
 run_pod() {
-    cd $mnt/pod
+    if [ -z "$prefix" ]; then
+        cd $mnt/pod
+    else
+        cd $mnt/vpn/pod
+    fi
     podman play kube http.yaml
 }
 
