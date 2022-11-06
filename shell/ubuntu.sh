@@ -19,8 +19,8 @@ install_pkg() {
     sudo snap install ${snap_list[@]}
 
     # 防火墙
-    sudo apt-get install -y firewalld
     sudo apt-get purge -y ufw
+    sudo apt-get install -y firewalld
 
     # nvim
     sudo apt-get install -y g++
