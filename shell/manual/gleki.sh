@@ -43,10 +43,12 @@ copy_config() {
 }
 
 change_cloud_pass() {
-    var_read admin
-    var_read cloudpass
-    sed -i "s/admin/${admin}/" $mnt/pod/http.yaml
-    sed -i "s/cloudpass/${cloudpass}/" $mnt/pod/http.yaml
+    if [ -z "$prefix" ]; then
+        var_read admin
+        var_read cloudpass
+        sed -i "s/admin/${admin}/" $mnt/pod/http.yaml
+        sed -i "s/cloudpass/${cloudpass}/" $mnt/pod/http.yaml
+    fi
 }
 
 set_synapse() {
