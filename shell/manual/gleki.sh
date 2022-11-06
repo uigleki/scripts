@@ -25,16 +25,18 @@ clone_repo() {
 
 
 replace_doname() {
-    if [ -n "$prefix" ]; then
-        doname=$prefix.$doname
-        sed -i "s/gleki.com/${prefix}.&/g" $(grep -rl 'gleki.com' $mnt)
-        sed -i "/[./]${prefix}.gleki/s/${prefix}.gleki.com/gleki.com/g" $mnt/{.,vpn}/etc/caddy/Caddyfile
-    fi
+    doname=$prefix.$doname
+    sed -i "s/gleki.com/${prefix}.&/g" $(grep -rl 'gleki.com' $mnt)
+    sed -i "/[./]${prefix}.gleki/s/${prefix}.gleki.com/gleki.com/g" $mnt/{.,vpn}/etc/caddy/Caddyfile
 }
 
 copy_config() {
     gocryptfs $gleki/cry $mnt
-    replace_doname
+
+    if [ -n "$prefix" ]; then
+        replace_doname
+    fi
+
     rsync -rt $mnt/etc $srv
 
     if [ -n "$prefix" ]; then
@@ -43,25 +45,21 @@ copy_config() {
 }
 
 change_cloud_pass() {
-    if [ -z "$prefix" ]; then
-        var_read admin
-        var_read cloudpass
-        sed -i "s/admin/${admin}/" $mnt/pod/http.yaml
-        sed -i "s/cloudpass/${cloudpass}/" $mnt/pod/http.yaml
-    fi
+    var_read admin
+    var_read cloudpass
+    sed -i "s/admin/${admin}/" $mnt/pod/http.yaml
+    sed -i "s/cloudpass/${cloudpass}/" $mnt/pod/http.yaml
 }
 
 set_synapse() {
-    if [ -z "$prefix" ]; then
-        chmod -R a+rX $srv/etc/synapse
-        podman run -it --rm \
-               -v synapse:/data \
-               -v $srv/etc/synapse:/data/config \
-               -e SYNAPSE_CONFIG_DIR=/data/config \
-               -e SYNAPSE_SERVER_NAME=$doname \
-               -e SYNAPSE_REPORT_STATS=yes \
-               matrixdotorg/synapse generate
-    fi
+    chmod -R a+rX $srv/etc/synapse
+    podman run -it --rm \
+           -v synapse:/data \
+           -v $srv/etc/synapse:/data/config \
+           -e SYNAPSE_CONFIG_DIR=/data/config \
+           -e SYNAPSE_SERVER_NAME=$doname \
+           -e SYNAPSE_REPORT_STATS=yes \
+           matrixdotorg/synapse generate
 }
 
 run_pod() {
@@ -85,8 +83,12 @@ auto_start() {
 main() {
     clone_repo
     copy_config
-    change_cloud_pass
-    set_synapse
+
+    if [ -z "$prefix" ]; then
+        change_cloud_pass
+        set_synapse
+    fi
+
     run_pod
     auto_start
 }
