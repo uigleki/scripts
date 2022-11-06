@@ -36,6 +36,10 @@ copy_config() {
     gocryptfs $gleki/cry $mnt
     replace_doname
     rsync -rt $mnt/etc $srv
+
+    if [ -n "$prefix" ]; then
+        rsync -rt $mnt/vpn/etc $srv
+    fi
 }
 
 change_cloud_pass() {
