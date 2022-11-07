@@ -290,7 +290,13 @@ first_download() {
     download_status=1
     set_user_var download_status
 
-    local basic_pkg=(base base-devel linux linux-headers linux-firmware btrfs-progs fish dhcpcd reflector neovim)
+    if [ "$use_gui" = 1 ]; then
+        local kernel=linux-zen
+    else
+        local kernel=linux
+    fi
+
+    local basic_pkg=(base base-devel $kernel linux-firmware btrfs-progs fish dhcpcd reflector neovim)
     local boot_pkg=(grub grub-btrfs)
 
     if [ "$bios_type" = uefi ]; then
@@ -446,15 +452,14 @@ install_gui_pkg() {
     elif echo "$lspci_VGA" | grep -q 'Intel'; then
         local gpu_pkg=vulkan-intel
     elif echo "$lspci_VGA" | grep -q 'NVIDIA'; then
-        local gpu_pkg=nvidia-dkms
+        local gpu_pkg=(linux-zen-headers nvidia-dkms)
     fi
 
-    local kernel_pkg=(linux-zen linux-zen-headers)
     local audio_pkg=(pipewire-alsa pipewire-pulse pipewire-jack)
     local bluetooth_pkg=(bluez)
     local touch_pkg=(libinput)
 
-    local driver_pkg=(${ucode_pkg[@]} ${gpu_pkg[@]} ${kernel_pkg[@]} ${audio_pkg[@]} ${bluetooth_pkg[@]} ${touch_pkg[@]})
+    local driver_pkg=(${ucode_pkg[@]} ${gpu_pkg[@]} ${audio_pkg[@]} ${bluetooth_pkg[@]} ${touch_pkg[@]})
     local display_pkg=(xorg plasma-meta)
     local desktop_pkg=(konsole yakuake dolphin ffmpegthumbs kio-gdrive spectacle kwalletmanager ark)
     local control_pkg=(emacs networkmanager sddm nextcloud-client python-notify2 python-psutil)
