@@ -290,13 +290,7 @@ first_download() {
     download_status=1
     set_user_var download_status
 
-    if [ "$use_gui" = 1 ]; then
-        local kernel=linux-zen
-    else
-        local kernel=linux
-    fi
-
-    local basic_pkg=(base base-devel $kernel linux-firmware btrfs-progs fish dhcpcd reflector neovim)
+    local basic_pkg=(base base-devel linux linux-firmware btrfs-progs fish dhcpcd reflector neovim)
     local boot_pkg=(grub grub-btrfs)
 
     if [ "$bios_type" = uefi ]; then
@@ -452,7 +446,7 @@ install_gui_pkg() {
     elif echo "$lspci_VGA" | grep -q 'Intel'; then
         local gpu_pkg=vulkan-intel
     elif echo "$lspci_VGA" | grep -q 'NVIDIA'; then
-        local gpu_pkg=(linux-zen-headers nvidia-dkms)
+        local gpu_pkg=nvidia
     fi
 
     local audio_pkg=(pipewire-alsa pipewire-pulse pipewire-jack)
