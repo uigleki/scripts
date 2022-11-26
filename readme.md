@@ -89,18 +89,21 @@
 | 编程语言 | Common Lisp |
 | 操作系统 | Arch Linux |
 | 文件系统 | Btrfs |
+| 桌面环境 | KDE |
 | 英文字体 | Ubuntu font |
 | 浏览器 | Firefox 火狐 |
-| 影音播放器 | VLC |
+| 视频播放 | VLC |
+| 音乐播放 | Elisa |
 | 数据压缩 | 7-Zip |
 | 中文输入法 | 小鹤双拼方案 |
+| 文档编辑器 | Emacs |
+| 模态编辑 | Xah Fly Keys |
+| 文件管理器 | Ranger |
+| 即时通信 | Matrix |
+| 云同步 | Nextcloud |
 | 安卓文件管理 | MiXplorer |
 | 安卓音乐播放器 | Vinyl Music Player |
 | 安卓终端 | Termux |
-| 文档编辑器 | emacs |
-| 模态编辑 | Xah Fly Keys |
-| 文件管理器 | ranger |
-| 即时通信 | matrix |
 | 微软包管理 | winget |
 
 ### 不常用的软件
