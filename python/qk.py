@@ -26,13 +26,17 @@ start_hour      = 12
 start_minute    = 30
 
 name    = '410935032'
-passwd  = 'gugeray1314'
 
 def main():
+    input_passwd()
     test_login()
 
     a_ready_login = alarm()
     a_ready_login.do(ready_login, start_hour, start_minute - 5)
+
+def input_passwd():
+    global passwd
+    passwd = input('input your passwd: ')
 
 def test_login():
     create_driver()
