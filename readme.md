@@ -162,16 +162,12 @@ daniwell
 
 ### Arch 个人配置 ###
 
-请先[安装 arch](arch.md)
-
 ```shell
 bash <(curl -L gleki.com/arch.sh)
 ```
 
 
 ### Arch 服务器配置 ###
-
-请先[安装 arch](archv.md)
 
 ```shell
 bash <(curl -L gleki.com/arch.sh)
