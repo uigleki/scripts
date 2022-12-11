@@ -142,6 +142,10 @@
 | 机械爪刀 | CRKT Provoke |
 | 直跳刀 | Microtech Ultratech |
 
+### 链接
+
+- [qlearn](https://qlearn.apachecn.org)
+
 
 ## 解释 ##
 
@@ -150,8 +154,7 @@
 daniwell
 
 彩虹猫
-[W](http://www.nyan.cat/)
-[W](https://www.webcitation.org/6AX4J3pMz?url=http://www.prguitarman.com/index.php?id=348)
+[W](http://www.nyan.cat)
 [W](https://www.youtube.com/watch?v=QH2-TGUlwu4)
 
 [aidn.jp](https://aidn.jp/)
@@ -162,7 +165,7 @@ daniwell
 请先[安装 arch](arch.md)
 
 ```shell
-bash <(curl -L gitlab.com/uigleki/scripts/raw/main/shell/arch.sh)
+bash <(curl -L gleki.com/arch.sh)
 ```
 
 
@@ -171,12 +174,12 @@ bash <(curl -L gitlab.com/uigleki/scripts/raw/main/shell/arch.sh)
 请先[安装 arch](archv.md)
 
 ```shell
-bash <(curl -L gitlab.com/uigleki/scripts/raw/main/shell/arch.sh)
+bash <(curl -L gleki.com/arch.sh)
 ```
 
 
 ### Termux 配置 ###
 
 ```shell
-bash <(curl -L gitlab.com/uigleki/scripts/raw/main/shell/termux.sh)
+bash <(curl -L gleki.com/termux.sh)
 ```
