@@ -499,7 +499,7 @@ setup_sh() {
 system_config() {
     fix_mnt_point
     improve_security
-    set_cron
+    # set_cron
     set_snapper
 }
 

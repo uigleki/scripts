@@ -90,7 +90,7 @@ main() {
     fi
 
     run_pod
-    auto_start
+    # auto_start
 }
 
 main
