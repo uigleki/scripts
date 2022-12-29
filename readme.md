@@ -98,7 +98,7 @@
 | 快压缩算法 | lz4 |
 | 高压缩算法 | zstd |
 | 中文输入法 | 小鹤双拼方案 |
-| 文档编辑器 | Emacs |
+| 文本编辑器 | helix |
 | 模态编辑 | Xah Fly Keys |
 | 文件管理器 | Ranger |
 | 即时通信 | Matrix |
