@@ -403,24 +403,23 @@ second_download() {
     local network_pkg=(aria2 curl git lazygit openssh wireguard-tools)
     local terminal_pkg=(helix starship tmux zoxide zsh)
     local file_pkg=(ranger p7zip snapper snap-pac)
-    local sync_pkg=(chrony rsync)
+    local sync_pkg=(chrony qrencode rsync)
     local search_pkg=(fzf mlocate)
     local new_search_pkg=(bat exa fd ripgrep tealdeer)
     local system_pkg=(fcron bottom man pacman-contrib pkgstats zram-generator)
     local maintain_pkg=(arch-install-scripts dosfstools parted)
     local security_pkg=(apparmor dnscrypt-proxy firewalld gocryptfs)
-    local depend_pkg=(perl-file-mimeinfo qrencode)
-    local aur_pkg=(paru)
-    local language_pkg=(bash-language-server python-lsp-server)
     local docker_pkg=(podman-docker fuse-overlayfs)
+    local language_pkg=(bash-language-server python-lsp-server)
+    local aur_pkg=(paru)
 
     pacman_install ${network_pkg[@]}  ${terminal_pkg[@]}
     pacman_install ${file_pkg[@]}     ${sync_pkg[@]}
     pacman_install ${search_pkg[@]}   ${new_search_pkg[@]}
     pacman_install ${system_pkg[@]}   ${maintain_pkg[@]}
     pacman_install ${security_pkg[@]} ${depend_pkg[@]}
-    pacman_install ${aur_pkg[@]}      ${language_pkg[@]}
-    pacman_install ${docker_pkg[@]}
+    pacman_install ${docker_pkg[@]}   ${language_pkg[@]}
+    pacman_install ${aur_pkg[@]}
 
     # iptables-nft 不能直接装，需要进行确认
     echo -e "y\n\n" | pacman -S --needed iptables-nft
