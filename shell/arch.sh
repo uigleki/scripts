@@ -401,7 +401,7 @@ second_download() {
     set_user_var download_status
 
     local network_pkg=(aria2 curl git lazygit openssh wireguard-tools)
-    local terminal_pkg=(starship tmux zoxide zsh)
+    local terminal_pkg=(helix starship tmux zoxide zsh)
     local file_pkg=(ranger p7zip snapper snap-pac)
     local sync_pkg=(chrony rsync)
     local search_pkg=(fzf mlocate)
@@ -456,7 +456,7 @@ install_gui_pkg() {
     local driver_pkg=(${ucode_pkg[@]} ${gpu_pkg[@]} ${audio_pkg[@]} ${bluetooth_pkg[@]} ${touch_pkg[@]})
     local display_pkg=(xorg plasma-meta)
     local desktop_pkg=(konsole yakuake dolphin ffmpegthumbs kio-gdrive spectacle kwalletmanager ark)
-    local control_pkg=(emacs networkmanager sddm nextcloud-client python-notify2 python-psutil)
+    local control_pkg=(networkmanager sddm nextcloud-client python-notify2 python-psutil)
     local browser_pkg=(firefox firefox-i18n-zh-cn)
     local media_pkg=(gwenview elisa vlc)
     local input_pkg=(fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-zhwiki)
