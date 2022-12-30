@@ -453,7 +453,7 @@ install_gui_pkg() {
     local touch_pkg=(libinput)
 
     local driver_pkg=(${ucode_pkg[@]} ${gpu_pkg[@]} ${audio_pkg[@]} ${bluetooth_pkg[@]} ${touch_pkg[@]})
-    local display_pkg=(xorg plasma-meta)
+    local display_pkg=(xorg plasma-meta xclip)
     local desktop_pkg=(konsole yakuake dolphin ffmpegthumbs kio-gdrive spectacle kwalletmanager ark)
     local control_pkg=(networkmanager sddm nextcloud-client python-notify2 python-psutil)
     local browser_pkg=(firefox firefox-i18n-zh-cn)
