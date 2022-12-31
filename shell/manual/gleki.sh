@@ -52,7 +52,7 @@ change_cloud_pass() {
 }
 
 set_synapse() {
-    chmod -R a+rX $srv/etc/synapse
+    chmod -R a+rX $srv/etc
     podman run -it --rm \
            -v synapse:/data \
            -v $srv/etc/synapse:/data/config \
