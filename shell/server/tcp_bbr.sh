@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-set -eo pipefail
-
 # 为内核加载 bbr 模块
 echo "tcp_bbr" | sudo tee -a /etc/modules-load.d/modules.conf
 
@@ -14,5 +11,3 @@ EOF
 cat << EOF | sudo tee /etc/sysctl.d/quic.conf
 net.core.rmem_max = 2500000
 EOF
-
-echo 'need reboot'
