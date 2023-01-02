@@ -526,8 +526,6 @@ improve_security() {
     sed -i '/#auth *required/s/#//' /etc/pam.d/su
     # 网络配置访问权限
     chmod 600 /etc/NetworkManager/conf.d/*
-    # 设置文件默认访问权限
-    sed -i '/umask/s/022/077/' /etc/profile
 }
 
 security_grub() {

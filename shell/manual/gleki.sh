@@ -52,7 +52,6 @@ change_cloud_pass() {
 }
 
 set_synapse() {
-    chmod -R a+rX $srv/etc
     podman run -it --rm \
            -v synapse:/data \
            -v $srv/etc/synapse:/data/config \
@@ -71,15 +70,6 @@ run_pod() {
     podman play kube http.yaml
 }
 
-auto_start() {
-    mkdir -p ~/.config/systemd/user
-    cd ~/.config/systemd/user
-    # 用户实例自动启动，让用户进程跟会话分离
-    sudo loginctl enable-linger $USER
-    podman generate systemd -f -n http
-    systemctl --user enable pod-http
-}
-
 main() {
     clone_repo
     copy_config
@@ -90,7 +80,6 @@ main() {
     fi
 
     run_pod
-    # auto_start
 }
 
 main
