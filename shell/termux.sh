@@ -62,7 +62,7 @@ change_source() {
 
 install_pkg() {
     local base_pkg=(curl git openssh rsync)
-    local shell_pkg=(fish neovim ranger starship zoxide)
+    local shell_pkg=(fish helix neovim ranger starship zoxide)
     local other_pkg=(bat exa fzf ripgrep zsh)
 
     pkg upgrade -y
