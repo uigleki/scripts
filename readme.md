@@ -46,6 +46,7 @@
 
 ### 音乐
 
+1. D'elf - Synchronicity
 1. daniwell - UZ
 1. daniwell - 夏の终わりの彼女は
 1. supercell - My Dearest
@@ -68,6 +69,7 @@
     - 一个关于执念与爱的故事
 1. 寻找天堂
 1. 影子工厂
+1. 神之天平
 1. 地狱之刃：塞娜的献祭
 1. 我在七年后等着你
 1. 爱丽斯的精神审判
