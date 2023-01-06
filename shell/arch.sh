@@ -387,7 +387,7 @@ set_passwd() {
 
 set_pacman() {
     sed -i '/^#Color$/s/#//' /etc/pacman.conf
-    sed -i '/^\[multilib\]/,+1s/^#//' /etc/pacman.conf
+    sed -i '/^#\[multilib\]/,+1s/^#//' /etc/pacman.conf
 
     cat << 'EOF' >> /etc/pacman.conf
 [archlinuxcn]
