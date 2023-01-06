@@ -2,7 +2,7 @@
 set -eo pipefail
 
 LANG= sudo grub-mkconfig -o /boot/grub/grub.cfg
-sudo pacman -S --noconfirm lib32-vulkan-radeon lib32-nvidia-utils ttf-liberation wqy-zenhei steam
+sudo pacman -S --noconfirm steam ttf-liberation wqy-zenhei
 
 flatpak install -y \
         org.libreoffice.LibreOffice \

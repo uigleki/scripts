@@ -442,13 +442,13 @@ install_gui_pkg() {
 
     local lspci_VGA="$(lspci | grep '3D\|VGA')"
     if echo "$lspci_VGA" | grep -q 'AMD'; then
-        local gpu_pkg+=(xf86-video-amdgpu vulkan-radeon)
+        local gpu_pkg+=(xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon)
     fi
     if echo "$lspci_VGA" | grep -q 'Intel'; then
-        local gpu_pkg+=(vulkan-intel)
+        local gpu_pkg+=(vulkan-intel lib32-vulkan-intel)
     fi
     if echo "$lspci_VGA" | grep -q 'NVIDIA'; then
-        local gpu_pkg+=(nvidia)
+        local gpu_pkg+=(nvidia lib32-nvidia-utils)
         sed -i '/^HOOKS/s/ kms//' /etc/mkinitcpio.conf
     fi
 
@@ -592,7 +592,7 @@ EOF
 install_bootloader() {
     # 生成初始化文件
     chmod 600 /boot/initramfs-linux*
-    mkinitcpio -P
+    # mkinitcpio -P
 
     if [ "$bios_type" = uefi ]; then
         grub-install --target=x86_64-efi --efi-directory=/boot
