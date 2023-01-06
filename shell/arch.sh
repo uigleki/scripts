@@ -465,7 +465,7 @@ install_gui_pkg() {
     local input_pkg=(fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-zhwiki)
     local virtual_pkg=(flatpak qemu-desktop libvirt virt-manager dnsmasq bridge-utils openbsd-netcat edk2-ovmf)
     local office_pkg=(foliate okular)
-    local font_pkg=(noto-fonts-cjk noto-fonts-emoji ttf-ubuntu-font-family)
+    local font_pkg=(noto-fonts-cjk noto-fonts-emoji ttf-ubuntu-font-family ttf-liberation wqy-zenhei)
     local aur_pkg=(crow-translate tesseract-data-eng)
 
     rm -f /boot/${ucode_pkg}.img
@@ -611,6 +611,7 @@ install_bootloader() {
     sed -i '/GRUB_TIMEOUT=/s/5/1/' /etc/default/grub
 
     if [ "$use_gui" = 1 ]; then
+        sed -i "s/quiet/& nowatchdog/" /etc/default/grub
         # 多系统检测
         echo GRUB_DISABLE_OS_PROBER=false >> /etc/default/grub
     fi
