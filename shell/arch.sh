@@ -611,7 +611,6 @@ install_bootloader() {
     sed -i '/GRUB_TIMEOUT=/s/5/1/' /etc/default/grub
 
     if [ "$use_gui" = 1 ]; then
-        sed -i "s/quiet/& nowatchdog/" /etc/default/grub
         # 多系统检测
         echo GRUB_DISABLE_OS_PROBER=false >> /etc/default/grub
     fi
