@@ -442,11 +442,14 @@ install_gui_pkg() {
 
     local lspci_VGA="$(lspci | grep '3D\|VGA')"
     if echo "$lspci_VGA" | grep -q 'AMD'; then
-        local gpu_pkg=(xf86-video-amdgpu vulkan-radeon)
-    elif echo "$lspci_VGA" | grep -q 'Intel'; then
-        local gpu_pkg=vulkan-intel
-    elif echo "$lspci_VGA" | grep -q 'NVIDIA'; then
-        local gpu_pkg=nvidia
+        local gpu_pkg+=(xf86-video-amdgpu vulkan-radeon)
+    fi
+    if echo "$lspci_VGA" | grep -q 'Intel'; then
+        local gpu_pkg+=(vulkan-intel)
+    fi
+    if echo "$lspci_VGA" | grep -q 'NVIDIA'; then
+        local gpu_pkg+=(nvidia)
+        sed -i '/^HOOKS/s/ kms//' /etc/mkinitcpio.conf
     fi
 
     local audio_pkg=(pipewire-alsa pipewire-pulse pipewire-jack)
