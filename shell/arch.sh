@@ -592,7 +592,7 @@ EOF
 install_bootloader() {
     # 生成初始化文件
     chmod 600 /boot/initramfs-linux*
-    # mkinitcpio -P
+    mkinitcpio -P
 
     if [ "$bios_type" = uefi ]; then
         grub-install --target=x86_64-efi --efi-directory=/boot
