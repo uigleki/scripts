@@ -12,6 +12,9 @@ main() {
     color
 
     case "$1" in
+        '')
+            install_proc
+            ;;
         -h | --help)
             usage 0
             ;;
@@ -19,8 +22,6 @@ main() {
             usage 1
             ;;
     esac
-
-    install_proc
 }
 
 usage() {
