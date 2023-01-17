@@ -378,8 +378,8 @@ EOF
 }
 
 set_passwd() {
+    find /etc/skel -name '.bash*' | xargs rm -rf
     echo "root:${user_pass}" | chpasswd
-
     useradd -mG wheel $user_name
     echo "${user_name}:${user_pass}" | chpasswd
     sed -i '/# %wheel .* NOPASSWD/s/# //' /etc/sudoers
