@@ -6,5 +6,3 @@ tmp() {
 }
 
 tmp
-
-rm $HOME/.bash*
