@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-test_file=$HOME/dilnu/jmaji/zgike
 sync=$(dirname $0)/sync.sh
+test_file=$HOME/dilnu/jmaji/zgike
+usb=/run/media/$USER
 
 udisksctl mount -b /dev/sda1
 udisksctl mount -b /dev/sda3
