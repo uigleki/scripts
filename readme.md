@@ -105,6 +105,7 @@
 | 文件管理器 | Ranger |
 | 即时通信 | Matrix |
 | 云同步 | Nextcloud |
+| 安卓动态壁纸 | Muzei Live Wallpaper |
 | 安卓文件管理 | MiXplorer |
 | 安卓音乐播放器 | Vinyl Music Player |
 | 安卓终端 | Termux |
