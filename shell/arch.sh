@@ -459,7 +459,7 @@ install_gui_pkg() {
     local driver_pkg=(${ucode_pkg[@]} ${gpu_pkg[@]} ${audio_pkg[@]} ${bluetooth_pkg[@]} ${touch_pkg[@]})
     local display_pkg=(xorg plasma-meta xorg-xmodmap xclip)
     local desktop_pkg=(konsole yakuake dolphin ffmpegthumbs kio-gdrive spectacle kwalletmanager ark)
-    local control_pkg=(networkmanager sddm nextcloud-client python-notify2 python-psutil)
+    local control_pkg=(networkmanager ntfs-3g sddm nextcloud-client python-notify2 python-psutil)
     local browser_pkg=(firefox firefox-i18n-zh-cn)
     local media_pkg=(gwenview elisa vlc)
     local input_pkg=(fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-zhwiki)
