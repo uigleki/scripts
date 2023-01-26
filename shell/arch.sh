@@ -292,7 +292,7 @@ first_download() {
     pkg_list+=(chrony curl dnscrypt-proxy dosfstools exa fcron fd firewalld fish fuse-overlayfs fzf git)
     pkg_list+=(gocryptfs grub grub-btrfs helix iptables-nft lazygit man-pages-zh_cn neovim openssh p7zip)
     pkg_list+=(pacman-contrib parted paru pkgstats podman-docker python-lsp-server qrencode ranger reflector)
-    pkg_list+=(ripgrep rsync snap-pac snapper starship tealdeer tmux zoxide zram-generator zsh)
+    pkg_list+=(ripgrep rsync snap-pac snapper starship tealdeer tmux ventoy-bin zoxide zram-generator zsh)
 
     if [ "$bios_type" = uefi ]; then
         pkg_list+=(efibootmgr)
@@ -328,7 +328,7 @@ first_download() {
         pkg_list+=(nvidia lib32-nvidia-utils)
     fi
 
-    pacman -Sy --noconfirm archlinux-keyring archlinuxcn-keyring
+    pacman -Sy --needed --noconfirm archlinux-keyring archlinuxcn-keyring
     pacstrap /mnt ${pkg_list[@]}
 
     del_user_var download_status
