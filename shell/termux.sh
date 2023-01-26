@@ -62,12 +62,10 @@ change_source() {
 }
 
 install_pkg() {
-    local base_pkg=(curl git openssh rsync)
-    local shell_pkg=(fish helix neovim ranger starship zoxide)
-    local other_pkg=(bat exa fzf ripgrep zsh)
+    local pkg_list=(bat curl exa fish fzf git helix neovim openssh ranger ripgrep rsync starship zoxide zsh)
 
     pkg upgrade -y
-    pkg install -y ${base_pkg[@]} ${shell_pkg[@]} ${other_pkg[@]}
+    pkg install -y ${pkg_list[@]}
 }
 
 clone_config_repo() {
