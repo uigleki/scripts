@@ -80,16 +80,11 @@ install_proc() {
     fi
     source $user_var_file
 
-    if [ "$in_chroot" = 1 ] && [ "$download_status" = 2 ]; then
-        second_download
-        after_second_download
-    elif [ "$in_chroot" = 1 ]; then
+    if [ "$in_chroot" = 1 ]; then
         chroot_env_proc
     elif [ "$download_status" = 1 ]; then
         first_download
         after_first_download
-    elif [ "$download_status" = 2 ]; then
-        change_root
     elif [ "$download_status" = 0 ]; then
         error 'already finished'
     else
@@ -103,12 +98,6 @@ live_env_proc() {
     after_first_download
 }
 
-chroot_env_proc() {
-    before_second_download
-    second_download
-    after_second_download
-}
-
 before_first_download() {
     insure_mount_point
     check_network
@@ -119,6 +108,7 @@ before_first_download() {
     set_partition
     set_crypt
     set_subvol
+    set_pacman
 }
 
 after_first_download() {
@@ -128,15 +118,12 @@ after_first_download() {
     change_root
 }
 
-before_second_download() {
+chroot_env_proc() {
     set_time_zone
     set_locale
     set_network
     set_passwd
     set_pacman
-}
-
-after_second_download() {
     set_user_config
     system_config
     install_bootloader
@@ -286,6 +273,16 @@ set_subvol() {
     mount --bind /mnt$pac_lib_src /mnt$pac_lib_dest
 }
 
+set_pacman() {
+    sed -i '/^#Color$/s/#//' /etc/pacman.conf
+    sed -i '/^#\[multilib\]/,+1s/^#//' /etc/pacman.conf
+
+    cat << 'EOF' >> /etc/pacman.conf
+[archlinuxcn]
+Server = http://repo.archlinuxcn.org/$arch
+EOF
+}
+
 first_download() {
     download_status=1
     set_user_var download_status
@@ -313,7 +310,25 @@ first_download() {
         pkg_list+=(dhcpcd)
     fi
 
-    pacman -Sy --needed --noconfirm archlinux-keyring archlinuxcn-keyring
+    local cpu_vendor=$(grep vendor_id /proc/cpuinfo)
+    if echo "$cpu_vendor" | grep -q 'AuthenticAMD'; then
+        pkg_list+=(amd-ucode)
+    elif echo "$cpu_vendor" | grep -q 'GenuineIntel'; then
+        pkg_list+=(intel-ucode)
+    fi
+
+    local lspci_VGA="$(lspci | grep '3D\|VGA')"
+    if echo "$lspci_VGA" | grep -q 'AMD'; then
+        pkg_list+=(xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon)
+    fi
+    if echo "$lspci_VGA" | grep -q 'Intel'; then
+        pkg_list+=(vulkan-intel lib32-vulkan-intel)
+    fi
+    if echo "$lspci_VGA" | grep -q 'NVIDIA'; then
+        pkg_list+=(nvidia lib32-nvidia-utils)
+    fi
+
+    pacman -Sy --noconfirm archlinux-keyring archlinuxcn-keyring
     pacstrap /mnt ${pkg_list[@]}
 
     del_user_var download_status
@@ -396,100 +411,6 @@ set_passwd() {
     useradd -mG wheel $user_name
     echo "${user_name}:${user_pass}" | chpasswd
     sed -i '/# %wheel .* NOPASSWD/s/# //' /etc/sudoers
-}
-
-set_pacman() {
-    sed -i '/^#Color$/s/#//' /etc/pacman.conf
-    sed -i '/^#\[multilib\]/,+1s/^#//' /etc/pacman.conf
-
-    cat << 'EOF' >> /etc/pacman.conf
-[archlinuxcn]
-Server = http://repo.archlinuxcn.org/$arch
-EOF
-
-    pacman -Syy --needed --noconfirm archlinuxcn-keyring
-}
-
-second_download() {
-    download_status=2
-    set_user_var download_status
-
-    local network_pkg=(aria2 curl git lazygit openssh wireguard-tools)
-    local terminal_pkg=(helix starship tmux zoxide zsh)
-    local file_pkg=(ranger p7zip snapper snap-pac)
-    local sync_pkg=(chrony qrencode rsync)
-    local search_pkg=(fzf mlocate)
-    local new_search_pkg=(bat exa fd ripgrep tealdeer)
-    local system_pkg=(fcron bottom man pacman-contrib pkgstats zram-generator)
-    local maintain_pkg=(arch-install-scripts dosfstools parted)
-    local security_pkg=(apparmor dnscrypt-proxy firewalld gocryptfs)
-    local docker_pkg=(podman-docker fuse-overlayfs)
-    local language_pkg=(bash-language-server python-lsp-server)
-    local aur_pkg=(paru)
-
-    pacman_install ${network_pkg[@]}  ${terminal_pkg[@]}
-    pacman_install ${file_pkg[@]}     ${sync_pkg[@]}
-    pacman_install ${search_pkg[@]}   ${new_search_pkg[@]}
-    pacman_install ${system_pkg[@]}   ${maintain_pkg[@]}
-    pacman_install ${security_pkg[@]} ${depend_pkg[@]}
-    pacman_install ${docker_pkg[@]}   ${language_pkg[@]}
-    pacman_install ${aur_pkg[@]}
-
-    # iptables-nft 不能直接装，需要进行确认
-    echo -e "y\n\n" | pacman -S --needed iptables-nft
-
-    if [ "$use_gui" = 1 ]; then
-        install_gui_pkg
-    fi
-
-    del_user_var download_status
-}
-
-install_gui_pkg() {
-    local cpu_vendor=$(grep vendor_id /proc/cpuinfo)
-    if echo "$cpu_vendor" | grep -q 'AuthenticAMD'; then
-        local ucode_pkg=amd-ucode
-    elif echo "$cpu_vendor" | grep -q 'GenuineIntel'; then
-        local ucode_pkg=intel-ucode
-    fi
-
-    local lspci_VGA="$(lspci | grep '3D\|VGA')"
-    if echo "$lspci_VGA" | grep -q 'AMD'; then
-        local gpu_pkg+=(xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon)
-    fi
-    if echo "$lspci_VGA" | grep -q 'Intel'; then
-        local gpu_pkg+=(vulkan-intel lib32-vulkan-intel)
-    fi
-    if echo "$lspci_VGA" | grep -q 'NVIDIA'; then
-        local gpu_pkg+=(nvidia lib32-nvidia-utils)
-        sed -i '/^HOOKS/s/ kms//' /etc/mkinitcpio.conf
-    fi
-
-    local audio_pkg=(pipewire-alsa pipewire-pulse pipewire-jack)
-    local bluetooth_pkg=(bluez)
-    local touch_pkg=(libinput)
-
-    local driver_pkg=(${ucode_pkg[@]} ${gpu_pkg[@]} ${audio_pkg[@]} ${bluetooth_pkg[@]} ${touch_pkg[@]})
-    local display_pkg=(xorg plasma-meta xorg-xmodmap xclip)
-    local desktop_pkg=(konsole yakuake dolphin ffmpegthumbs kio-gdrive spectacle kwalletmanager ark)
-    local control_pkg=(networkmanager ntfs-3g sddm nextcloud-client python-notify2 python-psutil)
-    local browser_pkg=(firefox firefox-i18n-zh-cn)
-    local media_pkg=(gwenview elisa vlc)
-    local input_pkg=(fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-zhwiki)
-    local virtual_pkg=(flatpak qemu-desktop libvirt virt-manager dnsmasq bridge-utils openbsd-netcat edk2-ovmf)
-    local office_pkg=(foliate okular)
-    local font_pkg=(noto-fonts-cjk noto-fonts-emoji ttf-ubuntu-font-family ttf-liberation wqy-zenhei)
-    local aur_pkg=(crow-translate tesseract-data-eng)
-
-    rm -f /boot/${ucode_pkg}.img
-    pacman -S --noconfirm ${ucode_pkg[@]}
-
-    pacman_install ${driver_pkg[@]}  ${display_pkg[@]}
-    pacman_install ${desktop_pkg[@]} ${control_pkg[@]}
-    pacman_install ${browser_pkg[@]} ${media_pkg[@]}
-    pacman_install ${input_pkg[@]}   ${virtual_pkg[@]}
-    pacman_install ${office_pkg[@]}  ${font_pkg[@]}
-    pacman_install ${aur_pkg[@]}
 }
 
 set_user_config() {
@@ -579,22 +500,18 @@ apparmor_config() {
     # Apparmor 自启动
     chmod 600 /home/$user_name/.config/autostart/apparmor-notify.desktop
     # 审计日志组
-    echo "log_group = wheel" >> /etc/audit/auditd.conf
+    echo 'log_group = wheel' >> /etc/audit/auditd.conf
 }
 
 set_snapper() {
-    # 防止快照被索引
-    sed -i 's/PRUNENAMES = "/&.snapshots /' /etc/updatedb.conf
-
     sed -i 's/SNAPPER_CONFIGS="/&root/' /etc/conf.d/snapper
 
-    local date=$(date +'%F %T')
     cat << EOF > /.snapshots/1/info.xml
 <?xml version="1.0"?>
 <snapshot>
   <type>single</type>
   <num>1</num>
-  <date>${date}</date>
+  <date>$(date +'%F %T')</date>
   <cleanup>number</cleanup>
   <description>first root filesystem</description>
 </snapshot>
@@ -637,8 +554,6 @@ set_auto_start() {
     local enable_list=(auditd apparmor btrfs-scrub@-.timer chronyd dnscrypt-proxy fcron firewalld fstrim.timer paccache.timer pkgstats.timer systemd-oomd)
 
     if [ "$use_gui" = 1 ]; then
-        # dhcpcd 和 NetworkManager 不能同时启动
-        disable_list+=(dhcpcd)
         enable_list+=(bluetooth libvirtd NetworkManager reflector.timer sddm)
     else
         enable_list+=(dhcpcd sshd)
@@ -655,11 +570,6 @@ do_as_user() {
 
     cd $user_home
     sudo -u $user_name "$@"
-    cd
-}
-
-pacman_install() {
-    pacman -S --needed --noconfirm "$@"
 }
 
 read_only_format() {
@@ -712,24 +622,24 @@ select_partition() {
 }
 
 set_user_var() {
-    local var_name="$1"
-    local var_value="$2"
-    if [ -z "$var_value" ]; then
-        var_value="${!var_name}"
+    local name="$1"
+    local value="$2"
+    if [ -z "$value" ]; then
+        value="${!name}"
     fi
 
-    del_user_var $var_name
-    eval $var_name="$var_value"
-    echo -e "${b}var${e} ${c}${var_name}${e} = ${g}${var_value}${e}"
-    echo "${var_name}=${var_value}" >> $user_var_file
+    del_user_var $name
+    eval $name="$value"
+    echo -e "${b}var${e} ${c}${name}${e} = ${g}${value}${e}"
+    echo "${name}=${value}" >> $user_var_file
 }
 
 del_user_var() {
-    local var_name="$1"
+    local name="$1"
 
-    unset $var_name
+    unset $name
     touch $user_var_file
-    sed -i "/^${var_name}=/d" $user_var_file
+    sed -i "/^${name}=/d" $user_var_file
 }
 
 check_network() {
