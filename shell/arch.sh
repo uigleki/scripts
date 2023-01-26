@@ -290,18 +290,31 @@ first_download() {
     download_status=1
     set_user_var download_status
 
-    local basic_pkg=(base base-devel linux linux-firmware btrfs-progs fish dhcpcd reflector neovim)
-    local boot_pkg=(grub grub-btrfs)
+    local pkg_list=(base base-devel linux linux-firmware)
+    pkg_list+=(apparmor arch-install-scripts archlinuxcn-keyring bash-language-server bat bottom btrfs-progs)
+    pkg_list+=(chrony curl dnscrypt-proxy dosfstools exa fcron fd firewalld fish fuse-overlayfs fzf git)
+    pkg_list+=(gocryptfs grub grub-btrfs helix iptables-nft lazygit man-pages-zh_cn neovim openssh p7zip)
+    pkg_list+=(pacman-contrib parted paru pkgstats podman-docker python-lsp-server qrencode ranger reflector)
+    pkg_list+=(ripgrep rsync snap-pac snapper starship tealdeer tmux zoxide zram-generator zsh)
 
     if [ "$bios_type" = uefi ]; then
-        boot_pkg+=(efibootmgr)
-    fi
-    if [ "$use_gui" = 1 ]; then
-        boot_pkg+=(os-prober)
+        pkg_list+=(efibootmgr)
     fi
 
-    pacman -Sy --needed --noconfirm archlinux-keyring
-    pacstrap /mnt ${basic_pkg[@]} ${boot_pkg[@]}
+    if [ "$use_gui" = 1 ]; then
+        pkg_list+=(ark bridge-utils crow-translate dnsmasq dolphin edk2-ovmf elisa fcitx5-chinese-addons)
+        pkg_list+=(fcitx5-im fcitx5-pinyin-zhwiki ffmpegthumbs firefox-i18n-zh-cn flatpak foliate gwenview)
+        pkg_list+=(kio-gdrive konsole kwalletmanager libvirt networkmanager nextcloud-client noto-fonts)
+        pkg_list+=(noto-fonts-cjk noto-fonts-emoji noto-fonts-extra noto-fonts-extra ntfs-3g okular)
+        pkg_list+=(openbsd-netcat os-prober partitionmanager pipewire-alsa pipewire-jack pipewire-pulse)
+        pkg_list+=(plasma-meta python-notify2 python-psutil qemu-desktop sddm spectacle tesseract-data-eng)
+        pkg_list+=(ttf-liberation ttf-ubuntu-font-family virt-manager vlc wqy-zenhei xclip xorg-xmodmap yakuake)
+    else
+        pkg_list+=(dhcpcd)
+    fi
+
+    pacman -Sy --needed --noconfirm archlinux-keyring archlinuxcn-keyring
+    pacstrap /mnt ${pkg_list[@]}
 
     del_user_var download_status
 }
