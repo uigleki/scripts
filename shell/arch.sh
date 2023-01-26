@@ -302,10 +302,10 @@ first_download() {
         pkg_list+=(ark bridge-utils crow-translate dnsmasq dolphin edk2-ovmf elisa fcitx5-chinese-addons)
         pkg_list+=(fcitx5-im fcitx5-pinyin-zhwiki ffmpegthumbs firefox-i18n-zh-cn flatpak foliate gwenview)
         pkg_list+=(kio-gdrive konsole kwalletmanager libvirt networkmanager nextcloud-client noto-fonts)
-        pkg_list+=(noto-fonts-cjk noto-fonts-emoji noto-fonts-extra noto-fonts-extra ntfs-3g okular)
-        pkg_list+=(openbsd-netcat os-prober partitionmanager pipewire-alsa pipewire-jack pipewire-pulse)
-        pkg_list+=(plasma-meta python-notify2 python-psutil qemu-desktop sddm spectacle tesseract-data-eng)
-        pkg_list+=(ttf-liberation ttf-ubuntu-font-family virt-manager vlc wqy-zenhei xclip xorg-xmodmap yakuake)
+        pkg_list+=(noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ntfs-3g okular openbsd-netcat)
+        pkg_list+=(os-prober partitionmanager pipewire-alsa pipewire-jack pipewire-pulse plasma-meta)
+        pkg_list+=(python-notify2 python-psutil qemu-desktop sddm spectacle tesseract-data-eng ttf-liberation)
+        pkg_list+=(ttf-ubuntu-font-family virt-manager vlc wqy-zenhei xclip xorg-xmodmap yakuake)
     else
         pkg_list+=(dhcpcd)
     fi
