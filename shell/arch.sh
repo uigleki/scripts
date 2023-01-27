@@ -328,7 +328,6 @@ first_download() {
         pkg_list+=(nvidia lib32-nvidia-utils)
     fi
 
-    pacman -Sy --needed --noconfirm archlinux-keyring archlinuxcn-keyring
     pacstrap /mnt ${pkg_list[@]}
 
     del_user_var download_status
