@@ -437,6 +437,7 @@ setup_sh() {
 system_config() {
     fix_mnt_point
     improve_security
+    set_pacman_db
     set_snapper
 }
 
@@ -500,6 +501,10 @@ apparmor_config() {
     chmod 600 /home/$user_name/.config/autostart/apparmor-notify.desktop
     # 审计日志组
     echo 'log_group = wheel' >> /etc/audit/auditd.conf
+}
+
+set_pacman_db() {
+    pacman -Sy
 }
 
 set_snapper() {
