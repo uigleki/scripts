@@ -504,6 +504,8 @@ apparmor_config() {
 }
 
 set_pacman_db() {
+    # pacman-key --init
+    # pacman-key --populate
     pacman -Sy
 }
 
