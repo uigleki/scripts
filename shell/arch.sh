@@ -301,11 +301,11 @@ first_download() {
     if [ "$use_gui" = 1 ]; then
         pkg_list+=(ark bridge-utils crow-translate dnsmasq dolphin edk2-ovmf elisa fcitx5-chinese-addons)
         pkg_list+=(fcitx5-im fcitx5-pinyin-zhwiki ffmpegthumbs firefox-i18n-zh-cn flatpak foliate gwenview)
-        pkg_list+=(kio-gdrive konsole kwalletmanager libvirt networkmanager nextcloud-client noto-fonts)
-        pkg_list+=(noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ntfs-3g okular openbsd-netcat)
-        pkg_list+=(os-prober partitionmanager pipewire-alsa pipewire-jack pipewire-pulse plasma-meta)
-        pkg_list+=(python-notify2 python-psutil qemu-desktop sddm spectacle tesseract-data-eng ttf-liberation)
-        pkg_list+=(ttf-ubuntu-font-family virt-manager vlc wqy-zenhei xclip xorg-xmodmap yakuake)
+        pkg_list+=(kio-gdrive konsole kwalletmanager libvirt mkinitcpio networkmanager nextcloud-client noto-fonts)
+        pkg_list+=(noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ntfs-3g okular openbsd-netcat os-prober)
+        pkg_list+=(partitionmanager phonon-qt5-vlc pipewire-alsa pipewire-jack pipewire-pulse plasma-meta python-notify2)
+        pkg_list+=(python-psutil qemu-desktop sddm spectacle tesseract-data-eng ttf-liberation ttf-ubuntu-font-family)
+        pkg_list+=(virt-manager vlc wireplumber wqy-zenhei xclip xdg-desktop-portal-kde xorg-xmodmap yakuake)
     else
         pkg_list+=(dhcpcd)
     fi
