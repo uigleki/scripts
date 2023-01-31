@@ -62,7 +62,7 @@ change_source() {
 }
 
 install_pkg() {
-    local pkg_list=(bat curl exa fish fzf git helix neovim openssh ranger ripgrep rsync starship zoxide zsh)
+    local pkg_list=(bat curl exa fd fish fzf git git-delta helix neovim openssh ranger ripgrep rsync starship zoxide zsh)
 
     pkg upgrade -y
     pkg install -y ${pkg_list[@]}
@@ -70,18 +70,12 @@ install_pkg() {
 
 clone_config_repo() {
     git clone --depth=1 $config_repo $config_dir
-
-    git config --global credential.helper store
-    git config --global pull.rebase false
-    git config --global user.email $git_user_email
-    git config --global user.name $git_user_name
 }
 
 set_user_config() {
     clone_config_repo
 
     cd $config_dir
-    fish env.fish
     rsync -a .config $HOME
 }
 
