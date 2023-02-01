@@ -27,18 +27,18 @@ start_minute    = 30
 
 name    = '410935032'
 
-def main():
+def main() -> None:
     input_passwd()
     test_login()
 
     a_ready_login = alarm()
     a_ready_login.do(ready_login, start_hour, start_minute - 5)
 
-def input_passwd():
+def input_passwd() -> None:
     global passwd
     passwd = input('input your passwd: ')
 
-def test_login():
+def test_login() -> None:
     create_driver()
     driver.get(url)
     time.sleep(0.5)
@@ -52,7 +52,7 @@ def test_login():
     driver.find_element(By.ID, logout_btn).click()
     driver.quit()
 
-def ready_login():
+def ready_login() -> None:
     create_driver()
     driver.get(url)
     time.sleep(0.5)
@@ -66,7 +66,7 @@ def ready_login():
     a_grab_lesson = alarm()
     a_grab_lesson.do(grab_lesson, start_hour, start_minute - 1, 59)
 
-def grab_lesson():
+def grab_lesson() -> None:
     i = 2
     while True:
         driver.find_element(By.XPATH, start_add_btn + str(i) + end_add_btn).click()
@@ -88,10 +88,7 @@ def grab_lesson():
     print('程序结束')
 
 class alarm:
-    def __init__(self):
-        pass
-
-    def do(self, func, start_hour, start_minute, start_second = 0):
+    def do(self, func, start_hour, start_minute, start_second = 0) -> None:
         time_now    = datetime.now()
         time_start  = time_now.replace(hour = start_hour, minute = start_minute, second = start_second, microsecond = 0)
         time_delta  = time_start - time_now
@@ -100,7 +97,7 @@ class alarm:
         self.timer = Timer(time_secs, func)
         self.timer.start()
 
-def login(driver):
+def login(driver) -> None:
     driver.find_element(By.ID, name_input).send_keys(name)
     driver.find_element(By.ID, passwd_input).send_keys(passwd)
     driver.find_element(By.ID, login_btn).click()
@@ -110,13 +107,13 @@ def login(driver):
         print('登录失败')
         exit(1)
 
-def create_driver():
+def create_driver() -> None:
     global driver
     service = Service(log_path=path.devnull)
     driver = WebDriver(service=service)
     driver.implicitly_wait(5)
 
-def alert_accept():
+def alert_accept() -> None:
     global alert_text
     try:
         alert = driver.switch_to.alert
