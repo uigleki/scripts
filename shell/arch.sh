@@ -328,6 +328,7 @@ first_download() {
         pkg_list+=(nvidia lib32-nvidia-utils)
     fi
 
+    find /mnt/boot -name '*ucode*' -delete
     pacstrap /mnt ${pkg_list[@]}
 
     del_user_var download_status
