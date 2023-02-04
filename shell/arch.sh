@@ -288,24 +288,24 @@ first_download() {
     set_user_var download_status
 
     local pkg_list=(base base-devel linux linux-firmware)
-    pkg_list+=(apparmor arch-install-scripts archlinuxcn-keyring bash-language-server bat bottom btrfs-progs chrony)
-    pkg_list+=(curl dnscrypt-proxy dosfstools dust exa fcron fd firewalld fish fuse-overlayfs fzf git git-delta)
-    pkg_list+=(gocryptfs grub grub-btrfs helix iptables-nft lazygit man-pages-zh_cn mkinitcpio neovim openssh)
-    pkg_list+=(p7zip pacman-contrib parted paru pkgstats podman-docker python-lsp-server qrencode ranger reflector)
-    pkg_list+=(ripgrep rsync sd snap-pac snapper starship tealdeer tmux ventoy-bin zoxide zram-generator zsh)
+    pkg_list+=(apparmor arch-install-scripts archlinuxcn-keyring bash-language-server bat bottom btrfs-progs chrony )
+    pkg_list+=(curl dnscrypt-proxy dosfstools dust exa fcron fd firewalld fish fuse-overlayfs fzf git git-delta )
+    pkg_list+=(gocryptfs grub grub-btrfs helix iptables-nft lazygit man-pages-zh_cn mkinitcpio neovim openssh )
+    pkg_list+=(p7zip pacman-contrib parted paru pkgstats podman-docker python-lsp-server qrencode ranger reflector )
+    pkg_list+=(ripgrep rsync sd snap-pac snapper starship tealdeer tmux ventoy-bin zoxide zram-generator zsh )
 
     if [ "$bios_type" = uefi ]; then
         pkg_list+=(efibootmgr)
     fi
 
     if [ "$use_gui" = 1 ]; then
-        pkg_list+=(ark bridge-utils crow-translate dnsmasq dolphin edk2-ovmf elisa fcitx5-chinese-addons)
-        pkg_list+=(fcitx5-im fcitx5-pinyin-zhwiki ffmpegthumbs firefox-i18n-zh-cn flatpak foliate gwenview)
-        pkg_list+=(kio-gdrive konsole kwalletmanager libvirt networkmanager nextcloud-client noto-fonts)
-        pkg_list+=(noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ntfs-3g okular openbsd-netcat os-prober)
-        pkg_list+=(partitionmanager phonon-qt5-vlc pipewire-alsa pipewire-jack pipewire-pulse plasma-meta python-notify2)
-        pkg_list+=(python-psutil qemu-desktop sddm spectacle tesseract-data-eng ttf-liberation ttf-ubuntu-font-family)
-        pkg_list+=(virt-manager vlc wireplumber wqy-zenhei xclip xdg-desktop-portal-kde xorg-xmodmap yakuake)
+        pkg_list+=(ark bridge-utils crow-translate dnsmasq dolphin edk2-ovmf elisa fcitx5-chinese-addons )
+        pkg_list+=(fcitx5-im fcitx5-pinyin-zhwiki ffmpegthumbs firefox-i18n-zh-cn flatpak foliate gwenview )
+        pkg_list+=(kio-gdrive konsole kwalletmanager libvirt networkmanager nextcloud-client noto-fonts noto-fonts-cjk )
+        pkg_list+=(noto-fonts-emoji noto-fonts-extra ntfs-3g okular openbsd-netcat os-prober partitionmanager )
+        pkg_list+=(phonon-qt5-vlc pipewire-alsa pipewire-jack pipewire-pulse plasma-meta python-notify2 python-psutil )
+        pkg_list+=(qbittorrent qemu-desktop sddm spectacle tesseract-data-eng ttf-liberation ttf-ubuntu-font-family )
+        pkg_list+=(virt-manager vlc wireplumber wqy-zenhei xclip xdg-desktop-portal-kde xorg-xmodmap yakuake )
     else
         pkg_list+=(dhcpcd)
     fi
