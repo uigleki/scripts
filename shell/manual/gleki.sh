@@ -9,13 +9,6 @@ prefix=$1
 doname=gleki.com
 
 
-var_read() {
-    local var_name="$1"
-
-    read -p "${var_name}: " $1
-    echo "${var_name}=${!var_name}"
-}
-
 clone_repo() {
     sudo mkdir -p $srv
     sudo chown -R $USER: $srv
@@ -44,13 +37,6 @@ copy_config() {
     fi
 }
 
-change_cloud_pass() {
-    var_read admin
-    var_read cloudpass
-    sed -i "s/admin/${admin}/" $mnt/pod/http.yaml
-    sed -i "s/cloudpass/${cloudpass}/" $mnt/pod/http.yaml
-}
-
 set_synapse() {
     podman run -it --rm \
            -v synapse:/data \
@@ -75,7 +61,6 @@ main() {
     copy_config
 
     if [ -z "$prefix" ]; then
-        change_cloud_pass
         set_synapse
     fi
 
