@@ -8,7 +8,7 @@ rsync_argu=(--delete --exclude-from=$exclude_list --inplace --no-whole-file --pa
 cat << EOF > $exclude_list
 .stfolder
 .stversions
-.owncloudsync.log
+.nextcloudsync.log
 .sync*
 EOF
 
