@@ -6,6 +6,7 @@ sudo pacman -S --noconfirm steam
 
 flatpak install -y \
         org.libreoffice.LibreOffice \
-        com.google.Chrome
+        com.google.Chrome \
+        com.microsoft.Edge
 
 echo 'need reboot'
