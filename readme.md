@@ -149,7 +149,7 @@
 ## 交易
 
 - 交易导师: Youtube 的 The Inner Circle Trader
-- 字幕插件: Dualsub
+- 字幕插件: YouTube™ Dual Caption
 
 ### 观看顺序
 
