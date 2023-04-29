@@ -153,10 +153,8 @@
 
 ### 观看顺序
 
-1. ICT W.E.N.T. Series
-2. 2016 Premium ICT Mentorship Core Content Lectures
-3. 2022 ICT Mentorship
-4. ICT Forex - Market Maker Primer Course
+1. 2016 Premium ICT Mentorship Core Content Lectures
+2. 2022 ICT Mentorship
 
 
 ## 解释 ##
