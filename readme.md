@@ -148,13 +148,8 @@
 
 ## 交易
 
-- 交易导师: Youtube 的 The Inner Circle Trader
+- [Mulham Trading - ICT/SMC 4H & M15 Strategy](https://youtu.be/sKXhF6OQ_QY)
 - 字幕插件: YouTube™ Dual Caption
-
-### 观看顺序
-
-1. 2016 Premium ICT Mentorship Core Content Lectures
-2. 2022 ICT Mentorship
 
 
 ## 解释 ##
