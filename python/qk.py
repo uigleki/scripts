@@ -12,7 +12,7 @@ url             = 'https://sys.ndhu.edu.tw/AA/CLASS/subjselect/'
 name_input      = 'ContentPlaceHolder1_ed_StudNo'
 passwd_input    = 'ContentPlaceHolder1_ed_pass'
 
-login_btn       = 'ContentPlaceHolder1_BtnLogin'
+login_btn       = 'ContentPlaceHolder1_BtnLoginNew'
 logout_btn      = 'ContentPlaceHolder1_HyperLink5'
 pre_sort_btn    = 'ContentPlaceHolder1_Button7'
 
@@ -47,6 +47,10 @@ def test_login() -> None:
     time.sleep(0.5)
 
     driver.find_element(By.ID, pre_sort_btn).click()
+    time.sleep(0.5)
+
+    driver.find_element(By.XPATH, start_add_btn + str(2) + end_add_btn).click()
+    alert_accept()
     time.sleep(0.5)
 
     driver.find_element(By.ID, logout_btn).click()
