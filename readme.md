@@ -148,8 +148,9 @@
 
 ## 交易
 
-- [Mulham Trading - ICT/SMC 4H & M15 Strategy](https://youtu.be/sKXhF6OQ_QY)
-- 字幕插件: YouTube™ Dual Caption
+- [Ben Reid's Trading Strategy Course on Udemy](https://www.udemy.com/course/day-trading-strategy-that-can-win-even-when-youre-wrong/)
+- [FTMO with cTrader](https://ftmo.com/en/)
+- [YouTube™ Dual Caption](https://addons.mozilla.org/zh-CN/firefox/addon/youtube-dual-subtitles/)
 
 
 ## 解释 ##
