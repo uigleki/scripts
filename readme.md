@@ -148,7 +148,7 @@
 
 ## 交易
 
-- [Ben Reid's Scale Trading Strategy Course on Udemy](https://www.udemy.com/course/day-trading-strategy-that-can-win-even-when-youre-wrong/)
+- [Ben Reid's Day Trading Strategy Course on Udemy](https://www.udemy.com/course/day-trading-strategy-that-can-win-even-when-youre-wrong/)
 - [FTMO with cTrader](https://ftmo.com/en/)
 - [YouTube™ Dual Caption](https://addons.mozilla.org/zh-CN/firefox/addon/youtube-dual-subtitles/)
 
