@@ -6,10 +6,7 @@ exclude_list=$HOME/exclude.list
 rsync_argu=(--delete --exclude-from=$exclude_list --inplace --no-whole-file --partial --progress --recursive --times)
 
 cat << EOF > $exclude_list
-.stfolder
-.stversions
-.nextcloudsync.log
-.sync*
+.dropbox*
 EOF
 
 rsync --dry-run ${rsync_argu[@]} "$@"

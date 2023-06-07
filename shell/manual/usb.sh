@@ -2,17 +2,17 @@
 set -eo pipefail
 
 sync=$(dirname $0)/sync.sh
-test_file=$HOME/a/zgike
+test_file=$HOME/Dropbox/zgike
 usb=/run/media/$USER
 
 udisksctl mount -b /dev/sda1
 udisksctl mount -b /dev/sda3
 
 if [ -e $test_file ]; then
-    bash $sync --exclude=Downloads/iso ~/Downloads ~/a $usb/btrfs
+    bash $sync --exclude=Downloads/iso ~/Downloads ~/Dropbox $usb/btrfs
     bash $sync ~/Downloads/iso/ $usb/Ventoy
 else
-    bash $sync $usb/btrfs/Downloads $usb/btrfs/a ~
+    bash $sync $usb/btrfs/Downloads $usb/btrfs/Dropbox ~
     bash $sync $usb/Ventoy/ ~/Downloads/iso
 fi
 
