@@ -5,7 +5,7 @@ config_repo=https://gitlab.com/uigleki/dotfiles.git
 config_dir=~/dotfiles
 rsync_argu=(--inplace --no-whole-file --recursive --times)
 
-sudo pacman -Syu --noconfirm bash-language-server curl exa fish git git-delta helix lazygit openssh python-lsp-server ranger ripgrep rsync starship zoxide zsh
+sudo pacman -Syu --noconfirm bash-language-server curl exa fish fzf git git-delta helix lazygit openssh python-lsp-server ranger ripgrep rsync starship zoxide zsh
 
 git clone --depth=1 $config_repo $config_dir
 git clone --depth=1 https://gitlab.com/uigleki/scripts.git
