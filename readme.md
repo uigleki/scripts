@@ -83,44 +83,57 @@
 1. 刺激战场
 1. 侠盗猎车手圣安地列斯
 
-### 软件
+
+## 软件
+
+### 微软
 
 | 领域 | 软件 |
 | --- | --- |
-| 语言 | Lojban 逻辑语 |
-| 编程语言 | Common Lisp |
-| 操作系统 | Arch Linux |
-| 文件系统 | Btrfs |
-| 桌面环境 | KDE |
-| 英文字体 | Ubuntu font |
-| 浏览器 | Firefox 火狐 |
-| 视频播放 | VLC |
-| 音乐播放 | Elisa |
+| 包管理 | winget |
+| 版本控制 | Git |
 | 数据压缩 | 7-Zip |
+| 映射键位 | PowerToys |
+| 浏览器 | Firefox |
+| 目录加密 | Cryptomator |
+| 云同步 | Dropbox |
+| 桌面翻译 | Crow Translate |
+| 卸载工具 | Bulk Crap Uninstaller |
+| 游戏作弊 | WeMod |
+| 中文输入 | 小鹤双拼方案 |
+| 同步目录 | FreeFileSync |
+
+### 安卓
+
+| 领域 | 软件 |
+| --- | --- |
+| 动态壁纸 | Muzei Live Wallpaper |
+| 文件管理 | MiXplorer |
+| 音乐播放 | Vinyl Music Player |
+| 安卓终端 | Termux |
+
+### Linux
+
+| 领域 | 软件 |
+| --- | --- |
+| 操作系统 | Arch Linux |
+| 英文字体 | Ubuntu font |
 | 快压缩算法 | lz4 |
 | 高压缩算法 | zstd |
-| 中文输入法 | 小鹤双拼方案 |
-| 文本编辑器 | helix |
-| 模态编辑 | Xah Fly Keys |
-| 文件管理器 | Ranger |
+| 文本编辑 | helix |
+| 文件管理 | Ranger |
 | 即时通信 | Matrix |
-| 云同步 | Nextcloud |
-| 安卓动态壁纸 | Muzei Live Wallpaper |
-| 安卓文件管理 | MiXplorer |
-| 安卓音乐播放器 | Vinyl Music Player |
-| 安卓终端 | Termux |
-| 微软包管理 | winget |
 
-### 不常用的软件
+### 其他
 
 | 领域 | 软件 |
 | --- | --- |
 | 办公室套件 | LibreOffice |
-| 制作系统启动盘 | Ventoy |
-| 位图图像编辑 | GIMP |
-| 矢量图形编辑 | Inkscape |
+| 系统启动盘 | Ventoy |
+| 位图编辑 | GIMP |
+| 矢量图编辑 | Inkscape |
 | 绘画软件 | Krita |
-| 三维动画制作 | Blender |
+| 三维动画 | Blender |
 | 视频转码 | HandBrake |
 | 视频编辑 | Shotcut |
 | 音频编辑 | Audacity |
@@ -153,9 +166,9 @@
 - [YouTube™ Dual Caption](https://addons.mozilla.org/zh-CN/firefox/addon/youtube-dual-subtitles/)
 
 
-## 解释 ##
+## 解释
 
-### 彩虹猫 ###
+### 彩虹猫
 
 daniwell
 
@@ -166,21 +179,21 @@ daniwell
 [aidn.jp](https://aidn.jp/)
 
 
-### Arch 个人配置 ###
+### Arch 个人配置
 
 ```shell
 bash <(curl -L gleki.com/arch.sh)
 ```
 
 
-### Arch 服务器配置 ###
+### Arch 服务器配置
 
 ```shell
 bash <(curl -L gleki.com/arch.sh)
 ```
 
 
-### Termux 配置 ###
+### Termux 配置
 
 ```shell
 bash <(curl -L gleki.com/termux.sh)
