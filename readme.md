@@ -35,6 +35,7 @@
     - 谢谢你圆我一场青春的梦
 1. 企鹅公路
 1. 查理和巧克力工厂
+1. 哈尔的移动城堡
 1. 横空出世
 1. 完美的世界
 
@@ -60,6 +61,7 @@
 1. H-el-ical／／ - Altern-ate-
 1. Poppin'Party - Returns
 1. 大橋彩香 - 気まぐれロマンティック
+1. HHMR & Krbread - Once More
 
 ### 游戏
 
