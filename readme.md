@@ -99,6 +99,7 @@
 | 浏览器 | Firefox |
 | 目录加密 | Cryptomator |
 | 云同步 | Dropbox |
+| 全能笔记 | Logseq |
 | 桌面翻译 | Crow Translate |
 | 卸载工具 | Bulk Crap Uninstaller |
 | 游戏作弊 | WeMod |
