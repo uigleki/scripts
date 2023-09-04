@@ -138,7 +138,7 @@
 | 绘画软件 | Krita |
 | 三维动画 | Blender |
 | 视频转码 | HandBrake |
-| 视频编辑 | Shotcut |
+| 视频编辑 | Kdenlive |
 | 音频编辑 | Audacity |
 | 游戏引擎 | Godot |
 
