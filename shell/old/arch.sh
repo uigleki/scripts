@@ -299,13 +299,13 @@ first_download() {
     fi
 
     if [ "$use_gui" = 1 ]; then
-        pkg_list+=(ark bridge-utils crow-translate dnsmasq dolphin edk2-ovmf elisa fcitx5-chinese-addons fcitx5-im )
+        pkg_list+=(ark bridge-utils dnsmasq dolphin edk2-ovmf elisa fcitx5-chinese-addons fcitx5-im )
         pkg_list+=(fcitx5-pinyin-zhwiki ffmpegthumbs firefox-i18n-zh-cn flatpak foliate gwenview kio-gdrive konsole )
         pkg_list+=(kwalletmanager libvirt networkmanager nextcloud-client noto-fonts noto-fonts-cjk noto-fonts-emoji )
         pkg_list+=(noto-fonts-extra ntfs-3g okular openbsd-netcat os-prober partitionmanager phonon-qt5-vlc )
-        pkg_list+=(pipewire-alsa paru pipewire-jack pipewire-pulse plasma-meta python-notify2 python-psutil )
+        pkg_list+=(pipewire-alsa pipewire-jack pipewire-pulse plasma-meta python-notify2 python-psutil )
         pkg_list+=(qbittorrent qemu-desktop sddm spectacle tesseract-data-eng ttf-liberation ttf-ubuntu-font-family )
-        pkg_list+=(ventoy-bin virt-manager vlc wireplumber wqy-zenhei xclip xdg-desktop-portal-kde xorg-xmodmap yakuake )
+        pkg_list+=(virt-manager vlc wireplumber wqy-zenhei xclip xdg-desktop-portal-kde xorg-xmodmap yakuake )
     else
         pkg_list+=(dhcpcd)
     fi
