@@ -98,7 +98,7 @@
 | 映射键位 | PowerToys |
 | 浏览器 | Firefox |
 | 目录加密 | Cryptomator |
-| 云同步 | Dropbox |
+| 云同步 | MEGA |
 | 全能笔记 | Logseq |
 | 桌面翻译 | Crow Translate |
 | 卸载工具 | Bulk Crap Uninstaller |
