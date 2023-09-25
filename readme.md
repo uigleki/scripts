@@ -164,7 +164,6 @@
 
 ## 交易
 
-- [Ben Reid's Round Numbers Strategy on Udemy](https://www.udemy.com/course/day-trading-strategy-that-can-win-even-when-youre-wrong/)
 - [FTMO with cTrader](https://ftmo.com/en/)
 - [YouTube™ Dual Caption](https://addons.mozilla.org/zh-CN/firefox/addon/youtube-dual-subtitles/)
 
@@ -185,19 +184,19 @@ daniwell
 ### Arch 个人配置
 
 ```shell
-bash <(curl -L gleki.com/arch.sh)
+bash <(curl -L gitlab.com/uigleki/scripts/raw/main/shell/arch.sh)
 ```
 
 
 ### Arch 服务器配置
 
 ```shell
-bash <(curl -L gleki.com/arch.sh)
+bash <(curl -L gitlab.com/uigleki/scripts/raw/main/shell/arch.sh)
 ```
 
 
 ### Termux 配置
 
 ```shell
-bash <(curl -L gleki.com/termux.sh)
+bash <(curl -L gitlab.com/uigleki/scripts/raw/main/shell/termux.sh)
 ```
