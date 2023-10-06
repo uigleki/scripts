@@ -121,6 +121,15 @@
 | 动态壁纸 | Muzei Live Wallpaper |
 | 文件管理 | MiXplorer |
 | 音乐播放 | Vinyl Music Player |
+| 跳过广告 | 跳过广告 |
+| 天气查询 | 几何天气 |
+| 两步验证 | Aegis Authenticator |
+| 目录加密 | Cryptomator |
+| 加密流量 | 1.1.1.1 + WARP |
+| 云端同步 | MEGA |
+| 听歌识曲 | Shazam |
+| 下载音乐 | 歌词适配 |
+| 在线词典 | 欧路词典 |
 | 安卓终端 | Termux |
 
 ### Linux
