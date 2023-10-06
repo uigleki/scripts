@@ -93,19 +93,26 @@
 
 | 领域 | 软件 |
 | --- | --- |
-| 包管理 | winget |
-| 版本控制 | Git |
-| 数据压缩 | 7-Zip |
-| 映射键位 | PowerToys |
-| 浏览器 | Firefox |
-| 目录加密 | Cryptomator |
-| 云同步 | MEGA |
-| 全能笔记 | Logseq |
-| 桌面翻译 | Crow Translate |
-| 卸载工具 | Bulk Crap Uninstaller |
-| 游戏作弊 | WeMod |
-| 中文输入 | 小鹤双拼方案 |
-| 同步目录 | FreeFileSync |
+| 包管理器 | winget |
+| 数据压缩 | [7-Zip](https://7-zip.org/) |
+| 主浏览器 | [Firefox](https://www.mozilla.org/en-US/firefox/new/) |
+| 映射键位 | [PowerToys](https://github.com/microsoft/PowerToys/releases) |
+| 目录加密 | [Cryptomator](https://cryptomator.org/downloads/) |
+| 桌面翻译 | [Crow Translate](https://github.com/crow-translate/crow-translate/releases) |
+| 游戏平台 | [Steam](https://store.steampowered.com/) |
+| 游戏作弊 | [WeMod](https://www.wemod.com/) |
+| 卸载工具 | [Bulk Crap Uninstaller](https://www.fosshub.com/Bulk-Crap-Uninstaller.html) |
+| 副浏览器 | [Chrome](https://www.google.com/intl/en_us/chrome/) |
+| 同步目录 | [FreeFileSync](https://freefilesync.org/download.php) |
+| 开发环境 | [Arch WSL](https://apps.microsoft.com/detail/9MZNMNKSM73X) |
+| 加速下载 | [Motrix](https://motrix.app/download) |
+| 市场图表 | [Tradingview](https://www.tradingview.com/desktop/) |
+| 下单平台 | [cTrader](https://ctrader.com/download/) |
+| 全能笔记 | [Logseq](https://logseq.com/) |
+| 加密流量 | [Cloudflare WARP](https://cloudflarewarp.com/) |
+| 云端同步 | [MEGA](https://mega.io/desktop) |
+| 安卓模拟 | [Bluestacks 5](https://www.bluestacks.com/) |
+| 中文输入 | [小鹤双拼方案](https://gitlab.com/uigleki/dotwin/-/blob/main/reg/flypy.reg) |
 
 ### 安卓
 
@@ -121,6 +128,7 @@
 | 领域 | 软件 |
 | --- | --- |
 | 操作系统 | Arch Linux |
+| 版本控制 | Git |
 | 英文字体 | Ubuntu font |
 | 快压缩算法 | lz4 |
 | 高压缩算法 | zstd |
