@@ -186,15 +186,9 @@
 - [YouTube™ Dual Caption](https://addons.mozilla.org/zh-CN/firefox/addon/youtube-dual-subtitles/)
 
 
-## 解释
+## 其他
 
-### 彩虹猫
-
-daniwell
-
-彩虹猫
-[W](http://www.nyan.cat)
-[W](https://www.youtube.com/watch?v=QH2-TGUlwu4)
+### 特殊网站
 
 [aidn.jp](https://aidn.jp/)
 
