@@ -149,7 +149,7 @@
 
 | 领域 | 软件 |
 | --- | --- |
-| 办公室套件 | LibreOffice |
+| 办公室套件 | OnlyOffice |
 | 系统启动盘 | Ventoy |
 | 位图编辑 | GIMP |
 | 矢量图编辑 | Inkscape |
