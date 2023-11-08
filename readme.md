@@ -113,6 +113,7 @@
 | 云端同步 | [MEGA](https://mega.io/desktop) |
 | 安卓模拟 | [Bluestacks 5](https://www.bluestacks.com/) |
 | 中文输入 | [小鹤双拼方案](https://gitlab.com/uigleki/dotwin/-/blob/main/reg/flypy.reg) |
+| 杀毒软件 | [360安全卫士极速版](https://weishi.360.cn/jisu/) |
 
 ### 安卓
 
