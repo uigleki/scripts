@@ -96,7 +96,7 @@
 | 包管理器 | winget |
 | 数据压缩 | [7-Zip](https://7-zip.org/) |
 | 主浏览器 | [Firefox](https://www.mozilla.org/en-US/firefox/new/) |
-| 映射键位 | [PowerToys](https://github.com/microsoft/PowerToys/releases) |
+| 映射键位 | [PowerToys](https://apps.microsoft.com/detail/XP89DCGQ3K6VLD) |
 | 目录加密 | [Cryptomator](https://cryptomator.org/downloads/) |
 | 桌面翻译 | [Crow Translate](https://github.com/crow-translate/crow-translate/releases) |
 | 游戏平台 | [Steam](https://store.steampowered.com/) |
@@ -108,7 +108,7 @@
 | 加速下载 | [Motrix](https://motrix.app/download) |
 | 市场图表 | [Tradingview](https://www.tradingview.com/desktop/) |
 | 下单平台 | [cTrader](https://ctrader.com/download/) |
-| 全能笔记 | [Logseq](https://logseq.com/) |
+| 全能笔记 | [SiYuan](https://apps.microsoft.com/detail/9P7HPMXP73K4) |
 | 加密流量 | [Cloudflare WARP](https://cloudflarewarp.com/) |
 | 云端同步 | [MEGA](https://mega.io/desktop) |
 | 安卓模拟 | [Bluestacks 5](https://www.bluestacks.com/) |
