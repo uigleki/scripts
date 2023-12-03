@@ -108,7 +108,7 @@
 | 加速下载 | [Motrix](https://motrix.app/download) |
 | 市场图表 | [Tradingview](https://www.tradingview.com/desktop/) |
 | 下单平台 | [cTrader](https://ctrader.com/download/) |
-| 全能笔记 | [SiYuan](https://apps.microsoft.com/detail/9P7HPMXP73K4) |
+| 全能笔记 | [Obsidian](https://obsidian.md/download) |
 | 加密流量 | [Cloudflare WARP](https://cloudflarewarp.com/) |
 | 云端同步 | [MEGA](https://mega.io/desktop) |
 | 安卓模拟 | [Bluestacks 5](https://www.bluestacks.com/) |
