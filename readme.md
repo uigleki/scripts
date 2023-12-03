@@ -183,15 +183,16 @@
 
 ## 交易
 
-- [FTMO with cTrader](https://ftmo.com/en/)
 - [YouTube™ Dual Caption](https://addons.mozilla.org/zh-CN/firefox/addon/youtube-dual-subtitles/)
+- [FTMO with cTrader](https://ftmo.com/en/)
+- [Evolution Markets](https://www.evolutionmarketsfx.com/)
 
 
 ## 其他
 
 ### 特殊网站
 
-[aidn.jp](https://aidn.jp/)
+- [aidn.jp](https://aidn.jp/)
 
 
 ### Arch 个人配置
