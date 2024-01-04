@@ -104,7 +104,7 @@
 | 主浏览器 | [Firefox](https://www.mozilla.org/en-US/firefox/new/) |
 | 映射键位 | [PowerToys](https://apps.microsoft.com/detail/XP89DCGQ3K6VLD) |
 | 目录加密 | [Cryptomator](https://cryptomator.org/downloads/) |
-| 桌面翻译 | [Crow Translate](https://github.com/crow-translate/crow-translate/releases) |
+| 桌面翻译 | [Crow Translate](https://github.com/crow-translate/crow-translate/releases/latest) |
 | 游戏平台 | [Steam](https://store.steampowered.com/) |
 | 游戏作弊 | [WeMod](https://www.wemod.com/) |
 | 卸载工具 | [Bulk Crap Uninstaller](https://www.fosshub.com/Bulk-Crap-Uninstaller.html) |
