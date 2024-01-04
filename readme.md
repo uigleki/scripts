@@ -99,10 +99,12 @@
 
 | 领域 | 软件 |
 | --- | --- |
+| 精简系统 | [Tiny11](https://twitter.com/NTDEV_) |
 | 包管理器 | winget |
-| 数据压缩 | [7-Zip](https://7-zip.org/) |
 | 主浏览器 | [Firefox](https://www.mozilla.org/en-US/firefox/new/) |
 | 映射键位 | [PowerToys](https://apps.microsoft.com/detail/XP89DCGQ3K6VLD) |
+| 云端同步 | [MEGA](https://mega.io/desktop) |
+| 数据压缩 | [7-Zip](https://7-zip.org/) |
 | 目录加密 | [Cryptomator](https://cryptomator.org/downloads/) |
 | 桌面翻译 | [Crow Translate](https://github.com/crow-translate/crow-translate/releases/latest) |
 | 游戏平台 | [Steam](https://store.steampowered.com/) |
@@ -116,10 +118,8 @@
 | 下单平台 | [cTrader](https://ctrader.com/download/) |
 | 全能笔记 | [Obsidian](https://obsidian.md/download) |
 | 加密流量 | [Cloudflare WARP](https://cloudflarewarp.com/) |
-| 云端同步 | [MEGA](https://mega.io/desktop) |
 | 安卓模拟 | [Bluestacks 5](https://www.bluestacks.com/) |
 | 中文输入 | [小鹤双拼方案](https://gitlab.com/uigleki/dotwin/-/blob/main/reg/flypy.reg) |
-| 杀毒软件 | [360安全卫士极速版](https://weishi.360.cn/jisu/) |
 
 ### 安卓
 
@@ -199,6 +199,15 @@
 ### 特殊网站
 
 - [aidn.jp](https://aidn.jp/)
+
+
+### 激活微软
+
+```shell
+slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
+slmgr /skms kms.03k.org
+slmgr /ato
+```
 
 
 ### Arch 个人配置
