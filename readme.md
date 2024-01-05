@@ -207,10 +207,10 @@
 1. 添加中文语言
 1. 安装亚洲字体
 1. 启用：虚拟机平台，Linux子系统，Hyper-V
+1. 激活系统
 1. 启用内存完整性
 
 ```shell
-# 激活 win 11 pro
 slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
 slmgr /skms kms.03k.org
 slmgr /ato
