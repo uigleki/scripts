@@ -214,7 +214,11 @@
 slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
 slmgr /skms kms.03k.org
 slmgr /ato
+wsl --update
 ```
+
+[Media Player](https://apps.microsoft.com/detail/9WZDNCRFJ3PT)
+[Game Bar](https://apps.microsoft.com/detail/9NZKPSTSNW4P)
 
 
 ### Arch 个人配置
