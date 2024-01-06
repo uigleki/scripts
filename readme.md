@@ -217,8 +217,9 @@ slmgr /ato
 wsl --update
 ```
 
-[Media Player](https://apps.microsoft.com/detail/9WZDNCRFJ3PT)
-[Game Bar](https://apps.microsoft.com/detail/9NZKPSTSNW4P)
+[TerminalTheme](https://windowsterminalthemes.dev/?theme=Gruvbox+Light)
+[MediaPlayer](https://apps.microsoft.com/detail/9WZDNCRFJ3PT)
+[GameBar](https://apps.microsoft.com/detail/9NZKPSTSNW4P)
 
 
 ### Arch 个人配置
