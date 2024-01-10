@@ -21,4 +21,4 @@ sudo mkdir -p /etc/zsh
 echo 'export ZDOTDIR=~/.config/zsh' | sudo tee /etc/zsh/zshenv
 fish -c 'fish_update_completions'
 
-rm -f .bash*
+fd --hidden '.bash' $HOME -d 1 -X rm
