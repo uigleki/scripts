@@ -5,8 +5,8 @@ config_repo=https://gitlab.com/uigleki/dotfiles.git
 config_dir=~/dotfiles
 rsync_argu=(--inplace --no-whole-file --recursive --times)
 
-sed -i '/^NoProgressBar/s/^/#/' /etc/pacman.conf
-sed -i '/#Color/s/#//' /etc/pacman.conf
+sudo sed -i '/^NoProgressBar/s/^/#/' /etc/pacman.conf
+sudo sed -i '/#Color/s/#//' /etc/pacman.conf
 
 sudo pacman -Syu --noconfirm bash-language-server bat curl exa fd fish fzf git git-delta helix lazygit openssh python-lsp-server ranger ripgrep rsync starship zoxide zsh
 
