@@ -13,8 +13,7 @@ sudo pacman -Syu --noconfirm bash-language-server bat curl exa fd fish fzf git g
 git clone --depth=1 $config_repo $config_dir
 git clone --depth=1 https://gitlab.com/uigleki/scripts.git
 
-cd $config_dir
-rsync ${rsync_argu[@]} .config $HOME
+rsync ${rsync_argu[@]} $config_dir/.config $HOME
 
 sudo chsh -s /bin/zsh $USER
 sudo mkdir -p /etc/zsh
