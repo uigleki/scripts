@@ -211,9 +211,7 @@
 1. 微软商店更新
 
 ```shell
-slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
-slmgr /skms kms.03k.org
-slmgr /ato
+irm https://massgrave.dev/get | iex
 wsl --update
 ```
 
