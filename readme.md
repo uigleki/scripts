@@ -120,6 +120,7 @@
 | 全能笔记 | [Obsidian](https://obsidian.md/download) |
 | 加密流量 | [Cloudflare WARP](https://cloudflarewarp.com/) |
 | 安卓模拟 | [Bluestacks 5](https://www.bluestacks.com/) |
+| 代码编辑 | [Visual Studio Code](https://apps.microsoft.com/store/detail/XP9KHM4BK9FZ7Q) |
 
 
 ### 安卓
