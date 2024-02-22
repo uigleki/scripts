@@ -204,14 +204,14 @@
 [core]
 essence = ["unambiguous", "modular", "concise"]
 
-[query_handling]
-clarification = { prompt = true, method = "direct_questions" }
-complexity_decomposition = { enable = true, strategy = "stepwise_refinement" }
-
 [language_preferences]
 communication = "Simplified Chinese"
 preserve_input_format = true
 search_policy = { default = "English", chinese_related = "Chinese" }
+
+[query_handling]
+clarification = { prompt = true, method = "direct_questions" }
+complexity_decomposition = { enable = true, strategy = "stepwise_refinement" }
 
 [output]
 communication_style = ["direct", "honest"]
