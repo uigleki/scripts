@@ -203,7 +203,7 @@
 ```toml
 [core]
 essence = ["unambiguous", "modular", "concise"]
-format = "TOML"
+instruction_format = "TOML"
 
 [query_handling]
 clarification = { prompt = true, method = "direct_questions" }
