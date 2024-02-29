@@ -102,7 +102,7 @@
 | --- | --- |
 | 精简系统 | [Tiny11](https://twitter.com/NTDEV_) |
 | 中文输入 | [小鹤双拼方案](https://gitlab.com/uigleki/dotwin/-/blob/main/reg/flypy.reg) |
-| 包管理器 | winget |
+| 包管理器 | [winget](https://apps.microsoft.com/detail/9nblggh4nns1) |
 | 主浏览器 | [Firefox](https://www.mozilla.org/en-US/firefox/new/) |
 | 映射键位 | [PowerToys](https://apps.microsoft.com/detail/XP89DCGQ3K6VLD) |
 | 云端同步 | [MEGA](https://mega.io/desktop) |
@@ -122,6 +122,8 @@
 | 加密流量 | [Cloudflare WARP](https://cloudflarewarp.com/) |
 | 安卓模拟 | [Bluestacks 5](https://www.bluestacks.com/) |
 | 代码编辑 | [Visual Studio Code](https://apps.microsoft.com/store/detail/XP9KHM4BK9FZ7Q) |
+| 种子下载 | [qBittorrent](https://www.fosshub.com/qBittorrent.html) |
+| 视频播放 | [VLC](https://www.videolan.org/vlc/) |
 
 
 ### 安卓
@@ -140,6 +142,7 @@
 | 听歌识曲 | Shazam |
 | 在线词典 | 欧路词典 |
 | 安卓终端 | Termux |
+| 待办事项 | Habitica |
 
 ### Linux
 
@@ -198,6 +201,13 @@
 
 ## 其他
 
+### 动漫
+
+1. 看评分：[Bangumi](https://bangumi.tv/)
+1. 下动漫：[VCB-Studio](https://vcb-s.com/)
+1. 下字幕：[Anime 字幕论坛](https://bbs.acgrip.com/)
+
+
 ### 智能
 
 ```toml
@@ -250,14 +260,7 @@ wsl --update
 [GameBar](https://apps.microsoft.com/detail/9NZKPSTSNW4P)
 
 
-### Arch 个人配置
-
-```shell
-bash <(curl -L gitlab.com/uigleki/scripts/raw/main/shell/arch.sh)
-```
-
-
-### Arch 服务器配置
+### Arch 配置
 
 ```shell
 bash <(curl -L gitlab.com/uigleki/scripts/raw/main/shell/arch.sh)
