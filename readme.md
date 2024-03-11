@@ -219,8 +219,6 @@
 essence = ["unambiguous", "modular", "concise"]
 
 [language_preferences]
-communication = "Simplified Chinese"
-preserve_input_format = true
 search_policy = { default = "English", chinese_related = "Chinese" }
 
 [query_handling]
