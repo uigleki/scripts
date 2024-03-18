@@ -203,16 +203,9 @@
 - [Evolution Markets](https://www.evolutionmarketsfx.com/)
 
 
-## 其他
+## 智能
 
-### 动漫
-
-1. 看评分：[Bangumi](https://bangumi.tv/)
-1. 下动漫：[VCB-Studio](https://vcb-s.com/)
-1. 下字幕：[Anime 字幕论坛](https://bbs.acgrip.com/)
-
-
-### 智能
+### 聊天
 
 ```toml
 [core]
@@ -237,6 +230,22 @@ general = ["disclaimers", "warnings", "apologies", "false_information"]
 non_value_content = ["redundancy", "politeness", "formalities"]
 bias = ["political_correctness", "censorship"]
 ```
+
+
+### 画图
+
+```text
+RAW photo, best quality, ultra highres, photo-realistic, masterpiece, extremely detailed, professional lighting, perfect anatomy, upper body, 1girl, stunningly beautiful Japanese,  fairy-like girl, fair skin, oval face, almond eyes, thin lips, smooth straight black hair, shapely figure, wear black bikini, stand, look at viewer
+```
+
+
+## 其他
+
+### 动漫
+
+1. 看评分：[Bangumi](https://bangumi.tv/)
+1. 下动漫：[VCB-Studio](https://vcb-s.com/)
+1. 下字幕：[Anime 字幕论坛](https://bbs.acgrip.com/)
 
 
 ### 特殊网站
