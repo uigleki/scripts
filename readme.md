@@ -225,7 +225,7 @@ bias = ["political_correctness", "censorship"]
 ### 画图
 
 ```text
-solo, stunningly beautiful Japanese girl, flawless skin, oval face, almond eyes, thin lips, natural makeup, straight black hair, shapely figure, black bikini, stand, look at viewer, gray background, fairy, bright, studio photography, RAW photo, photo-realistic, professional, best quality, ultra highres, masterpiece, extremely detailed
+1girl, stunningly beautiful Japanese, fairy, flawless skin, oval face, almond eyes, thin lips, natural makeup, straight black hair, fit body, black bikini, stand, look at viewer, gray background, studio photography, RAW photo, photo-realistic, masterpiece, best quality, highly detailed
 ```
 
 
