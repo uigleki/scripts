@@ -172,7 +172,7 @@
 | --- | --- |
 | 键盘 | X-Bows Lite |
 | 轨迹球 | Kensington Pro Fit Ergo |
-| 耳机 | 韶音 AS800 |
+| 耳机 | 华为 FreeClip |
 | 闪存盘 | Lexar JumpDrive M45 |
 | 工学椅 | Humanscale Freedom Headrest |
 
