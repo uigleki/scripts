@@ -94,9 +94,7 @@
 
 | 领域 | 软件 |
 | --- | --- |
-| 精简系统 | [Tiny11](https://twitter.com/NTDEV_) |
 | 中文输入 | [小鹤双拼方案](https://gitlab.com/uigleki/dotwin/-/blob/main/reg/flypy.reg) |
-| 包管理器 | [winget](https://apps.microsoft.com/detail/9nblggh4nns1) |
 | 主浏览器 | [Firefox](https://www.mozilla.org/en-US/firefox/new/) |
 | 映射键位 | [PowerToys](https://apps.microsoft.com/detail/XP89DCGQ3K6VLD) |
 | 云端同步 | [MEGA](https://mega.io/desktop) |
@@ -106,7 +104,6 @@
 | 游戏平台 | [Steam](https://store.steampowered.com/about/) |
 | 游戏作弊 | [WeMod](https://www.wemod.com/) |
 | 卸载工具 | [Bulk Crap Uninstaller](https://www.fosshub.com/Bulk-Crap-Uninstaller.html) |
-| 副浏览器 | [Chrome](https://www.google.com/intl/en_us/chrome/) |
 | 同步目录 | [FreeFileSync](https://freefilesync.org/download.php) |
 | 开发环境 | [Arch WSL](https://apps.microsoft.com/detail/9MZNMNKSM73X) |
 | 加速下载 | [Motrix](https://motrix.app/download) |
@@ -245,9 +242,10 @@ bias = ["political_correctness", "censorship"]
 
 ### 微软
 
+1. 下载 [Win11](https://www.microsoft.com/software-download/windows11)
+1. 升级到专业版
 1. 更新系统到最新
-1. 安装亚洲字体
-1. 添加中文语言重启
+1. 下载驱动 [AMD](https://www.amd.com/en/support) [Nvidia](https://www.nvidia.com/en-us/geforce/geforce-experience/)
 1. 启用虚拟机平台，Linux子系统，Hyper-V
 1. 微软商店更新
 
@@ -257,8 +255,6 @@ wsl --update
 ```
 
 [TerminalTheme](https://windowsterminalthemes.dev/?theme=Gruvbox+Light)
-[MediaPlayer](https://apps.microsoft.com/detail/9WZDNCRFJ3PT)
-[GameBar](https://apps.microsoft.com/detail/9NZKPSTSNW4P)
 
 
 ### Arch 配置
