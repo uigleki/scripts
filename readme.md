@@ -96,7 +96,7 @@
 | --- | --- |
 | 中文输入 | [小鹤双拼方案](https://gitlab.com/uigleki/dotwin/-/blob/main/reg/flypy.reg) |
 | 主浏览器 | [Firefox](https://www.mozilla.org/en-US/firefox/new/) |
-| 映射键位 | [PowerToys](https://apps.microsoft.com/detail/XP89DCGQ3K6VLD) |
+| 映射键位 | [PowerToys](https://github.com/microsoft/PowerToys/releases/latest) |
 | 云端同步 | [MEGA](https://mega.io/desktop) |
 | 数据压缩 | [7-Zip](https://7-zip.org/) |
 | 目录加密 | [Cryptomator](https://cryptomator.org/downloads/) |
@@ -112,7 +112,7 @@
 | 全能笔记 | [Obsidian](https://obsidian.md/download) |
 | 加密流量 | [Cloudflare WARP](https://cloudflarewarp.com/) |
 | 安卓模拟 | [Bluestacks 5](https://www.bluestacks.com/) |
-| 代码编辑 | [Visual Studio Code](https://apps.microsoft.com/store/detail/XP9KHM4BK9FZ7Q) |
+| 代码编辑 | [Visual Studio Code](https://code.visualstudio.com/Download) |
 | 种子下载 | [qBittorrent](https://www.fosshub.com/qBittorrent.html) |
 | 视频播放 | [VLC](https://www.videolan.org/vlc/) |
 
