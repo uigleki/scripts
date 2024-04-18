@@ -188,15 +188,9 @@
 
 ## 交易
 
-### 学习
-
-- [ImanTrading](https://www.imantrading.org/)
-- [Trader Tom](https://tradertom.com/)
-
-### 工具
-
 - [YouTube™ Dual Caption](https://addons.mozilla.org/zh-CN/firefox/addon/youtube-dual-subtitles/)
 - [FTMO with cTrader](https://ftmo.com/en/)
+- [ImanTrading](https://www.imantrading.org/)
 
 
 ## 智能
