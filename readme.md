@@ -190,7 +190,7 @@
 
 - [YouTube™ Dual Caption](https://addons.mozilla.org/zh-CN/firefox/addon/youtube-dual-subtitles/)
 - [FTMO with cTrader](https://ftmo.com/en/)
-- [ImanTrading](https://www.imantrading.org/)
+- [Baguette Trading](https://www.youtube.com/@baguettetrading)
 
 
 ## 智能
