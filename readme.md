@@ -184,6 +184,7 @@
 | 机械爪刀 | CRKT Provoke |
 | 直跳刀 | Microtech Ultratech |
 | 衣服 | 龙牙战术 |
+| 鞋带 | BOA Fit System |
 
 
 ## 交易
