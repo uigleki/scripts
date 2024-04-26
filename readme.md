@@ -103,7 +103,6 @@
 | 目录加密 | [Cryptomator](https://cryptomator.org/downloads/) |
 | 桌面翻译 | [Crow Translate](https://github.com/crow-translate/crow-translate/releases/latest) |
 | 游戏平台 | [Steam](https://store.steampowered.com/about/) |
-| 游戏作弊 | [WeMod](https://www.wemod.com/) |
 | 卸载工具 | [Bulk Crap Uninstaller](https://www.fosshub.com/Bulk-Crap-Uninstaller.html) |
 | 同步目录 | [FreeFileSync](https://freefilesync.org/download.php) |
 | 开发环境 | [Arch WSL](https://apps.microsoft.com/detail/9MZNMNKSM73X) |
@@ -112,7 +111,6 @@
 | 下单平台 | [cTrader](https://ctrader.com/download/) |
 | 全能笔记 | [Obsidian](https://obsidian.md/download) |
 | 加密流量 | [Cloudflare WARP](https://cloudflarewarp.com/) |
-| 安卓模拟 | [Bluestacks 5](https://www.bluestacks.com/) |
 | 代码编辑 | [Visual Studio Code](https://code.visualstudio.com/Download) |
 | 种子下载 | [qBittorrent](https://www.fosshub.com/qBittorrent.html) |
 | 视频播放 | [VLC](https://www.videolan.org/vlc/) |
@@ -163,6 +161,7 @@
 | 视频编辑 | Kdenlive |
 | 音频编辑 | Audacity |
 | 游戏引擎 | Godot |
+| 游戏作弊 | WeMod |
 
 ### 硬件
 
