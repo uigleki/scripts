@@ -189,6 +189,7 @@
 
 - [YouTube™ Dual Caption](https://addons.mozilla.org/zh-CN/firefox/addon/youtube-dual-subtitles/)
 - [FTMO with cTrader](https://ftmo.com/en/)
+- [RealDayTrading](https://www.reddit.com/r/RealDayTrading/)
 - [Baguette Trading](https://www.youtube.com/@baguettetrading)
 
 
