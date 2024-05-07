@@ -184,12 +184,23 @@
 | 衣服 | 龙牙战术 |
 | 鞋带 | BOA Fit System |
 
+### 浏览器插件
+
+| 领域 | 插件 |
+| --- | --- |
+| 去广告 | [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/) |
+| 网页翻译 | [Immersive Translate](https://addons.mozilla.org/en-US/firefox/addon/immersive-translate/) |
+| 侧边翻译 | [Edge Translate](https://addons.mozilla.org/en-US/firefox/addon/edge_translate/) |
+| 双字幕 | [YouTube™ Dual Caption](https://addons.mozilla.org/en-US/firefox/addon/youtube-dual-subtitles/) |
+| 整理网页 | [Tab Stash](https://addons.mozilla.org/en-US/firefox/addon/tab-stash/) |
+| Steam | [Augmented Steam](https://addons.mozilla.org/en-US/firefox/addon/augmented-steam/) |
+| 以图搜图 | [Search by Image](https://addons.mozilla.org/en-US/firefox/addon/search_by_image/) |
+
 
 ## 交易
 
-- [YouTube™ Dual Caption](https://addons.mozilla.org/zh-CN/firefox/addon/youtube-dual-subtitles/)
-- [FTMO with cTrader](https://ftmo.com/en/)
 - [RealDayTrading](https://www.reddit.com/r/RealDayTrading/)
+- [FTMO with cTrader](https://ftmo.com/en/)
 
 
 ## 智能
