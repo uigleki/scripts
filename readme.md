@@ -178,7 +178,6 @@
 | 领域 | 物品 |
 | --- | --- |
 | 手机 | 华为 Mate 30 Pro 5G |
-| 智能手环 | 华为 Watch Fit |
 | 机械爪刀 | CRKT Provoke |
 | 直跳刀 | Microtech Ultratech |
 | 衣服 | 龙牙战术 |
