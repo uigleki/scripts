@@ -198,7 +198,7 @@
 
 ## 交易
 
-- [RealDayTrading](https://www.reddit.com/r/RealDayTrading/)
+- [r/RealDayTrading](https://www.reddit.com/r/RealDayTrading/)
 - [FTMO with cTrader](https://ftmo.com/en/)
 
 
