@@ -198,8 +198,8 @@
 
 ## 交易
 
-- [r/RealDayTrading](https://www.reddit.com/r/RealDayTrading/)
 - [FTMO with cTrader](https://ftmo.com/en/)
+- [方方土PriceAction](https://www.youtube.com/@LouiePriceAction)
 
 
 ## 智能
