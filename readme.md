@@ -198,8 +198,9 @@
 
 ## 交易
 
-- [FTMO with cTrader](https://ftmo.com/en/)
-- [方方土PriceAction](https://www.youtube.com/@LouiePriceAction)
+- 平台：[cTrader](https://ctrader.com/)
+- 挑战：[FTMO](https://ftmo.com/en/)
+- 教程：[方方土PriceAction](https://www.youtube.com/@LouiePriceAction)
 
 
 ## 智能
