@@ -198,8 +198,8 @@
 
 ## 交易
 
-- 平台：[cTrader](https://ctrader.com/)
-- 挑战：[FTMO](https://ftmo.com/en/)
+- 挑战：[Apex Trader Funding](https://apextraderfunding.com/) + NinjaTrader
+- 挑战：[FTMO](https://ftmo.com/en/) + [cTrader](https://ctrader.com/)
 - 教程：[方方土PriceAction](https://www.youtube.com/@LouiePriceAction)
 
 
