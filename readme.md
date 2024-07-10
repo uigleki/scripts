@@ -87,19 +87,6 @@
 1. 红警255
     - 红警，绝处逢生
 
-### 色色🔞
-
-1. (漫画) 船堀 斉晃
-    - ~~人妻再調教日誌~~
-    - ~~調教相談室 完堕ち~~
-    - ~~女スパイ 調教アクメ~~
-2. (动画) 高橋 丈夫
-    - そらのいろ、みずのいろ
-3. (女优) 小川あさ美
-    - PGD-606
-    - PGD-585
-    - PGD-649
-
 
 ## 软件
 
@@ -213,6 +200,20 @@
 - 挑战：[Apex Trader Funding](https://apextraderfunding.com/) + NinjaTrader
 - 挑战：[FTMO](https://ftmo.com/en/) + [cTrader](https://ctrader.com/)
 - 教程：[方方土PriceAction](https://www.youtube.com/@LouiePriceAction)
+
+
+## 色色🔞
+
+1. (漫画) 船堀 斉晃
+    - ~~人妻再調教日誌~~
+    - ~~調教相談室 完堕ち~~
+    - ~~女スパイ 調教アクメ~~
+2. (动画) 高橋 丈夫
+    - そらのいろ、みずのいろ
+3. (女优) 小川あさ美
+    - PGD-606
+    - PGD-585
+    - PGD-649
 
 
 ## 智能
