@@ -20,7 +20,7 @@
 
 1. 人性的弱点
 
-### 动漫
+### 动画
 
 1. **化物语**
 1. **伪物语**
@@ -154,7 +154,7 @@
 | 位图编辑 | GIMP |
 | 矢量图编辑 | Inkscape |
 | 绘画软件 | Krita |
-| 三维动画 | Blender |
+| 三维建模 | Blender |
 | 视频转码 | HandBrake |
 | 视频编辑 | Kdenlive |
 | 音频编辑 | Audacity |
@@ -254,10 +254,10 @@ bias = ["political_correctness", "censorship"]
 
 ## 其他
 
-### 动漫
+### 动画
 
 1. 看评分：[Bangumi](https://bangumi.tv/)
-1. 下动漫：[VCB-Studio](https://vcb-s.com/)
+1. 下动画：[VCB-Studio](https://vcb-s.com/)
 1. 下字幕：[Anime 字幕论坛](https://bbs.acgrip.com/)
 
 
