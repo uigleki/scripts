@@ -58,7 +58,7 @@
 1. 7年後で待ってる
 1. Titanfall 2
 1. アリスの精神裁判
-1. ASTLIBRA Revision
+1. Astlibra Revision
 
 ### 音乐
 
