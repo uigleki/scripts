@@ -112,7 +112,7 @@
 | 加密流量 | [Cloudflare WARP](https://cloudflarewarp.com/) |
 | 代码编辑 | [Visual Studio Code](https://code.visualstudio.com/Download) |
 | 视频播放 | [VLC](https://www.videolan.org/vlc/) |
-| 种子下载 | [qBittorrent](https://www.qbittorrent.org/download) |
+| 种子下载 | [qBittorrent Enhanced](https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/latest) |
 
 
 ### 安卓
