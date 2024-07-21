@@ -105,13 +105,14 @@
 | 卸载工具 | [Bulk Crap Uninstaller](https://www.fosshub.com/Bulk-Crap-Uninstaller.html) |
 | 同步目录 | [FreeFileSync](https://freefilesync.org/download.php) |
 | 开发环境 | [Arch WSL](https://apps.microsoft.com/detail/9MZNMNKSM73X) |
-| 加速下载 | [Gopeed](https://github.com/GopeedLab/gopeed/releases/latest) |
+| 加速下载 | [Motrix](https://motrix.app/download) |
 | 市场图表 | [Tradingview](https://www.tradingview.com/desktop/) |
 | 下单平台 | [cTrader](https://ctrader.com/download/) |
 | 全能笔记 | [Obsidian](https://obsidian.md/download) |
 | 加密流量 | [Cloudflare WARP](https://cloudflarewarp.com/) |
 | 代码编辑 | [Visual Studio Code](https://code.visualstudio.com/Download) |
 | 视频播放 | [VLC](https://www.videolan.org/vlc/) |
+| 种子下载 | [qBittorrent](https://www.qbittorrent.org/download) |
 
 
 ### 安卓
@@ -131,6 +132,7 @@
 | 在线词典 | 欧路词典 |
 | 安卓终端 | Termux |
 | 待办事项 | Habitica |
+| 种子下载 | LibreTorrent |
 
 ### Linux
 
