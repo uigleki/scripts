@@ -292,11 +292,12 @@ profile=high-quality
 cscale=catmull_rom
 
 vo=gpu-next
-deband=yes
-
 hwdec=auto-safe
 
+deband=yes
 icc-profile-auto=yes
+
+fullscreen=yes
 
 slang=chs,sc,zh
 alang=jpn,ja,jp
