@@ -285,6 +285,27 @@ wsl --update
 [TerminalTheme](https://windowsterminalthemes.dev/?theme=Gruvbox+Light)
 
 
+### mpv.conf
+
+```conf
+profile=high-quality
+cscale=catmull_rom
+
+vo=gpu-next
+deband=yes
+
+hwdec=auto-safe
+
+icc-profile-auto=yes
+
+slang=chs,sc,zh
+alang=jpn,ja,jp
+
+sub-auto=fuzzy
+blend-subtitles=video
+```
+
+
 ### Arch 配置
 
 ```shell
