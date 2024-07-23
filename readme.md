@@ -111,7 +111,7 @@
 | 全能笔记 | [Obsidian](https://obsidian.md/download) |
 | 加密流量 | [Cloudflare WARP](https://cloudflarewarp.com/) |
 | 代码编辑 | [Visual Studio Code](https://code.visualstudio.com/Download) |
-| 视频播放 | [VLC](https://www.videolan.org/vlc/) |
+| 视频播放 | [mpv.net](https://github.com/mpvnet-player/mpv.net/releases/latest) |
 | 种子下载 | [qBittorrent Enhanced](https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/latest) |
 
 
