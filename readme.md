@@ -30,6 +30,7 @@
 1. Hi Score Girl
 1. ~~Girls und Panzer~~
 1. ~~灼熱の卓球娘~~
+1. ~~ひなろじ〜from Luck & Logic〜~~
 
 ### 电影
 
@@ -202,7 +203,7 @@
 
 - 挑战：[Apex Trader Funding](https://apextraderfunding.com/) + NinjaTrader
 - 挑战：[FTMO](https://ftmo.com/en/) + [cTrader](https://ctrader.com/)
-- 教程：[方方土PriceAction](https://www.youtube.com/@LouiePriceAction)
+- 教程：[Thomas Wade](https://www.youtube.com/@ThomasWade)
 
 
 ## 色色🔞
