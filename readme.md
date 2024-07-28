@@ -24,10 +24,9 @@
 
 1. **化物語**
 1. **偽物語**
-1. **少女終末旅行**
-1. **ふしぎの海のナディア**
-1. Guilty Crown
 1. Hi Score Girl
+1. 少女終末旅行
+1. ふしぎの海のナディア
 1. ~~Girls und Panzer~~
 1. ~~灼熱の卓球娘~~
 1. ~~ひなろじ〜from Luck & Logic〜~~
@@ -38,7 +37,6 @@
     - 谢谢你圆我一场青春的梦
 1. **Penguin Highway**
 1. Charlie and the Chocolate Factory
-1. ハウルの動く城
 1. Summer Ghost
 
 ### 漫画
@@ -49,15 +47,15 @@
 
 ### 游戏
 
-1. **What Remains of Edith Finch**
-    - 最佳叙事，实至名归
 1. **To the Moon**
     - 一个关于执念与爱的故事
+1. **What Remains of Edith Finch**
+    - 最佳叙事，实至名归
 1. Finding Paradise
 1. Impostor Factory
 1. Steins;Gate
-1. Hellblade: Senua's Sacrifice
 1. 7年後で待ってる
+1. Hellblade: Senua's Sacrifice
 1. Titanfall 2
 1. アリスの精神裁判
 1. Astlibra Revision
@@ -180,7 +178,7 @@
 
 | 领域 | 物品 |
 | --- | --- |
-| 手机 | 华为 Mate 30 Pro 5G |
+| 手机 | 荣耀V30 Pro |
 | 机械爪刀 | CRKT Provoke |
 | 直跳刀 | Microtech Ultratech |
 | 衣服 | 龙牙战术 |
