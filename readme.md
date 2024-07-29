@@ -105,7 +105,6 @@
 | 卸载工具 | [Bulk Crap Uninstaller](https://www.fosshub.com/Bulk-Crap-Uninstaller.html) |
 | 同步目录 | [FreeFileSync](https://freefilesync.org/download.php) |
 | 开发环境 | [Arch WSL](https://apps.microsoft.com/detail/9MZNMNKSM73X) |
-| 加速下载 | [Motrix](https://motrix.app/download) |
 | 市场图表 | [Tradingview](https://www.tradingview.com/desktop/) |
 | 下单平台 | [cTrader](https://ctrader.com/download/) |
 | 全能笔记 | [Obsidian](https://obsidian.md/download) |
@@ -113,6 +112,7 @@
 | 代码编辑 | [Visual Studio Code](https://code.visualstudio.com/Download) |
 | 视频播放 | [mpv.net](https://github.com/mpvnet-player/mpv.net/releases/latest) |
 | 种子下载 | [qBittorrent Enhanced](https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/latest) |
+| 加速下载 | [Motrix](https://motrix.app/download) |
 
 
 ### 安卓
@@ -133,6 +133,7 @@
 | 安卓终端 | Termux |
 | 待办事项 | Habitica |
 | 种子下载 | LibreTorrent |
+| 加速下载 | Download Navi |
 
 ### Linux
 
