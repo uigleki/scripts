@@ -270,13 +270,15 @@ bias = ["political_correctness", "censorship"]
 1girl, upper body, stunningly beautiful Japanese, fairy, flawless skin, oval face, almond eyes, delicate lips, natural makeup, straight black hair, fit figure, black bikini, stand, look at viewer, white background, professional studio photography, radiant, RAW photo, photo-realistic, masterpiece, best quality, highly detailed
 ```
 
-## 其他
+## 生活
 
 ### 动画
 
 1. 看评分：[Bangumi](https://bangumi.tv/)
 1. 下动画：[VCB-Studio](https://vcb-s.com/)
 1. 下字幕：[Anime 字幕论坛](https://bbs.acgrip.com/)
+
+## 编程
 
 ### 微软
 
