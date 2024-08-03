@@ -264,6 +264,11 @@ bias = ["political_correctness", "censorship"]
 1. Girls Love Story 2
 
 
+### 游戏模板
+
+1. Guardian Tales
+
+
 ### 动画
 
 1. 看评分：[Bangumi](https://bangumi.tv/)
