@@ -2,7 +2,6 @@
 
 ![Nyan Cat](img/PopTartCat.gif)
 
-
 ## 神作
 
 意识流文学泛指注重描绘人物意识流动状态的文学作品。
@@ -78,6 +77,10 @@
 1. 大橋彩香 - 気まぐれロマンティック
 1. HHMR & Krbread - Once More
 
+### 游戏模板
+
+1. Guardian Tales
+
 ### 类别
 
 1. Action Romance
@@ -86,7 +89,6 @@
 
 1. 红警255
     - 红警，绝处逢生
-
 
 ## 软件
 
@@ -113,7 +115,6 @@
 | 视频播放 | [mpv.net](https://github.com/mpvnet-player/mpv.net/releases/latest) |
 | 种子下载 | [qBittorrent Enhanced](https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/latest) |
 | 加速下载 | [Motrix](https://motrix.app/download) |
-
 
 ### 安卓
 
@@ -148,6 +149,18 @@
 | 文件管理 | Ranger |
 | 即时通信 | Matrix |
 
+### 浏览器插件
+
+| 领域 | 插件 |
+| --- | --- |
+| 去广告 | [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/) |
+| 网页翻译 | [Immersive Translate](https://addons.mozilla.org/en-US/firefox/addon/immersive-translate/) |
+| 侧边翻译 | [Edge Translate](https://addons.mozilla.org/en-US/firefox/addon/edge_translate/) |
+| 双字幕 | [YouTube™ Dual Caption](https://addons.mozilla.org/en-US/firefox/addon/youtube-dual-subtitles/) |
+| 整理网页 | [Tab Stash](https://addons.mozilla.org/en-US/firefox/addon/tab-stash/) |
+| Steam | [Augmented Steam](https://addons.mozilla.org/en-US/firefox/addon/augmented-steam/) |
+| 以图搜图 | [Search by Image](https://addons.mozilla.org/en-US/firefox/addon/search_by_image/) |
+
 ### 其他
 
 | 领域 | 软件 |
@@ -164,7 +177,9 @@
 | 游戏引擎 | Godot |
 | 游戏作弊 | WeMod |
 
-### 硬件
+## 硬件
+
+### 电脑配件
 
 | 领域 | 硬件 |
 | --- | --- |
@@ -185,27 +200,29 @@
 | 衣服 | 龙牙战术 |
 | 鞋带 | BOA Fit System |
 
-### 浏览器插件
-
-| 领域 | 插件 |
-| --- | --- |
-| 去广告 | [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/) |
-| 网页翻译 | [Immersive Translate](https://addons.mozilla.org/en-US/firefox/addon/immersive-translate/) |
-| 侧边翻译 | [Edge Translate](https://addons.mozilla.org/en-US/firefox/addon/edge_translate/) |
-| 双字幕 | [YouTube™ Dual Caption](https://addons.mozilla.org/en-US/firefox/addon/youtube-dual-subtitles/) |
-| 整理网页 | [Tab Stash](https://addons.mozilla.org/en-US/firefox/addon/tab-stash/) |
-| Steam | [Augmented Steam](https://addons.mozilla.org/en-US/firefox/addon/augmented-steam/) |
-| 以图搜图 | [Search by Image](https://addons.mozilla.org/en-US/firefox/addon/search_by_image/) |
-
-
 ## 交易
 
-- 挑战：[Apex Trader Funding](https://apextraderfunding.com/) + NinjaTrader
-- 挑战：[FTMO](https://ftmo.com/en/) + [cTrader](https://ctrader.com/)
-- 教程：[Thomas Wade](https://www.youtube.com/@ThomasWade)
+### 交易平台
 
+1. [Apex Trader Funding](https://apextraderfunding.com/) + NinjaTrader
+1. [FTMO](https://ftmo.com/en/) + [cTrader](https://ctrader.com/)
 
-## 色色🔞
+### 学习资源
+
+1. [Thomas Wade](https://www.youtube.com/@ThomasWade)
+
+## 娱乐
+
+### 表情包
+
+1. Taffy Cat
+1. Girls Love Story 2
+
+### 特殊网站
+
+- [aidn.jp](https://aidn.jp/)
+
+### 成人🔞
 
 1. 漫画
     1. ~~\[船堀斉晃\] 人妻再調教日誌~~
@@ -218,7 +235,6 @@
     1. 小川あさ美 PGD-606
     1. 小川あさ美 PGD-649
     1. ~~小川あさ美 PGD-585~~
-
 
 ## 智能
 
@@ -248,38 +264,19 @@ non_value_content = ["redundancy", "politeness", "formalities"]
 bias = ["political_correctness", "censorship"]
 ```
 
-
 ### 画图
 
 ```text
 1girl, upper body, stunningly beautiful Japanese, fairy, flawless skin, oval face, almond eyes, delicate lips, natural makeup, straight black hair, fit figure, black bikini, stand, look at viewer, white background, professional studio photography, radiant, RAW photo, photo-realistic, masterpiece, best quality, highly detailed
 ```
 
-
 ## 其他
-
-### 表情包
-
-1. Taffy Cat
-1. Girls Love Story 2
-
-
-### 游戏模板
-
-1. Guardian Tales
-
 
 ### 动画
 
 1. 看评分：[Bangumi](https://bangumi.tv/)
 1. 下动画：[VCB-Studio](https://vcb-s.com/)
 1. 下字幕：[Anime 字幕论坛](https://bbs.acgrip.com/)
-
-
-### 特殊网站
-
-- [aidn.jp](https://aidn.jp/)
-
 
 ### 微软
 
@@ -296,7 +293,6 @@ wsl --update
 ```
 
 [TerminalTheme](https://windowsterminalthemes.dev/?theme=Gruvbox+Light)
-
 
 ### mpv.conf
 
@@ -319,13 +315,11 @@ sub-auto=fuzzy
 blend-subtitles=video
 ```
 
-
 ### Arch 配置
 
 ```shell
 bash <(curl -L gitlab.com/uigleki/scripts/raw/main/shell/arch.sh)
 ```
-
 
 ### Termux 配置
 
