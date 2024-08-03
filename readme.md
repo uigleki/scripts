@@ -258,6 +258,12 @@ bias = ["political_correctness", "censorship"]
 
 ## 其他
 
+### 表情包
+
+1. Taffy Cat
+1. Girls Love Story 2
+
+
 ### 动画
 
 1. 看评分：[Bangumi](https://bangumi.tv/)
