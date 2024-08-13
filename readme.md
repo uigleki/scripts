@@ -207,7 +207,7 @@
 
 ### 学习资源
 
-1. [Thomas Wade](https://www.youtube.com/@ThomasWade)
+1. [The Strat by Rob Smith](https://www.youtube.com/playlist?list=PLggReKMQs3PJXWdti9J6zDtP1gQwCn2vO)
 
 ## 娱乐
 
