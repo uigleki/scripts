@@ -53,10 +53,8 @@
 1. Impostor Factory
 1. Steins;Gate
 1. 7年後で待ってる
-1. Hellblade: Senua's Sacrifice
-1. Titanfall 2
-1. アリスの精神裁判
 1. Astlibra Revision
+1. Deemo
 
 ### 音乐
 
@@ -202,12 +200,12 @@
 
 ### 交易平台
 
-1. [Apex Trader Funding](https://apextraderfunding.com/) + NinjaTrader
 1. [FTMO](https://ftmo.com/en/) + [cTrader](https://ctrader.com/)
+1. [Apex Trader Funding](https://apextraderfunding.com/) + NinjaTrader
 
 ### 学习资源
 
-1. [The Strat by Rob Smith](https://www.youtube.com/playlist?list=PLggReKMQs3PJXWdti9J6zDtP1gQwCn2vO)
+1. None
 
 ## 娱乐
 
