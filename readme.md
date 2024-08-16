@@ -152,7 +152,6 @@
 | 去广告 | [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/) |
 | 网页翻译 | [Immersive Translate](https://addons.mozilla.org/en-US/firefox/addon/immersive-translate/) |
 | 侧边翻译 | [Edge Translate](https://addons.mozilla.org/en-US/firefox/addon/edge_translate/) |
-| 双字幕 | [YouTube™ Dual Caption](https://addons.mozilla.org/en-US/firefox/addon/youtube-dual-subtitles/) |
 | 整理网页 | [Tab Stash](https://addons.mozilla.org/en-US/firefox/addon/tab-stash/) |
 | Steam | [Augmented Steam](https://addons.mozilla.org/en-US/firefox/addon/augmented-steam/) |
 | 以图搜图 | [Search by Image](https://addons.mozilla.org/en-US/firefox/addon/search_by_image/) |
