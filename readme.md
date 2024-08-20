@@ -213,6 +213,15 @@
 1. Taffy Cat
 1. Girls Love Story 2
 
+### Deemo
+
+- Story
+    - Deemo's collection VOL.1A
+        - mili - nine point eight
+- Goodnight
+    - Adventure selection
+        - Uemura Kanae - Amagiri
+
 ### 特殊网站
 
 - [aidn.jp](https://aidn.jp/)
