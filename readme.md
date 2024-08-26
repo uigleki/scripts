@@ -204,7 +204,7 @@
 
 ### 学习资源
 
-1. None
+1. [René Balke](https://www.youtube.com/c/RenéBalke)
 
 ## 娱乐
 
