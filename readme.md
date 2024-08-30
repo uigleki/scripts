@@ -218,6 +218,8 @@
 - Story
     - Deemo's collection VOL.1A
         - mili - nine point eight
+    - Shattered Memories
+        - Post-script
 - Goodnight
     - Adventure selection
         - Uemura Kanae - Amagiri
