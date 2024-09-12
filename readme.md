@@ -182,7 +182,7 @@
 | 轨迹球 | Kensington Pro Fit Ergo |
 | 有线耳机 | 华为 AM115 |
 | 无线耳机 | 华为 FreeClip |
-| 闪存盘 | Lexar JumpDrive M45 |
+| 闪存盘 | SanDisk Extreme PRO USB |
 | 工学椅 | Humanscale Freedom Headrest |
 
 ### 日常携带
