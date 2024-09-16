@@ -178,6 +178,7 @@
 
 | 领域 | 硬件 |
 | --- | --- |
+| 笔记本 | Prestige 14 AI Studio C1V |
 | 键盘 | X-Bows Lite |
 | 轨迹球 | Kensington Pro Fit Ergo |
 | 有线耳机 | 华为 AM115 |
