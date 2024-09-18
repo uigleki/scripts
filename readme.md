@@ -225,6 +225,8 @@
     - Adventure selection
         - Amagiri
 - Deemo II
+    - Untitled 02 - The Cycle of Ages
+        - Through Mist and Fog
     - Album 19 - The Lushness of Emerald
         - Letters from Heaven
 
