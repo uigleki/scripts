@@ -217,13 +217,16 @@
 ### Deemo
 
 - Story
-    - Deemo's collection VOL.1A
-        - mili - nine point eight
+    - Deemo's collection Vol.1A
+        - nine point eight
     - Shattered Memories
         - Post-script
 - Goodnight
     - Adventure selection
-        - Uemura Kanae - Amagiri
+        - Amagiri
+- Deemo II
+    - Album 19 - The Lushness of Emerald
+        - Letters from Heaven
 
 ### 特殊网站
 
