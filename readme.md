@@ -314,22 +314,15 @@ wsl --update
 ### mpv.conf
 
 ```conf
-profile=high-quality
-cscale=catmull_rom
-
 vo=gpu-next
 hwdec=auto-safe
 
-deband=yes
-icc-profile-auto=yes
-
-fullscreen=yes
-
 slang=chs,sc,zh
 alang=jpn,ja,jp
-
 sub-auto=fuzzy
-blend-subtitles=video
+
+fullscreen=yes
+save-position-on-quit=yes
 ```
 
 ### Arch 配置
