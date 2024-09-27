@@ -54,6 +54,7 @@
 1. Steins;Gate
 1. 7年後で待ってる
 1. Astlibra Revision
+1. 带我去地下城吧
 1. Deemo
 
 ### 音乐
