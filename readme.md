@@ -50,7 +50,6 @@
 1. **What Remains of Edith Finch**
     - 最佳叙事，实至名归
 1. Finding Paradise
-1. Impostor Factory
 1. Steins;Gate
 1. 7年後で待ってる
 1. Astlibra Revision
