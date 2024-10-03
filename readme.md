@@ -196,17 +196,6 @@
 | 衣服 | 龙牙战术 |
 | 鞋带 | BOA Fit System |
 
-## 交易
-
-### 交易平台
-
-1. [FTMO](https://ftmo.com/en/) + [cTrader](https://ctrader.com/)
-1. [Apex Trader Funding](https://apextraderfunding.com/) + NinjaTrader
-
-### 学习资源
-
-1. [René Balke](https://www.youtube.com/c/RenéBalke)
-
 ## 娱乐
 
 ### 表情包
