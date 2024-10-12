@@ -283,6 +283,10 @@ bias = ["political_correctness", "censorship"]
 1. 下动画：[VCB-Studio](https://vcb-s.com/)
 1. 下字幕：[Anime 字幕论坛](https://bbs.acgrip.com/)
 
+### 高危
+
+- [Live Forex Bot Scam](https://youtu.be/WfiVHoIFrEE)
+
 ## 编程
 
 ### 微软
