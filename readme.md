@@ -26,8 +26,6 @@
 1. Hi Score Girl
 1. 少女終末旅行
 1. ふしぎの海のナディア
-1. ~~Girls und Panzer~~
-1. ~~灼熱の卓球娘~~
 
 ### 电影
 
@@ -227,8 +225,8 @@
 
 1. 写真
     1. \[ATFM\] Tsubaki Album Vol.031 Clip Slave Training
-    1. Yeon Woo (연우) - GL Kimono
     1. \[LE\] LERB-218 - Mystique
+    1. Yeon Woo (연우) - GL Kimono
 1. 漫画
     1. ~~\[船堀斉晃\] 人妻再調教日誌~~
     1. ~~\[船堀斉晃\] 調教相談室 \~完堕ち\~~~
@@ -240,6 +238,10 @@
     1. \[小川あさ美\] PGD-606
     1. \[小川あさ美\] PGD-649
     1. ~~\[小川あさ美\] PGD-585~~
+
+### 骗局
+
+- [Live Forex Bot Scam](https://youtu.be/WfiVHoIFrEE)
 
 ## 智能
 
@@ -282,10 +284,6 @@ bias = ["political_correctness", "censorship"]
 1. 看评分：[Bangumi](https://bangumi.tv/)
 1. 下动画：[VCB-Studio](https://vcb-s.com/)
 1. 下字幕：[Anime 字幕论坛](https://bbs.acgrip.com/)
-
-### 高危
-
-- [Live Forex Bot Scam](https://youtu.be/WfiVHoIFrEE)
 
 ## 编程
 
