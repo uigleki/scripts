@@ -317,6 +317,59 @@ fullscreen=yes
 save-position-on-quit=yes
 ```
 
+### VS Code
+
+#### Extensions
+
+##### General
+
+1. esbenp.prettier-vscode
+1. Supermaven.supermaven
+
+##### Local Only
+
+1. PKief.material-icon-theme
+1. GitHub.codespaces
+1. Continue.continue
+
+##### Python
+
+1. ms-python.python
+1. ms-toolsai.jupyter
+1. ms-python.black-formatter
+
+##### Miscellaneous
+
+1. mechatroner.rainbow-csv
+1. ms-dotnettools.csdevkit
+
+#### Settings
+
+只同步 Settings
+
+```json
+{
+  "editor.rulers": [80, 120],
+  "extensions.ignoreRecommendations": true,
+  "files.eol": "\n",
+  "telemetry.telemetryLevel": "off",
+  "update.showReleaseNotes": false,
+  "workbench.colorTheme": "Default Light Modern",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.remoteIndicator.showExtensionRecommendations": false,
+  "continue.enableTabAutocomplete": false,
+  "continue.showInlineTip": false,
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "files.autoSave": "afterDelay",
+  "git.autofetch": true,
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  }
+}
+```
+
 ### Arch 配置
 
 ```shell
