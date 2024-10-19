@@ -364,6 +364,7 @@ save-position-on-quit=yes
   "editor.formatOnSave": true,
   "files.autoSave": "afterDelay",
   "git.autofetch": true,
+
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter"
   }
