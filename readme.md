@@ -309,9 +309,7 @@ wsl --update
 with Add Python to PATH
 
 ```shell
-python -m pip install pipx
-python -m pipx ensurepath
-pipx install poetry
+pip install uv
 ```
 
 ### mpv.conf
