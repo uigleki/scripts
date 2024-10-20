@@ -378,7 +378,7 @@ save-position-on-quit=yes
   "isort.args": ["--profile", "black"],
   "notebook.formatOnSave.enabled": true,
   "notebook.codeActionsOnSave": {
-    "notebook.source.organizeImports": "explicit"
+    "source.organizeImports": "explicit"
   },
   "python.defaultInterpreterPath": ".venv/bin/python",
   "[python]": {
