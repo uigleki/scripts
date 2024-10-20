@@ -352,6 +352,7 @@ save-position-on-quit=yes
 ##### Miscellaneous
 
 1. mechatroner.rainbow-csv
+1. tamasfe.even-better-toml
 1. ms-dotnettools.csdevkit
 
 #### Settings
@@ -376,6 +377,9 @@ save-position-on-quit=yes
 
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
   },
   "[csharp]": {
     "editor.defaultFormatter": "ms-dotnettools.csharp"
