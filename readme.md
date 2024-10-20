@@ -369,10 +369,18 @@ save-position-on-quit=yes
   "continue.showInlineTip": false,
 
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
   "editor.formatOnSave": true,
   "files.autoSave": "afterDelay",
   "git.autofetch": true,
-
+  "isort.args": ["--profile", "black"],
+  "notebook.formatOnSave.enabled": true,
+  "notebook.codeActionsOnSave": {
+    "notebook.source.organizeImports": "explicit"
+  },
+  "python.defaultInterpreterPath": ".venv/bin/python",
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter"
   },
