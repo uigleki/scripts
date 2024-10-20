@@ -353,10 +353,8 @@ save-position-on-quit=yes
   "extensions.ignoreRecommendations": true,
   "files.eol": "\n",
   "telemetry.telemetryLevel": "off",
-  "update.showReleaseNotes": false,
   "workbench.colorTheme": "Default Light Modern",
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.remoteIndicator.showExtensionRecommendations": false,
   "continue.enableTabAutocomplete": false,
   "continue.showInlineTip": false,
 
