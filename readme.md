@@ -303,6 +303,17 @@ wsl --update
 
 [TerminalTheme](https://windowsterminalthemes.dev/?theme=Gruvbox+Light)
 
+#### Python
+
+[Download Python](https://www.python.org/downloads/)
+with Add Python to PATH
+
+```shell
+python -m pip install pipx
+python -m pipx ensurepath
+pipx install poetry
+```
+
 ### mpv.conf
 
 ```conf
