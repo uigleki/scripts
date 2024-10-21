@@ -305,11 +305,10 @@ wsl --update
 
 #### Python
 
-[Download Python](https://www.python.org/downloads/)
-with Add Python to PATH
-
 ```shell
-pip install uv
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+$env:Path = "C:\Users\uigle\.cargo\bin;$env:Path"
+uv python install 3.12
 ```
 
 ### mpv.conf
