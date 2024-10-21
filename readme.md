@@ -345,7 +345,6 @@ save-position-on-quit=yes
 1. ms-python.python
 1. ms-toolsai.jupyter
 1. ms-python.black-formatter
-1. ms-python.flake8
 
 ##### Miscellaneous
 
