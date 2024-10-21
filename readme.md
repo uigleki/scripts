@@ -344,7 +344,7 @@ save-position-on-quit=yes
 
 1. ms-python.python
 1. ms-toolsai.jupyter
-1. ms-python.black-formatter
+1. charliermarsh.ruff
 
 ##### Miscellaneous
 
@@ -368,6 +368,7 @@ save-position-on-quit=yes
   "continue.showInlineTip": false,
 
   "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
     "source.organizeImports": "explicit"
   },
   "editor.formatOnSave": true,
@@ -375,14 +376,14 @@ save-position-on-quit=yes
   "git.autofetch": true,
   "notebook.formatOnSave.enabled": true,
   "notebook.codeActionsOnSave": {
-    "source.organizeImports": "explicit"
+    "notebook.source.fixAll": "explicit",
+    "notebook.source.organizeImports": "explicit"
   },
 
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "isort.args": ["--profile", "black"],
   "python.defaultInterpreterPath": ".venv/bin/python",
   "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter"
+    "editor.defaultFormatter": "charliermarsh.ruff"
   },
   "[toml]": {
     "editor.defaultFormatter": "tamasfe.even-better-toml"
