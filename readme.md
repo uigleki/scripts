@@ -367,21 +367,22 @@ save-position-on-quit=yes
   "continue.enableTabAutocomplete": false,
   "continue.showInlineTip": false,
 
+  "editor.cursorBlinking": "solid",
+  "files.autoSave": "afterDelay",
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit"
   },
-  "editor.formatOnSave": true,
-  "files.autoSave": "afterDelay",
-  "git.autofetch": true,
   "notebook.formatOnSave.enabled": true,
   "notebook.codeActionsOnSave": {
     "notebook.source.fixAll": "explicit",
     "notebook.source.organizeImports": "explicit"
   },
+  "git.autofetch": true,
 
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "python.defaultInterpreterPath": ".venv/bin/python",
+  "python.defaultInterpreterPath": ".venv/Scripts/python",
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff"
   },
