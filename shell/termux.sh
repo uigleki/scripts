@@ -62,7 +62,7 @@ change_source() {
 }
 
 install_pkg() {
-    local pkg_list=(bat curl exa fd fish fzf git git-delta helix neovim openssh ranger ripgrep rsync starship zoxide zsh)
+    local pkg_list=(bat curl eza fd fish fzf git git-delta helix neovim openssh ranger ripgrep rsync starship zoxide zsh)
 
     pkg upgrade -y
     pkg install -y ${pkg_list[@]}

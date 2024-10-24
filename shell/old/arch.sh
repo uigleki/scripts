@@ -289,7 +289,7 @@ first_download() {
 
     local pkg_list=(base base-devel linux linux-firmware)
     pkg_list+=(apparmor arch-install-scripts archlinuxcn-keyring bash-language-server bat bottom btrfs-progs )
-    pkg_list+=(chrony curl dnscrypt-proxy dosfstools dust exa fcron fd firewalld fish fuse-overlayfs fzf git )
+    pkg_list+=(chrony curl dnscrypt-proxy dosfstools dust eza fcron fd firewalld fish fuse-overlayfs fzf git )
     pkg_list+=(git-delta gocryptfs grub grub-btrfs helix iptables-nft lazygit man-pages-zh_cn mkinitcpio neovim )
     pkg_list+=(openssh p7zip pacman-contrib parted pkgstats podman-docker python-lsp-server qrencode ranger )
     pkg_list+=(reflector ripgrep rsync sd snap-pac snapper starship tealdeer tmux zoxide zram-generator zsh )

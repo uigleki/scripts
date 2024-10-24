@@ -10,7 +10,7 @@ main() {
 }
 
 install_pkg() {
-    pkg_list=(git snapd zsh fish fzf ranger rsync podman zoxide gocryptfs exa tmux)
+    pkg_list=(git snapd zsh fish fzf ranger rsync podman zoxide gocryptfs eza tmux)
     snap_list=(starship bottom)
 
     sudo apt-get update

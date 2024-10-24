@@ -9,7 +9,7 @@ sudo sed -i '/^NoProgressBar/s/^/#/' /etc/pacman.conf
 sudo sed -i '/#Color/s/#//' /etc/pacman.conf
 
 sudo pacman -Sy --needed --noconfirm archlinux-keyring
-sudo pacman -Su --noconfirm bash-language-server bat curl exa fd fish fzf git git-delta helix lazygit openssh python-lsp-server ranger ripgrep rsync starship zoxide zsh
+sudo pacman -Su --noconfirm bash-language-server bat curl eza fd fish fzf git git-delta helix lazygit openssh python-lsp-server ranger ripgrep rsync starship zoxide zsh
 
 git clone --depth=1 $config_repo $config_dir
 git clone --depth=1 https://gitlab.com/uigleki/scripts.git
