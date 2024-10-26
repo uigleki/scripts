@@ -395,6 +395,12 @@ save-position-on-quit=yes
 }
 ```
 
+### Linux 配置 by nix
+
+```shell
+bash <(curl -L gitlab.com/uigleki/dotfiles/raw/main/install.sh)
+```
+
 ### Arch 配置
 
 ```shell
