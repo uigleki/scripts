@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-set -eo pipefail
 
-scripts_name=scripts
-scripts_repo=https://gitlab.com/uigleki/$scripts_name.git
+set -eo pipefail
 
 main() {
     install_pkg
@@ -21,21 +19,34 @@ install_pkg() {
 
     # 系统更新
     sudo apt-get dist-upgrade -y
+
+    # 安装 starship
+    sudo passwd -d ubuntu
+    curl -sS https://starship.rs/install.sh | sh
 }
 
 set_user_config() {
-    user_home=/home/$USER
+    # tmux
+    tmux_conf_url="https://raw.githubusercontent.com/uigleki/dotfiles/main/etc/tmux.conf"
+    curl -sL "$tmux_conf_url" | sudo tee /etc/tmux.conf > /dev/null
 
-    local scripts_dir=$user_home/$scripts_name
+    # zsh
+    sudo apt-get install -y zsh-syntax-highlighting zsh-autosuggestions
+    cat << 'EOF' >> ~/.zshrc
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-    git clone --depth=1 $scripts_repo $scripts_dir
-    setup_sh
-}
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
-setup_sh() {
-    local setup_sh=$scripts_dir/shell/setup.sh
-
-    bash $setup_sh $1
+alias l="eza -laF"
+alias lt="eza -TF"
+alias r="rsync"
+alias ra="ranger"
+alias s="sudo"
+alias t="tmux new -A"
+EOF
+    chsh -s $(which zsh)
 }
 
 main "$@"
