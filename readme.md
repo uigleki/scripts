@@ -398,17 +398,17 @@ save-position-on-quit=yes
 ### Linux 配置 by nix
 
 ```shell
-bash <(curl -L gitlab.com/uigleki/dotfiles/raw/main/install.sh)
+bash <(curl -L github.com/uigleki/dotfiles/raw/main/install.sh)
 ```
 
 ### Arch 配置
 
 ```shell
-bash <(curl -L gitlab.com/uigleki/scripts/raw/main/shell/arch.sh)
+bash <(curl -L github.com/uigleki/scripts/raw/main/shell/arch.sh)
 ```
 
 ### Termux 配置
 
 ```shell
-bash <(curl -L gitlab.com/uigleki/scripts/raw/main/shell/termux.sh)
+bash <(curl -L github.com/uigleki/scripts/raw/main/shell/termux.sh)
 ```
