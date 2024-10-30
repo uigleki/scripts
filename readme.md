@@ -369,6 +369,9 @@ save-position-on-quit=yes
 
   "editor.cursorBlinking": "solid",
   "files.autoSave": "afterDelay",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
