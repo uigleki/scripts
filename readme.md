@@ -76,7 +76,7 @@
 - 乐正绫 - 同归世界线
 
 <details>
-<summary>偶尔听</summary>
+<summary>次佳收藏</summary>
 
 - supercell - My Dearest
 
