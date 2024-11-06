@@ -56,21 +56,24 @@
 
 ### 音乐
 
-1. D'elf - Synchronicity
-1. daniwell - UZ
-1. daniwell - 夏の终わりの彼女は
-1. supercell - My Dearest
-1. EGOIST - The Everlasting Guilty Crown
-1. SOUNDORBIS - LIFE
-1. 清漪 - 但叹清风错
-1. himmel - 远枫
-1. 甘茶の音楽工房 - 赤い风船とメリーゴーランド
-1. いとうかなこ - アマデウス
-1. GALA - 追梦赤子心
-1. H-el-ical／／ - Altern-ate-
-1. Poppin'Party - Returns
-1. 大橋彩香 - 気まぐれロマンティック
-1. HHMR & Krbread - Once More
+- Capchii、凛々咲 - Letters from Heaven
+- daniwellP - UZ
+- D'elf - Synchronicity
+- himmel - 远枫
+- iolli - Through Mist and Fog
+- Ken Arai - NEXT TO YOU
+- Mili - Nine Point Eight
+- MoreanP - Feeling The Rain
+- Poppin'Party - Returns
+- SOUNDORBIS - LIFE
+- Xad - Birds
+- 初音未来 - 夏の終わりの彼女は
+- 初音未来 - てすてすブロードキャスト.proj
+- 甘茶の音楽工房 - 赤い风船とメリーゴーランド
+- 清漪 - 但叹清风错
+- 森永真由美 - Mermaid girl (Extended RRver.)
+- 药师丸悦子 - アンノウン・ワールドマップ
+- 乐正绫 - 同归世界线
 
 ### 游戏模板
 
