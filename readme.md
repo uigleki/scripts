@@ -75,6 +75,13 @@
 - 药师丸悦子 - アンノウン・ワールドマップ
 - 乐正绫 - 同归世界线
 
+<details>
+<summary>偶尔听</summary>
+
+- supercell - My Dearest
+
+</details>
+
 ### 游戏模板
 
 1. Guardian Tales
@@ -227,7 +234,7 @@
 ### 成人 🔞
 
 <details>
-<summary>成人</summary>
+<summary>点击展开/收起</summary>
 
 1. 写真
    1. \[ATFM\] Tsubaki Album Vol.031 Clip Slave Training
