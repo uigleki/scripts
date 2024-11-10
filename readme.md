@@ -245,6 +245,7 @@ alang=jpn,ja,jp
 sub-auto=fuzzy
 
 fullscreen=yes
+idle=once
 save-position-on-quit=yes
 ```
 
