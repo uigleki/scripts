@@ -21,12 +21,11 @@
 | 卸载工具 | [Bulk Crap Uninstaller](https://www.fosshub.com/Bulk-Crap-Uninstaller.html)                     |
 | 同步目录 | [FreeFileSync](https://freefilesync.org/download.php)                                           |
 | 开发环境 | [Arch WSL](https://apps.microsoft.com/detail/9MZNMNKSM73X)                                      |
-| 市场图表 | [Tradingview](https://www.tradingview.com/desktop/)                                             |
-| 下单平台 | [cTrader](https://ctrader.com/download/)                                                        |
 | 全能笔记 | [Obsidian](https://obsidian.md/download)                                                        |
 | 加密流量 | [Cloudflare WARP](https://cloudflarewarp.com/)                                                  |
 | 代码编辑 | [Visual Studio Code](https://code.visualstudio.com/Download)                                    |
 | 视频播放 | [mpv.net](https://github.com/mpvnet-player/mpv.net/releases/latest)                             |
+| 音乐播放 | [Clementine](https://github.com/clementine-player/Clementine/releases/latest)                   |
 | 种子下载 | [qBittorrent Enhanced](https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/latest) |
 | 加速下载 | [Motrix](https://motrix.app/download)                                                           |
 
@@ -53,13 +52,13 @@
 
 | 领域       | 软件        |
 | ---------- | ----------- |
-| 操作系统   | Arch Linux  |
+| 操作系统   | NixOS       |
 | 版本控制   | Git         |
 | 英文字体   | Ubuntu font |
 | 快压缩算法 | lz4         |
 | 高压缩算法 | zstd        |
 | 文本编辑   | helix       |
-| 文件管理   | Ranger      |
+| 文件管理   | yazi        |
 | 即时通信   | Matrix      |
 
 ### 浏览器插件
