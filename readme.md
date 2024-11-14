@@ -256,6 +256,7 @@ save-position-on-quit=yes
 ##### General
 
 1. esbenp.prettier-vscode
+1. Tyriar.sort-lines
 1. Supermaven.supermaven
 
 ##### Local Only
