@@ -329,14 +329,8 @@ save-position-on-quit=yes
 bash <(curl -L github.com/uigleki/dotfiles/raw/main/install.sh)
 ```
 
-### Arch 配置
+### Windows 配置
 
-```shell
-bash <(curl -L github.com/uigleki/scripts/raw/main/shell/arch.sh)
-```
-
-### Termux 配置
-
-```shell
-bash <(curl -L github.com/uigleki/scripts/raw/main/shell/termux.sh)
+```powershell
+iwr -useb https://raw.githubusercontent.com/uigleki/scripts/main/ps1/install_apps.ps1 | iex
 ```
