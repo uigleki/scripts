@@ -16,18 +16,19 @@
 | 云端同步 | [MEGA](https://mega.io/desktop)                                                                 |
 | 数据压缩 | [7-Zip](https://7-zip.org/)                                                                     |
 | 目录加密 | [Cryptomator](https://cryptomator.org/downloads/)                                               |
-| 桌面翻译 | [Crow Translate](https://github.com/crow-translate/crow-translate/releases/latest)              |
+| 桌面翻译 | [Crow Translate](https://apps.kde.org/crowtranslate/)                                           |
 | 游戏平台 | [Steam](https://store.steampowered.com/about/)                                                  |
 | 卸载工具 | [Bulk Crap Uninstaller](https://www.fosshub.com/Bulk-Crap-Uninstaller.html)                     |
 | 同步目录 | [FreeFileSync](https://freefilesync.org/download.php)                                           |
-| 开发环境 | [Arch WSL](https://apps.microsoft.com/detail/9MZNMNKSM73X)                                      |
-| 全能笔记 | [Obsidian](https://obsidian.md/download)                                                        |
+| 全能笔记 | [AppFlowy](https://appflowy.io/)                                                                |
 | 加密流量 | [Cloudflare WARP](https://cloudflarewarp.com/)                                                  |
 | 代码编辑 | [Visual Studio Code](https://code.visualstudio.com/Download)                                    |
 | 视频播放 | [mpv.net](https://github.com/mpvnet-player/mpv.net/releases/latest)                             |
 | 音乐播放 | [Clementine](https://github.com/clementine-player/Clementine/releases/latest)                   |
 | 种子下载 | [qBittorrent Enhanced](https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/latest) |
 | 加速下载 | [Motrix](https://motrix.app/download)                                                           |
+| 字体优化 | [MacType](https://github.com/mactype/MacType/releases/latest)                                   |
+| 连接手机 | [KDEConnect](https://apps.kde.org/kdeconnect/)                                                  |
 
 ### 安卓
 

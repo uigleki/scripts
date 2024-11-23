@@ -1,5 +1,6 @@
 $apps = @(
     "7zip.7zip",
+    "AppFlowy.AppFlowy",
     "Canonical.Ubuntu",
     "Clementine.Clementine",
     "Cloudflare.Warp",
@@ -13,7 +14,6 @@ $apps = @(
     "Microsoft.PowerToys",
     "Microsoft.VisualStudioCode",
     "Mozilla.Firefox",
-    "Obsidian.Obsidian",
     "Telegram.TelegramDesktop",
     "Valve.Steam",
     "agalwood.Motrix",
