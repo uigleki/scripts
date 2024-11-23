@@ -4,7 +4,6 @@ $apps = @(
     "Clementine.Clementine",
     "Cloudflare.Warp",
     "Cryptomator.Cryptomator",
-    "Flow-Launcher.Flow-Launcher",
     "KDE.CrowTranslate",
     "KDE.KDEConnect",
     "Klocman.BulkCrapUninstaller",
