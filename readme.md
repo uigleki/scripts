@@ -326,7 +326,7 @@ save-position-on-quit=yes
 ### Linux 配置 by nix
 
 ```shell
-bash <(curl -L github.com/uigleki/dotfiles/raw/main/install.sh)
+bash <(curl -L https://raw.githubusercontent.com/uigleki/dotfiles/main/install.sh)
 ```
 
 ### Windows 配置
