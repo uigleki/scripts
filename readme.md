@@ -97,7 +97,7 @@
 | -------- | --------------------------- |
 | 笔记本   | Prestige 14 AI Studio C1V   |
 | 键盘     | X-Bows Lite                 |
-| 轨迹球   | Kensington Pro Fit Ergo     |
+| 轨迹球   | Ploopy Classic              |
 | 有线耳机 | 华为 AM115                  |
 | 无线耳机 | 华为 FreeClip               |
 | 闪存盘   | SanDisk Extreme PRO USB     |
