@@ -171,11 +171,31 @@
 
 ### 聊天
 
-```
-Personal: <GENDER> from <LOCATION>, name is <NAME>
-Explain in <LANGUAGE>.
+```markdown
+# Personal
+
+<GENDER> from <LOCATION>, name is <NAME>.
+My Principles: elegant, precise, concise
+
+# System
+
+Windows 11 Pro: VSCode, WSL Ubuntu
+Oracle ARM: Ubuntu: Docker
+Shared Ubuntu Setup: Nix: bat direnv fd fzf helix ripgrep rsync sd tmux zsh
+Lang: Python 3.12 (uv)
+
+# Preference
+
+Explain in Simplified Chinese.
 Keep original text untranslated.
 Prefer open source solutions.
+
+# Commands
+
+/o: optimize content following my principles.
+/t: translate content following my preferences.
+/s: summarize content.
+/e: explain content.
 ```
 
 ### 画图
