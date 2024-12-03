@@ -193,7 +193,7 @@ Lang: Python 3.12 (uv)
 
 # Commands
 
-/e: extract minimal context for new chat exclude userPreferences.
+/e: extract essential context for new chat exclude userPreferences.
 /o: optimize given content, prioritizing: elegant > precise > concise.
 /t: translate content.
 ```
