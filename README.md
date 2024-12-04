@@ -20,7 +20,7 @@
 | 游戏平台 | [Steam](https://store.steampowered.com/about/)                                                  |
 | 卸载工具 | [Bulk Crap Uninstaller](https://www.fosshub.com/Bulk-Crap-Uninstaller.html)                     |
 | 同步目录 | [FreeFileSync](https://freefilesync.org/download.php)                                           |
-| 全能笔记 | [AppFlowy](https://appflowy.io/)                                                                |
+| 全能笔记 | [Anytype](https://download.anytype.io/)                                                         |
 | 加密流量 | [Cloudflare WARP](https://cloudflarewarp.com/)                                                  |
 | 代码编辑 | [Visual Studio Code](https://code.visualstudio.com/Download)                                    |
 | 视频播放 | [mpv.net](https://github.com/mpvnet-player/mpv.net/releases/latest)                             |
