@@ -219,7 +219,7 @@ Lang: Python 3.12 (uv)
 1. 下载 [Win11](https://www.microsoft.com/software-download/windows11)
 1. 升级到专业版
 1. 更新系统到最新
-1. 下载驱动 [AMD](https://www.amd.com/en/support) [Nvidia](https://www.nvidia.com/en-us/geforce/geforce-experience)
+1. 下载驱动 [AMD](https://www.amd.com/en/support) [Nvidia](https://www.nvidia.com/en-us/software/nvidia-app/)
 1. 启用虚拟机平台，Linux 子系统，Hyper-V
 1. 微软商店更新
 
