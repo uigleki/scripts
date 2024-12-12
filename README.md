@@ -1,18 +1,36 @@
-# template
+# scripts
 
-🌠 Where minds unite, dreams take flight
+🛠️ Personal scripts collection
 
 ## ✨ Features
 
-- Feature 1
-- Feature 2
-- Feature 3
+- System setup automation
+- Development environment configuration
+- Various utility scripts
 
-## 🚀 Usage
+## System Setup
 
-```bash
-git clone https://github.com/uigleki/template.git
-cd template
+### Linux by nix
+
+See [dotfiles](https://github.com/uigleki/dotfiles)
+
+### Windows
+
+1. Download [Win11](https://www.microsoft.com/software-download/windows11)
+2. Upgrade to Pro version
+3. Update system to latest version
+4. Install drivers:
+   - [AMD](https://www.amd.com/en/support)
+   - [Nvidia](https://www.nvidia.com/en-us/software/nvidia-app/)
+5. Enable Windows features:
+   - Virtual Machine Platform
+   - Windows Subsystem for Linux
+   - Hyper-V
+6. Update Microsoft Store
+7. [Gruvbox Light theme](https://windowsterminalthemes.dev/?theme=Gruvbox+Light) for Terminal
+
+```powershell
+iwr -useb https://raw.githubusercontent.com/uigleki/scripts/main/ps1/install_apps.ps1 | iex
 ```
 
 ## 📄 License
