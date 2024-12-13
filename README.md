@@ -20,9 +20,9 @@ See [dotfiles](https://github.com/uigleki/dotfiles)
 2. Upgrade to Pro version
 3. Update system to latest version
 4. Enable Windows features:
+   - Hyper-V
    - Virtual Machine Platform
    - Windows Subsystem for Linux
-   - Hyper-V
 5. Update Microsoft Store
 6. [Gruvbox Light theme](https://windowsterminalthemes.dev/?theme=Gruvbox+Light) for Terminal
 
