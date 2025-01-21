@@ -18,7 +18,8 @@ $apps = @(
     "Valve.Steam",
     "agalwood.Motrix",
     "c0re100.qBittorrent-Enhanced-Edition",
-    "mpv.net"
+    "mpv.net",
+    "zhongyang219.TrafficMonitor.Lite"
 )
 
 foreach ($app in $apps) {
