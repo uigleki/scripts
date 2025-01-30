@@ -39,7 +39,7 @@ Optional Optimizations:
 1. Disable HAGS (Hardware-Accelerated GPU Scheduling)
    - Consider keeping if using high-end GPU
 2. Disable CABC (Content Adaptive Brightness Control)
-   - Fixes severe brightness reduction issues:
+   - Fixes severe brightness reduction issues
 3. Disable fast startup
    - If experiencing boot issues
 
