@@ -21,7 +21,6 @@ See [dotfiles](https://github.com/uigleki/dotfiles)
 3. Configure critical settings:
    - Set sleep & hibernate timeouts: Never
    - Disable Delivery Optimization
-   - Disable HAGS (consider keeping if using high-end GPU)
 4. Update system to latest version
 5. Enable Windows features:
    - Hyper-V
@@ -34,6 +33,11 @@ See [dotfiles](https://github.com/uigleki/dotfiles)
 wsl --update
 iwr -useb https://raw.githubusercontent.com/uigleki/scripts/main/ps1/install_apps.ps1 | iex
 ```
+
+Optional:
+
+1. Disable HAGS (consider keeping if using high-end GPU)
+2. Disable fast startup (if experiencing boot issues)
 
 ## 📄 License
 
