@@ -31,7 +31,7 @@ rsync -ah --info=progress2 --delete --inplace --no-whole-file -e 'ssh -p PORT' S
 ### 输出仓库所有文件内容
 
 ```fish
-fd -H -E .git -E LICENSE -tf . | while read -l file
+for file in (fd -H -E .git -E LICENSE -tf .)
     echo "=== $file ==="
     bat -pp "$file"
 end
