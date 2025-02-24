@@ -43,6 +43,8 @@ Optional Optimizations:
 3. Disable fast startup
    - If experiencing boot issues
 
+Also see [toolkit](https://github.com/uigleki/toolkit)
+
 ## 📄 License
 
 [AGPL-3.0](LICENSE)
