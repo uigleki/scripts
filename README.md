@@ -43,6 +43,12 @@ Optional Optimizations:
 3. Disable fast startup
    - If experiencing boot issues
 
+Recommended Microsoft Store Apps:
+
+- [App Installer](https://www.microsoft.com/store/productId/9NBLGGH4NNS1)
+- [Game Bar](https://www.microsoft.com/store/productId/9NZKPSTSNW4P)
+- [Windows Terminal](https://www.microsoft.com/store/productId/9N0DX20HK701)
+
 Also see [toolkit](https://github.com/uigleki/toolkit)
 
 ## 📄 License

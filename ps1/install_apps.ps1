@@ -1,7 +1,6 @@
 $apps = @(
     "7zip.7zip",
     "AnyAssociation.Anytype",
-    "Canonical.Ubuntu",
     "Clementine.Clementine",
     "Cloudflare.Warp",
     "Cryptomator.Cryptomator",
