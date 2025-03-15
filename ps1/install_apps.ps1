@@ -9,7 +9,6 @@ $apps = @(
     "KDE.CrowTranslate",
     "KDE.KDEConnect",
     "Klocman.BulkCrapUninstaller",
-    "MacType.MacType",
     "Mega.MEGASync",
     "Microsoft.PowerToys",
     "Microsoft.VisualStudioCode",
