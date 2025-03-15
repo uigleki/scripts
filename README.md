@@ -36,12 +36,14 @@ iwr -useb https://raw.githubusercontent.com/uigleki/scripts/main/ps1/install_app
 
 Optional Optimizations:
 
-1. Disable HAGS (Hardware-Accelerated GPU Scheduling)
-   - Consider keeping if using high-end GPU
-2. Disable CABC (Content Adaptive Brightness Control)
-   - Fixes severe brightness reduction issues
-3. Disable fast startup
+1. Disable Enhanced Pointer Precision
+   - Improves accuracy for gaming by removing mouse acceleration
+2. Disable fast startup
    - If experiencing boot issues
+3. Disable HAGS (Hardware-Accelerated GPU Scheduling)
+   - Consider keeping if using high-end GPU
+4. Disable CABC (Content Adaptive Brightness Control)
+   - Fixes severe brightness reduction issues
 
 Recommended Microsoft Store Apps:
 
