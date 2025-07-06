@@ -1,8 +1,6 @@
 # 实用命令笔记
 
-部分命令使用了 fish shell 特有语法，在 bash 中可能不兼容。
-
-## 命令
+## bash
 
 ### 保持用户服务在登出后继续运行
 
@@ -28,6 +26,14 @@ curl https://raw.githubusercontent.com/gnachman/iTerm2/master/tests/24-bit-color
 rsync -ah --info=progress2 --delete --inplace --no-whole-file -e 'ssh -p PORT' SRC REMOTE:/DEST
 ```
 
+### 输出音乐文件列表
+
+```bash
+fd -tf . TARGET_DIR | sd -- '.*/(.*)\.[^.]*$' '- $1' | sort
+```
+
+## fish
+
 ### 输出仓库所有文件内容
 
 ```fish
@@ -37,12 +43,6 @@ for file in (fd -H -E .git -E LICENSE -tf .)
 end
 ```
 
-### 输出音乐文件列表
-
-```bash
-fd -tf . TARGET_DIR | sd -- '.*/(.*)\.[^.]*$' '- $1' | sort
-```
-
 ### 检查目录下所有媒体文件完整性
 
 ```fish
@@ -50,4 +50,12 @@ for file in (fd -tf . TARGET_DIR)
     echo "=== $file ==="
     ffmpeg -v error -i "$file" -f null - 2>&1
 end
+```
+
+## powershell
+
+### 更新 Winget 软件
+
+```powershell
+winget upgrade --all
 ```
