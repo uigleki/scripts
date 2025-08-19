@@ -49,6 +49,7 @@ Recommended Microsoft Store Apps:
 
 - [App Installer](https://www.microsoft.com/store/productId/9NBLGGH4NNS1)
 - [Game Bar](https://www.microsoft.com/store/productId/9NZKPSTSNW4P)
+- [Snipping Tool](https://apps.microsoft.com/detail/9mz95kl8mr0l)
 - [Windows Terminal](https://www.microsoft.com/store/productId/9N0DX20HK701)
 
 Also see [toolkit](https://github.com/uigleki/toolkit)
