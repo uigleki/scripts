@@ -1,32 +1,32 @@
-# 实用命令笔记
+# Useful Command Notes
 
 ## bash
 
-### 保持用户服务在登出后继续运行
+### Keep user services running after logout
 
 ```bash
 sudo loginctl enable-linger $USER
 ```
 
-### 查看所有失败状态的服务单元
+### List all failed service units
 
 ```bash
 systemctl list-units --state failed
 ```
 
-### 测试终端 24 位真彩色支持
+### Test terminal 24-bit true color support
 
 ```bash
 curl https://raw.githubusercontent.com/gnachman/iTerm2/master/tests/24-bit-color.sh | bash
 ```
 
-### 增量同步指定目录
+### Incremental sync of specified directory
 
 ```bash
 rsync -ah --info=progress2 --delete --inplace --no-whole-file -e 'ssh -p PORT' SRC REMOTE:/DEST
 ```
 
-### 输出音乐文件列表
+### Output music file list
 
 ```bash
 fd -tf . TARGET_DIR | sd -- '.*/(.*)\.[^.]*$' '- $1' | sort
@@ -34,7 +34,7 @@ fd -tf . TARGET_DIR | sd -- '.*/(.*)\.[^.]*$' '- $1' | sort
 
 ## fish
 
-### 输出仓库所有文件内容
+### Output all repository file contents
 
 ```fish
 for file in (fd -H -E .git -E LICENSE -tf .)
@@ -43,7 +43,7 @@ for file in (fd -H -E .git -E LICENSE -tf .)
 end
 ```
 
-### 检查目录下所有媒体文件完整性
+### Check integrity of all media files in directory
 
 ```fish
 for file in (fd -tf . TARGET_DIR)
@@ -54,7 +54,7 @@ end
 
 ## powershell
 
-### 更新 Winget 软件
+### Update Winget packages
 
 ```powershell
 winget upgrade --all
