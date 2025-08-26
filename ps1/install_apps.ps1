@@ -12,6 +12,7 @@ $apps = @(
     "Microsoft.PowerToys",
     "Microsoft.VisualStudioCode",
     "Mozilla.Firefox",
+    "Sandboxie.Plus"
     "Telegram.TelegramDesktop",
     "Valve.Steam",
     "agalwood.Motrix",
