@@ -4,6 +4,7 @@ $apps = @(
     "Clementine.Clementine",
     "Cloudflare.Warp",
     "Cryptomator.Cryptomator",
+    "DuongDieuPhap.ImageGlass",
     "Git.Git",
     "KDE.CrowTranslate",
     "KDE.KDEConnect",
