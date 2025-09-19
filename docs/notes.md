@@ -32,6 +32,12 @@ rsync -ah --info=progress2 --delete --inplace --no-whole-file -e 'ssh -p PORT' S
 fd -tf . TARGET_DIR | sd -- '.*/(.*)\.[^.]*$' '- $1' | sort
 ```
 
+### Check btrfs filesystem usage
+
+```bash
+sudo btrfs filesystem usage /
+```
+
 ## fish
 
 ### Output all repository file contents
