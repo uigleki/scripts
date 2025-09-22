@@ -14,6 +14,7 @@ $apps = @(
     "Microsoft.VisualStudioCode",
     "Mozilla.Firefox",
     "Sandboxie.Plus",
+    "Tailscale.Tailscale",
     "Telegram.TelegramDesktop",
     "Valve.Steam",
     "agalwood.Motrix",

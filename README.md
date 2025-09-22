@@ -1,8 +1,8 @@
 # scripts
 
-🛠️ Personal scripts collection
+Personal scripts collection
 
-## ✨ Features
+## Features
 
 - System setup automation
 - Development environment configuration
@@ -54,6 +54,6 @@ Recommended Microsoft Store Apps:
 
 Also see [toolkit](https://github.com/uigleki/toolkit)
 
-## 📄 License
+## License
 
 [AGPL-3.0](LICENSE)
