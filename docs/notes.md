@@ -2,12 +2,6 @@
 
 ## bash
 
-### Keep user services running after logout
-
-```bash
-sudo loginctl enable-linger $USER
-```
-
 ### List all failed service units
 
 ```bash
