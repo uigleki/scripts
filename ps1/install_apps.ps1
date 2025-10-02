@@ -5,6 +5,7 @@ $apps = @(
     "Cloudflare.Warp",
     "Cryptomator.Cryptomator",
     "DuongDieuPhap.ImageGlass",
+    "GermanCoding.SyncTrayzor",
     "Git.Git",
     "HeroicGamesLauncher.HeroicGamesLauncher",
     "KDE.CrowTranslate",
