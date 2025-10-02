@@ -6,6 +6,7 @@ $apps = @(
     "Cryptomator.Cryptomator",
     "DuongDieuPhap.ImageGlass",
     "Git.Git",
+    "HeroicGamesLauncher.HeroicGamesLauncher",
     "KDE.CrowTranslate",
     "KDE.KDEConnect",
     "Klocman.BulkCrapUninstaller",
