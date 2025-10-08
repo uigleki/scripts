@@ -47,10 +47,10 @@ Optional Optimizations:
 
 Recommended Microsoft Store Apps:
 
-- [App Installer](https://www.microsoft.com/store/productId/9NBLGGH4NNS1)
-- [Game Bar](https://www.microsoft.com/store/productId/9NZKPSTSNW4P)
+- [App Installer](https://apps.microsoft.com/detail/9nblggh4nns1)
+- [Game Bar](https://apps.microsoft.com/detail/9nzkpstsnw4p)
 - [Snipping Tool](https://apps.microsoft.com/detail/9mz95kl8mr0l)
-- [Windows Terminal](https://www.microsoft.com/store/productId/9N0DX20HK701)
+- [Windows Terminal](https://apps.microsoft.com/detail/9n0dx20hk701)
 
 Also see [toolkit](https://github.com/uigleki/toolkit)
 
