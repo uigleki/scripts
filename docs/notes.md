@@ -37,18 +37,18 @@ sudo btrfs filesystem usage /
 ### Output all repository file contents
 
 ```fish
-for file in (fd -H -E .git -E LICENSE -tf .)
-    echo "=== $file ==="
-    bat -pp "$file"
+for f in (git ls-files | rg -v '^LICENSE|\.lock$')
+    echo "=== $f ==="
+    bat -pp "$f"
 end
 ```
 
 ### Check integrity of all media files in directory
 
 ```fish
-for file in (fd -tf . TARGET_DIR)
-    echo "=== $file ==="
-    ffmpeg -v error -i "$file" -f null - 2>&1
+for f in (fd -tf . TARGET_DIR)
+    echo "=== $f ==="
+    ffmpeg -v error -i "$f" -f null - 2>&1
 end
 ```
 
