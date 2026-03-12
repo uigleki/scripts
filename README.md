@@ -44,6 +44,8 @@ Optional Optimizations:
    - Consider keeping if using high-end GPU
 4. Disable CABC (Content Adaptive Brightness Control)
    - Fixes severe brightness reduction issues
+5. Set Cursor Blink Rate to None
+   - Reduces visual distraction
 
 Recommended Microsoft Store Apps:
 
